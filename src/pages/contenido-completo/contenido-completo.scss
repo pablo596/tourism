@@ -1,0 +1,60 @@
+page-contenido-completo,
+    
+    .contenido-completo {
+      ion-list {
+        border-radius: 1rem;
+        overflow: hidden;
+    
+        ion-item,
+        .item:first-child,
+        .item:last-child {
+          border: none;
+        }
+    
+        ion-datetime {
+          padding-left: 0;
+        }
+      }
+      .pPrincipal{
+        color: #000;
+        text-align:center; 
+      }
+      .cardContent{
+        text-align: justify;
+      }
+      .cardTitle{
+        color: #F48E28;
+      }
+      .trip-info{
+        background-color: #F48E28; 
+      }
+      .pCuerpo{
+        color: #000;
+        text-align:justify; 
+      }
+
+      .slider ion-slide{
+        
+        display: flex;
+        animation: cambio 10s infinite alternate linear;
+      }
+
+      @keyframes cambio {
+        0% { margin-left:0%; }
+        100% { margin-left:0%; }
+
+        100% { margin-left:-100%; }
+        200% { margin-left:-100%; }
+
+        40% { margin-left:-200%; }
+        60% { margin-left:-200%; }
+
+        60% { margin-left:-300%; }
+        80% { margin-left:-300%; }
+        // 50% { margin-left:-200%; }
+        // 70% { margin-left:-200%; }
+      }
+      
+    }
+    
+

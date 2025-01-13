@@ -1,0 +1,25 @@
+page-checkout-trip .trip-info .trip-image,
+.checkout-trip .trip-info .trip-image {
+  width: 100%;
+  height: 120px;
+  background-size: 100% auto;
+  background-position: center;
+  border-radius: 1rem 1rem 0 0;
+}
+
+page-checkout-trip .trip-info .trip-features ion-icon,
+.checkout-trip .trip-info .trip-features ion-icon {
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+page-checkout-trip .item.no-border .item-inner,
+.checkout-trip .item.no-border .item-inner {
+  padding-right: 0;
+}
+
+page-checkout-trip .item.no-border .item-inner [item-end],
+.checkout-trip .item.no-border .item-inner [item-end] {
+  margin: 0;
+}
+/*# sourceMappingURL=checkout-trip.css.map */

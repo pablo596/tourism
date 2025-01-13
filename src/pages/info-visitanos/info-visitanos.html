@@ -1,0 +1,71 @@
+<!--
+  Generated template for the InfoVisitanosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="pederNaranja">
+    <ion-title>Visitanos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <img src="{{ this.server.DOMAINIMG }}/archivos/toma/5c6b05cc33a03.jpg/600x100" height="100px" width="100%" alt="">
+  <br><br>
+  <div class="titulo"><h1>Para información turítica visita:</h1></div>
+  <br>
+  <div [ngStyle]="{'padding-left': '5%','padding-right': '5%', 'text-align':'center'} ">
+    <ion-grid fixed [ngStyle]="{'text-align':'center'}">
+      <ion-row (click)="openlink('http://www.pedernalesturistico.com/')">
+        <ion-col col-12><p>Pedernales Turístico</p></ion-col>
+      </ion-row>
+      <ion-row (click)="openlink('https://www.pedernales.gob.ec/')">
+        <ion-col col-12><p>GADMP</p></ion-col>
+      </ion-row>
+      <ion-row (click)="openlink('https://www.facebook.com/gadmpedernales/')">
+        <ion-col col-2>
+          <ion-thumbnail item-start>
+            <img src="assets/icon/facebook.png">
+          </ion-thumbnail>
+        </ion-col>
+        <ion-col col-10>
+          <p>Municipio de Pedernales</p>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="openlink('https://www.youtube.com/channel/UCXM3gp0dbkVqYljq8S5BsKw')">
+        <ion-col col-2>
+          <ion-thumbnail item-start>
+            <img src="assets/icon/youtube.png">
+          </ion-thumbnail>
+        </ion-col>
+        <ion-col col-10>
+          <p>Gobierno Municipal de Pedernales</p>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="openlink('https://www.instagram.com/gadmpedernales/?hl=es-la')">
+        <ion-col col-2>
+          <ion-thumbnail item-start>
+            <img src="assets/icon/instagram.png">
+          </ion-thumbnail>
+        </ion-col>
+        <ion-col col-10>
+          <p>@gadmpedernales</p>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="openlink('https://twitter.com/gadmpedernales')">
+        <ion-col col-2>
+          <ion-thumbnail item-start>
+            <img src="assets/icon/twitter.png">
+          </ion-thumbnail>
+        </ion-col>
+        <ion-col col-10>
+          <p>@gadmpedernales</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

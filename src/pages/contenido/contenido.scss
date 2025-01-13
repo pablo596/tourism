@@ -1,0 +1,69 @@
+page-contenido,
+    // .iconPin{
+    //   color: #000;
+    // }
+    
+    .contenido {
+      .lugar{
+        color: #F48E28;
+      }
+      ion-list {
+        border-radius: 1rem;
+        overflow: hidden;
+    
+        ion-item,
+        .item:first-child,
+        .item:last-child {
+          border: none;
+        }
+    
+        ion-datetime {
+          padding-left: 0;
+        }
+      }
+      .pPrincipal{
+        color: #000;
+        text-align:center; 
+      }
+      .cardContent{
+        text-align: justify;
+      }
+      .cardTitle{
+        color: #F48E28;
+      }
+      .cardBlanca{
+        padding: 0%;
+      }
+      .pPrincipal{
+      font-family: Roboto;
+      text-align: justify;
+      }
+      .trip-info{
+        background-color: #F48E28; 
+      }
+
+      .slider ion-slide{
+        
+        display: flex;
+        animation: cambio 20s infinite alternate linear;
+      }
+      ion-icon {
+        font-size: 30px; //Preferred size here
+      }
+      @keyframes cambio {
+        0% { margin-left:0px; }
+        100% { margin-left:-20px; }
+
+        // 30% { margin-left:50%; }
+        // 55% { margin-left:50%; }
+
+        // 60% { margin-left:-200%; }
+        // 80% { margin-left:-200%; }
+
+        // 75% { margin-left:-350%; }
+        // 100% { margin-left:-350%; }
+      }
+
+    }
+    
+

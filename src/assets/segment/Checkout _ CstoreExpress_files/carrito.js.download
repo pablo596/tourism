@@ -1,0 +1,149 @@
+var _esN = window.navigator.appName=='Netscape' ? true : false;
+var _esIE = window.navigator.appName=='Microsoft Internet Explorer' ? true : false;
+var env_form = "";
+var btnclick="";
+var jsonRes=[];
+var text_load =""
+var testA="ningun producto agregado al carrito"
+
+function alerta(t1,t2,ti,ico){
+  return '<div class="alert alert-'+ti+' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><i class="fa '+ico+'"></i> <strong>'+t1+'</strong> <small>'+t2+'</small>  </div>'
+};
+
+
+$("#btn-pedido").click(function(){
+
+      
+      if ($("#lo-hi").val() == 1) {
+        if ($.cookie('id_atuspies') !== undefined) {
+            realizarPedido();
+        }else{
+            $("#div_noti").html(alerta("Alerta",testA,"warning","fa-exclamation-triangle"))
+        }
+
+        
+      }else{
+        window.location.href="../ingreso/registro"
+      }
+})
+
+
+// $('#btnPlaceOrder').click(function(){
+
+// });
+
+
+function cargar_env(){
+    var id_ = $.cookie('id_atuspies')
+        var nom_ = $.cookie('nom_atuspies');
+        var pre_ = $.cookie('precio_atuspies');
+        var ta_ = $.cookie('talla_atuspies');
+        var co_ = $.cookie('color_atuspies');
+        var ca_ = $.cookie('can_atuspies');
+        var d = new Date();
+        env_form ="id="+id_+"&pro="+nom_+"&precio="+pre_+"&talla="+ta_+"&color="+co_+"&can="+ca_+"&total="+totalCarrito;
+        var mm= d.getMonth()+1;
+        if (mm < 10) {
+            mm = "0"+mm;
+        };
+        var dd = d.getDate();
+        if (dd < 10) {
+            dd = "0"+dd;
+        };
+        env_form +="&fecha="+d.getFullYear()+"-"+mm+"-"+dd+" "+d.getHours()+":"+d.getMinutes();
+}
+function realizarPedido(){
+    if ($.cookie('id_atuspies') !== undefined) {
+        cargar_env()
+
+        text_load = 'Realizar pedido'
+        btnclick="btn-pedido";
+        $("#"+btnclick).attr('disabled', true);
+        ajax_cone($("#btn-pedido"),veriPedido,"../pedido.php",'Realizando pedido <i class="fa fa-spinner fa-pulse"></i>', $("#div_noti"));
+    }
+}
+function veriPedido(){
+    if (jsonRes[0]) {
+        env_form ="id="+jsonRes[0];
+        ajax_sencillo("../envemailpedido.php");
+        env_form ="id="+jsonRes[0];
+        ajax_sencillo("../envemaildatos.php");
+        $("#"+btnclick).html(text_load);
+        $("#"+btnclick).attr('disabled', true);
+        
+        var hh = '<div class="col-xs-12 col-sm-6"><img class="img-responsive center-block" src="../img/checkpedi.png"></div><div class="col-xs-12 col-sm-6"><h3 class="text-check">Pedido enviado correctamente, por favor revise su correo electrónico</h3 class="text-gray"></div>'
+      
+        $("#carrito-div").html(hh)
+        testA="Ya realizó el pedido";
+        $.removeCookie('id_atuspies', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('nom_atuspies', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('precio_atuspies', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('precioOfi_atuspies', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('cupon_atuspies', { domain: 'localhost', path: '/' });
+        $.removeCookie('precioFijo_atuspies', { domain: 'localhost', path: '/' });
+        $.removeCookie('talla_atuspies', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('color_atuspies', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('can_atuspies', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('img_atuspies', { domain: 'localhost', path: '/' });
+        window.location.href="/carrito-proceso-completado/"
+      }else{
+        $("#div_noti").html(alerta("Alerta","vuelva a enviar el pedido o verifique su conexión a internet","warning","fa-exclamation-triangle"))
+        $("#"+btnclick).html(text_load);
+        $("#"+btnclick).attr('disabled', false);
+      }
+}
+function getTransporte() {
+    return _esN ? new XMLHttpRequest() : (new
+      XObject('Msxml2.XMLHTTP') || new ActiveXObject('Microsoft.XMLHTTP') || false);
+}
+function ajax_cone(div,fun,url,load,noti){
+    var ajax = getTransporte();
+
+    ajax.onreadystatechange = function(){
+        if(ajax.readyState == 4){
+            if(ajax.status==200){
+                if(typeof(JSON.parse(ajax.responseText)) != "string" ) {
+                    //campos_disabled(arrenv,false);
+                    //campos_disabled(arrenv,false);
+                    jsonRes=JSON.parse(ajax.responseText);
+                    if( typeof(fun) != "undefined" ){
+                        fun();
+                    }
+                 }else{
+                    noti.html(alerta("Alerta","vuelva a cargar la pagina","warning","fa-exclamation-triangle"));
+                    div.html(text_load);
+                    $("#"+btnclick).attr('disabled', false);
+                   //  campos_disabled(arrenv,false);
+                }
+            }else{
+
+                noti.html(alerta("Alerta","vuelva a cargar la pagina o verifique conexión a internet","warning","fa-exclamation-triangle"));
+                div.html(text_load);
+                $("#"+btnclick).attr('disabled', false);
+                //campos_disabled(arrenv,false);
+            }
+        }else{
+            div.html(load);
+            //campos_disabled(arrenv,true);
+        }
+    };
+    ajax.open('POST', url, true);
+    ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    ajax.send(env_form);
+    env_form = "";
+}
+function ajax_sencillo(url){
+    var ajax = getTransporte();
+
+    ajax.onreadystatechange = function(){
+        if(ajax.readyState == 4){
+           
+        }else{
+
+        }
+    };
+    ajax.open('POST', url, true);
+    ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    ajax.send(env_form);
+    env_form = "";
+}

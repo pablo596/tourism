@@ -1,0 +1,70 @@
+.actsh{
+  --color: #000;
+}
+page-home,
+.home {
+  // .actsh{
+  //   color: #000;
+  // }
+  ion-list {
+    overflow: hidden;
+
+    ion-item,
+    .item:first-child,
+    .item:last-child {
+      border: none;
+    }
+
+    ion-datetime {
+      padding-left: 0;
+    }
+  }
+  
+  .icon{
+    color: #000;
+  }
+  .menu{
+    color: #fff;
+  }
+  .fondo{
+    background-image: url('../assets/img/fondo-menu.png');
+  }
+  .pPrincipal{
+    color: #000;
+    text-align:justify; 
+  }
+  .cardContent{
+    text-align: justify;
+  }
+  .cardTitle{
+    color: #F48E28;
+  }
+  .trip-info{
+    background-color: #F48E28; 
+  }
+  ion-grid {
+    // height: 100%;
+    justify-content: center;
+    vertical-align: middle;
+  }
+  ion-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .columna{
+    // height: 100px;
+    // width: 100%;
+    display: grid;
+    vertical-align: top;
+    text-align: center;
+    color: white;
+    background-color: rgba(0,0,0,0.8);
+    height: 200px;
+    max-width: 100%;
+    background-size: auto;
+    border: 1px solid white;
+    
+  }
+}

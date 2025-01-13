@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar color="pederNaranja">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title >
+        <!-- <strong>Ionic 3</strong> Start Theme -->
+        {{title}}
+      </ion-title>
+      <!-- <ion-buttons end>
+        <button ion-button tappable (click)="presentNotifications($event)">
+          <ion-icon name="notifications"></ion-icon>
+        </button>
+        <button ion-button tappable (click)="goToAccount()">
+          <ion-icon name="cog"></ion-icon>
+        </button>
+      </ion-buttons> -->
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+    <div class="container trip-info card round">
+        
+        <ion-slides autoplay="5000" loop="true" speed="3000"> 
+    
+          <ion-slide *ngFor="let image of ImageArray" class="trip-image border-bottom">
+            <img src="{{image.img}}" alt="" height="593" width="890">
+            
+          </ion-slide>
+        </ion-slides>
+        <p class="pPrincipal">Pedernales cuenta con una importante planta hotelera y de servicios, destacando la amplia variedad de restaurantes y sitios de diversión que se extienden por todo el malecón.</p>
+        <p class="pPrincipal">Punta Los Frailes, al sur de Pedernales, es un sitio de descanso de aves marinas hasta donde se puede llegar luego de una corta caminata de 15 minutos por la playa.</p>
+        
+    </div>
+
+</ion-content>

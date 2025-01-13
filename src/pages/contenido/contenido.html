@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar color="pederNaranja">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <!-- <strong>Ionic 3</strong> Start Theme -->
+      {{ titulo }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="animated fadeIn common-bg">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content 
+      pullingIcon="arrow-down"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="this.contenido!=false">
+    <div  *ngFor="let item of aux">
+      <!-- <div class="container trip-info card round"  (click)="verMas(item.titulo,item.id)" no-padding color="pederNaranja"> -->
+      <div class="container trip-info card round" no-padding color="pederNaranja">
+          <ion-card class="cardBlanca max-width" no-padding>
+            <div >
+              <ion-slides #slides *ngIf="item.image?.length>1" autoplay="5000" loop="true" speed="500" class="slides" pager="true">
+              <!-- <ion-slides #slides *ngIf="imgInfo && imgInfo.length" autoplay="5000" loop="true" speed="500" class="slides" pager="true">/ -->
+                <ion-slide *ngFor="let img of item.image">
+                <!-- <ion-slide> -->
+                  <!-- <div> -->
+                    <img  src="{{ this.server.DOMAINIMG }}/archivos/toma/{{  img.url }}/400x300" />
+                  <!-- </div>/ -->
+                </ion-slide>
+              </ion-slides>
+              <div *ngIf="item.nimage==1">
+                <img  *ngFor="let img of item.image" src="{{ this.server.DOMAINIMG }}/archivos/toma/{{  img.url }}/400x300" alt="">
+              </div>
+            </div>
+            <!-- <ion-fab right top *ngIf="item.lat!=0">
+              <button ion-fab (click)="irUbicacion(item.lat,item.lng)">
+                <ion-icon name="pin"></ion-icon>
+              </button>
+            </ion-fab>
+            <ion-fab left top >
+              <button ion-fab (click)="videos(item.id)">
+                <ion-icon name="logo-youtube"></ion-icon>
+              </button>
+            </ion-fab> -->
+            <ion-item class="pCuerpo" *ngIf="item.lat!=0">
+              <button ion-fab (click)="irUbicacion(item.lat,item.lng)">
+                <ion-icon name="pin"></ion-icon>
+              </button>
+            </ion-item>
+            <ion-item *ngIf="item.video" >
+              <button ion-button clear (click)="videos(item.id)">
+                <ion-icon name="logo-youtube"></ion-icon>
+              </button>
+            </ion-item>
+            <ion-item class="pCuerpo" *ngIf="item.lugar" >
+              <ion-icon name="pin" item-start color="primary"></ion-icon><h2 class="lugar">{{ item.lugar }}</h2>
+              
+            </ion-item>
+            <ion-card-content>
+              <ion-card-title>
+                {{item.titulo}}
+              </ion-card-title>
+              <p class="pPrincipal">{{ item.resena }}</p>
+            </ion-card-content>
+          </ion-card>
+      </div>
+      <br>
+      <br>
+    </div>
+  </div>
+</ion-content>

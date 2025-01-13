@@ -1,0 +1,73 @@
+page-contenido ion-list,
+.contenido ion-list {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+page-contenido ion-list ion-item,
+page-contenido ion-list .item:first-child,
+page-contenido ion-list .item:last-child,
+.contenido ion-list ion-item,
+.contenido ion-list .item:first-child,
+.contenido ion-list .item:last-child {
+  border: none;
+}
+
+page-contenido ion-list ion-datetime,
+.contenido ion-list ion-datetime {
+  padding-left: 0;
+}
+
+page-contenido .pPrincipal,
+.contenido .pPrincipal {
+  color: #000;
+  text-align: center;
+}
+
+page-contenido .cardContent,
+.contenido .cardContent {
+  text-align: justify;
+}
+
+page-contenido .cardTitle,
+.contenido .cardTitle {
+  color: #F48E28;
+}
+
+page-contenido .pPrincipal,
+.contenido .pPrincipal {
+  font-family: Roboto;
+}
+
+page-contenido .trip-info,
+.contenido .trip-info {
+  background-color: #F48E28;
+}
+
+page-contenido .slider ion-slide,
+.contenido .slider ion-slide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-animation: cambio 20s infinite alternate linear;
+          animation: cambio 20s infinite alternate linear;
+}
+
+@-webkit-keyframes cambio {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -20px;
+  }
+}
+
+@keyframes cambio {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -20px;
+  }
+}
+/*# sourceMappingURL=contenido.css.map */

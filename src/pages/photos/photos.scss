@@ -1,0 +1,30 @@
+page-photos {
+    .image-container{
+        background-size: cover;
+        // min-height: 200px;
+        background-position: center;
+    }
+    @media (min-width: 0px){
+        .images{
+            column-count: 2;
+        }
+    }
+    @media (min-width: 620px){
+        .images{
+            column-count: 3;
+        }
+    }
+    @media (min-width: 820px){
+        .images{
+            column-count: 4;
+        }
+    }
+    .one-image{
+        margin-bottom: 10px;
+        
+        // height: auto;
+    }
+    .one-image img{
+        border-radius: 5%;
+    }
+}

@@ -1,0 +1,21 @@
+page-ver-mas {
+    .trip-info{
+        background-color: #F48E28; 
+      }
+      .slider ion-slide{
+        
+        display: flex;
+        animation: cambio 20s infinite alternate linear;
+      }
+
+      @keyframes cambio {
+        0% { margin-left:0; }
+        40% { margin-left:0; }
+
+        45% { margin-left:-50%; }
+        90% { margin-left:-50%; }
+
+        // 50% { margin-left:-200%; }
+        // 70% { margin-left:-200%; }
+      }
+}

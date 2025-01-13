@@ -1,0 +1,42 @@
+page-ver-mas .trip-info {
+  background-color: #F48E28;
+}
+
+page-ver-mas .slider ion-slide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-animation: cambio 20s infinite alternate linear;
+          animation: cambio 20s infinite alternate linear;
+}
+
+@-webkit-keyframes cambio {
+  0% {
+    margin-left: 0;
+  }
+  40% {
+    margin-left: 0;
+  }
+  45% {
+    margin-left: -50%;
+  }
+  90% {
+    margin-left: -50%;
+  }
+}
+
+@keyframes cambio {
+  0% {
+    margin-left: 0;
+  }
+  40% {
+    margin-left: 0;
+  }
+  45% {
+    margin-left: -50%;
+  }
+  90% {
+    margin-left: -50%;
+  }
+}
+/*# sourceMappingURL=ver-mas.css.map */

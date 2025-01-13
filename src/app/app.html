@@ -1,0 +1,48 @@
+<ion-menu side="left" id="authenticated" [content]="content">
+  <ion-header>
+    <ion-toolbar class="user-profile">
+          <img src="assets/logo/icon2.png" width="50%" alt="" (click)="irInicio()" menuClose>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="fondo" color="pederNaranja" id="menu">
+    <ion-list class="accordion-list menu-list" no-lines no-padding no-background>
+      <!--  -->
+      <ion-list-header class="itemMenu" *ngFor="let item of menu; let i = index" no-lines no-padding no-background>
+        <button ion-item class="itemMenu" (click)="openPage(item.id,0,i,1,item.menu)" menuClose detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}" *ngIf="item.submenu==0">
+          <ion-icon item-left  *ngIf="!item.open && item.childNum!=0"><img style="color:#F48E28; background-color: #F48E28; border-radius:20%;" src="{{ this.server.DOMAINIMG }}/archivos/toma/{{ item.img_point }}/200x200" height="50px" alt=""></ion-icon>
+          <!-- <ion-icon item-left name="arrow-down" *ngIf="item.open && item.childNum!=0"></ion-icon> -->
+          {{ item.menu }}
+        </button>
+        <button ion-item class="itemMenu" (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}" *ngIf="item.submenu==1">
+          <ion-icon item-left class="icono" *ngIf="!item.open && item.childNum!=0"><img style="color:#F48E28; background-color: #F48E28; border-radius:20%;" src="{{ this.server.DOMAINIMG }}/archivos/toma/{{ item.img_point }}/200x200" height="50px" alt=""></ion-icon>
+          <!-- <ion-icon item-left name="arrow-down" *ngIf="item.open && item.childNum!=0"></ion-icon> -->
+          {{ item.menu }}
+        </button>
+        <div *ngIf="item.id && item.open" no-lines no-padding no-detail no-background class="itemMenu">
+          <ion-list *ngFor="let sub of submenu; let j = index"  no-padding  [style.visibility]="item.open ? 'visible' : 'hidden'" class="itemMenu">  
+              <button ion-item *ngIf="sub.id_menu==item.id && sub.id_submenu" menuClose  class="child itemMenu" detail-none (click)="openPage(item.id,sub.id_submenu,j,2,item.menu)">
+                <ion-icon item-left name="add" *ngIf="!sub.open"></ion-icon>
+                <ion-icon item-left name="close" *ngIf="sub.open"></ion-icon>
+                {{ sub.submenu }}
+              </button>
+          </ion-list>    
+        </div>
+        <!-- <ion-list  *ngIf="item.children && item.open" no-lines> -->
+        <!-- Second Level -->
+        <!-- <ion-list-header *ngFor="let child of item.children; let j = index" no-padding> -->
+        <!-- Toggle Button -->
+        <!-- <button ion-item (click)="toggleItem(i, j)" menuClose  class="child" detail-none (click)="openPage(child.component)">
+            <ion-icon item-left name="add" *ngIf="!child.open"></ion-icon>
+            <ion-icon item-left name="close" *ngIf="child.open"></ion-icon>
+            {{ child.name }}
+          </button>
+          </ion-list-header>    
+        </ion-list> -->
+      </ion-list-header>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

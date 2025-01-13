@@ -1,0 +1,4033 @@
+webpackJsonp([19],{
+
+/***/ 11:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ServerProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_timeout__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_timeout__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ServerProvider = (function () {
+    function ServerProvider(http) {
+        this.http = http;
+        // DOMAIN = 'http://172.23.212.190:8000/'
+        // public DOMAINIMG = 'http://172.23.212.190:8001/'
+        this.DOMAIN = "http://192.168.1.147:8000/";
+        this.DOMAINIMG = "http://192.168.1.147:8001/";
+        this.BASE_URL = this.DOMAIN + "/toma/";
+    }
+    ServerProvider.prototype.getServer = function (url) {
+        return this.http
+            .get(url)
+            .timeout(10000)
+            .toPromise()
+            .then(function (Response) {
+            return Response.json();
+        })
+            .catch(this.error);
+        // this.http.get(url).map(res => res.json()).subscribe(data => {});
+    };
+    ServerProvider.prototype.postServer = function (url, body) {
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({
+            headers: new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+                "Content-Type": "application/x-www-form-urlendoced; charset=utf-8",
+            }),
+        });
+        return this.http
+            .post(url, body, options)
+            .timeout(10000)
+            .toPromise()
+            .then(function (Response) { return Response.json(); })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.error = function (error) {
+        return Promise.reject(error.message || error);
+    };
+    ServerProvider.prototype.getMenu = function () {
+        var url = this.BASE_URL + "menu";
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getMenuCompleto = function () {
+        var url = this.BASE_URL + "menu/completo";
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getMenuId = function () {
+        var url = this.BASE_URL + "menu/completo";
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getContenido = function (menu, submenu) {
+        var url = this.BASE_URL + "contenido/" + menu + "/" + submenu;
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getAtractivoContenido = function (tipo) {
+        var url = this.BASE_URL + "contenido-atractivo/" + tipo;
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getContenidoId = function (id) {
+        var url = this.BASE_URL + "contenido/" + id;
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getImageInfo = function (id) {
+        var url = this.BASE_URL + "imagenes/" + id;
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getImageInfoAtractivo = function (id) {
+        var url = this.BASE_URL + "guia/imagenes/" + id;
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getImage360 = function () {
+        var url = this.BASE_URL + "visor360/toma-imagenes";
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getFotos = function () {
+        var url = this.BASE_URL + "fotos/toma-imagenes";
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getGuiaCategorias = function () {
+        var url = this.BASE_URL + "guia/categorias";
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getGuiaCategoriasFull = function () {
+        var url = this.BASE_URL + "guia";
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getGuiaCategoriasId = function (id) {
+        var url = this.BASE_URL + "guia/" + id;
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getVideoContenido = function (id) {
+        var url = this.BASE_URL + "videos/" + id;
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getVideos = function () {
+        var url = this.BASE_URL + "videosfull";
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getGuiaId = function (id) {
+        var url = this.BASE_URL + "guia/detalle/" + id;
+        // let body = JSON.stringify({ parroquias : parroquia });;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.setDireccion = function (clave, nuevaCallePri, claveAnt, nuevaCalleSec, nuevaInter, nuevoBarrio, nuevaUrb) {
+        var url = this.BASE_URL + "actualizarCallePri.php";
+        var body = JSON.stringify({
+            claves: clave,
+            calle: nuevaCallePri,
+            claveant: claveAnt,
+            callesec: nuevaCalleSec,
+            inter: nuevaInter,
+            barrio: nuevoBarrio,
+            urb: nuevaUrb,
+        });
+        return this.postServer(url, body)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    ServerProvider.prototype.getMasInfo = function (tipo) {
+        var url = this.BASE_URL + "masInformacion/getMasInfo/" + tipo;
+        return this.getServer(url)
+            .then(function (json) {
+            return Promise.resolve(json);
+        })
+            .catch(this.error);
+    };
+    return ServerProvider;
+}());
+ServerProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+], ServerProvider);
+
+//# sourceMappingURL=server.js.map
+
+/***/ }),
+
+/***/ 121:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Vista360Page; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_pannellum_build_pannellum_js__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_pannellum_build_pannellum_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_pannellum_build_pannellum_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_server_server__ = __webpack_require__(11);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var Vista360Page = (function () {
+    function Vista360Page(navCtrl, navParams, server) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.server = server;
+        if (!window.FileReader.prototype.addEventListener) {
+            window.FileReader.prototype.addEventListener = function (type, listener) {
+                if (type === 'loadend') {
+                    this.onloadend = listener;
+                }
+            };
+            console.log('FileReader patch for loadend injected');
+        }
+        this.id = 'panoid';
+    }
+    Vista360Page.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad Vista360Page');
+    };
+    Vista360Page.prototype.ngAfterViewInit = function () {
+    };
+    Vista360Page.prototype.ngOnInit = function () {
+        this.titulo = this.navParams.get('lugar');
+        console.log(this.titulo);
+        this.img360 = this.navParams.get('nombre');
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        //Add 'implements OnInit' to the class.
+        console.log('cargq');
+        console.log(this.container);
+        console.log('in ngOnInit() Image URL::::===>' + this.img360);
+        var defaultOptions = {
+            "type": "equirectangular",
+            "panorama": this.server.DOMAINIMG + 'archivos/toma/' + this.img360,
+            "autoLoad": true,
+            "showZoomCtrl": false,
+            "autoRotate": 1.5,
+            "showFullscreenCtrl": true,
+            "crossOrigin": "anonymous"
+        };
+        var combinedOptions = Object.assign({}, defaultOptions, this.options);
+        this.viewer = pannellum.viewer(this.container.nativeElement, combinedOptions);
+    };
+    return Vista360Page;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewChild */])('container'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */])
+], Vista360Page.prototype, "container", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], Vista360Page.prototype, "options", void 0);
+Vista360Page = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-vista360',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\vista360\vista360.html"*/'<!--\n  Generated template for the Vista360Page page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>{{titulo}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content no-padding>\n<div [id]="id" class="container" #container>\n</div>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\vista360\vista360.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_server_server__["a" /* ServerProvider */]])
+], Vista360Page);
+
+//# sourceMappingURL=vista360.js.map
+
+/***/ }),
+
+/***/ 122:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AtractivosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__atractivo_contenido_atractivo_contenido__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__guia_turistica_guia_turistica__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_server_server__ = __webpack_require__(11);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the AtractivosPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var AtractivosPage = (function () {
+    function AtractivosPage(navCtrl, navParams, server, loadingCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.server = server;
+        this.loadingCtrl = loadingCtrl;
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        this.loader.present().then(function () {
+        });
+    }
+    AtractivosPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AtractivosPage');
+    };
+    AtractivosPage.prototype.ngAfterViewInit = function () {
+        this.loader.dismiss();
+    };
+    AtractivosPage.prototype.openMap = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__guia_turistica_guia_turistica__["a" /* GuiaTuristicaPage */]);
+    };
+    AtractivosPage.prototype.naturales = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_0__atractivo_contenido_atractivo_contenido__["a" /* AtractivoContenidoPage */], { titulo: 'Atractivos Naturales', tipo: '6' });
+    };
+    AtractivosPage.prototype.culturales = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_0__atractivo_contenido_atractivo_contenido__["a" /* AtractivoContenidoPage */], { titulo: 'Atractivos Culturales', tipo: '7' });
+    };
+    return AtractivosPage;
+}());
+AtractivosPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+        selector: 'page-atractivos',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\atractivos\atractivos.html"*/'<!--\n  Generated template for the AtractivosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>Guía Turística</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <img src="{{ this.server.DOMAINIMG }}/archivos/toma/5c6b05cc33a03.jpg/600x200" height="100px" width="100%" alt="">\n  <div class="botones">\n    <button ion-button block (click)="openMap()" color="primary">MAPA DE ATRACTIVOS</button>\n    <br>\n    <button ion-button block (click)="naturales()" color="primary">ATRACTIVOS NATURALES</button>\n    <br>\n    <button ion-button block (click)="culturales()" color="primary">ATRACTIVOS CULTURALES</button>\n  </div>\n  <div class="image">\n    <img src="assets/logo/icon2.png" width="50%">\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\atractivos\atractivos.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_4__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* LoadingController */]])
+], AtractivosPage);
+
+//# sourceMappingURL=atractivos.js.map
+
+/***/ }),
+
+/***/ 123:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerMasPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ruta_ruta__ = __webpack_require__(33);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var VerMasPage = (function () {
+    function VerMasPage(navCtrl, navParams, server, loadingCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.server = server;
+        this.loadingCtrl = loadingCtrl;
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        this.datos = [];
+        this.img = [];
+        this.title = this.navParams.get('title');
+        // var id = this.navParams.get('id');
+        console.log(this.slides);
+        // this.loader.present().then(()=>{
+        //   this.server.getGuiaId(id).then(data => {
+        //     this.datos = data['RES'];
+        //     // this.lat = this.datos[0]['lat'];
+        //     // this.lng = this.datos[0]['lng'];
+        //     console.log(this.datos);
+        //     for (let a = 0; a < this.datos.length; a++) {
+        //       if (this.datos[a]['tipo']==3) {
+        //         this.ts = this.datos[a]['img'];     
+        //         console.log(this.datos[a]['img']);
+        //       }
+        //     }
+        //     this.descripcion = this.datos[0]['descripcion'];
+        //     var slider = document.getElementById('slider');
+        //     // slider.setAttributeNode('autoplay':'asd')
+        //     // this.slides.startAutoplay();
+        //     this.loader.dismiss();
+        //   });
+        // });
+    }
+    VerMasPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad VerMasPage');
+    };
+    VerMasPage.prototype.irUbicacion = function (lat, lng) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__ruta_ruta__["a" /* RutaPage */], { lat: lat, lng: lng });
+    };
+    return VerMasPage;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewChild */])('slides'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* Slides */])
+], VerMasPage.prototype, "slides", void 0);
+VerMasPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-ver-mas',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\ver-mas\ver-mas.html"*/'<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>{{ title }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="animated fadeIn common-bg">\n  <!-- <div  >\n      \n\n          \n    <div class="container trip-info card round"   no-padding color="pederNaranja">\n        <ion-card>\n          <div >\n            <ion-slides class="slider" autoplay="" #slides id="slider" loop="true" speed="3000" (ionSlideDidChange)="slideChanged()" >\n            <ion-slide   *ngFor="let image of datos">\n                          <img *ngIf="image.tipo!=3" src="http://localhost:8001/archivos/toma/{{  image.img }}" />\n                    </ion-slide> \n            </ion-slides>\n          </div>\n          <ion-fab right top *ngIf="lat!=0 && lng!=0">\n            <button ion-fab (click)="irUbicacion(lat,lng)">\n              <ion-icon name="pin"></ion-icon>\n            </button>\n          </ion-fab>\n          <ion-card-content>\n            <p class="pPrincipal">{{ descripcion }}</p>\n          </ion-card-content>\n        </ion-card>\n    </div>\n    \n    <br>\n    <br>\n  </div> -->\n  \n\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\ver-mas\ver-mas.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], VerMasPage);
+
+//# sourceMappingURL=ver-mas.js.map
+
+/***/ }),
+
+/***/ 124:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContenidoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contenido_completo_contenido_completo__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ruta_ruta__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__videos_videos__ = __webpack_require__(46);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/**
+ * Generated class for the ContenidoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ContenidoPage = (function () {
+    function ContenidoPage(navCtrl, navParams, server, menu, loadingCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.server = server;
+        this.menu = menu;
+        this.loadingCtrl = loadingCtrl;
+        this.contenido = [];
+        this.aux = [];
+        this.imgInfo = [];
+        this.ImageArray = [];
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        this.id_menu = this.navParams.get('id_menu');
+        this.id_submenu = this.navParams.get('id_submenu');
+        this.titulo = this.navParams.get('titulo');
+        // console.log(this.titulo);
+        this.menu.swipeEnable(true);
+        // console.log(document.getElementsByTagName('ion-slides'));
+        this.loader.present().then(function () {
+            _this.server.getContenido(_this.id_menu, _this.id_submenu).then(function (data) {
+                _this.contenido = data['RES'];
+                _this.aux = _this.contenido;
+                _this.contenido.forEach(function (a) {
+                    _this.server.getImageInfo(a.id).then(function (dato) {
+                        _this.imgInfo = dato['RES'];
+                        for (var index = 0; index < _this.aux.length; index++) {
+                            for (var a_1 = 0; a_1 < _this.imgInfo.length; a_1++) {
+                                if (_this.aux[index]['id'] == _this.imgInfo[a_1]['id_turismo']) {
+                                    _this.aux[index]['image'] = _this.imgInfo;
+                                }
+                            }
+                            _this.aux[index]['nimage'] = _this.imgInfo.length;
+                            _this.loader.dismiss();
+                        }
+                        console.log(_this.aux);
+                    });
+                });
+            });
+        });
+    }
+    ContenidoPage.prototype.doRefresh = function (event) {
+        var _this = this;
+        this.server.getContenido(this.id_menu, this.id_submenu).then(function (data) {
+            _this.contenido = data['RES'];
+            _this.aux = _this.contenido;
+            _this.contenido.forEach(function (a) {
+                _this.server.getImageInfo(a.id).then(function (dato) {
+                    _this.imgInfo = dato['RES'];
+                    for (var index = 0; index < _this.aux.length; index++) {
+                        for (var a_2 = 0; a_2 < _this.imgInfo.length; a_2++) {
+                            if (_this.aux[index]['id'] == _this.imgInfo[a_2]['id_turismo']) {
+                                _this.aux[index]['image'] = _this.imgInfo;
+                            }
+                        }
+                        _this.aux[index]['nimage'] = _this.imgInfo.length;
+                        event.complete();
+                    }
+                    console.log(_this.aux);
+                });
+            });
+        });
+    };
+    ContenidoPage.prototype.ionViewDidLoad = function () {
+        // this.cargarContenido();
+        console.log('Ventana contenido');
+    };
+    ContenidoPage.prototype.verMas = function (titulo, id) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__contenido_completo_contenido_completo__["a" /* ContenidoCompletoPage */], { titulo: titulo, id: id });
+    };
+    ContenidoPage.prototype.videos = function (id) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__videos_videos__["a" /* VideosPage */], { id: id });
+    };
+    ContenidoPage.prototype.irUbicacion = function (lat, lng) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__ruta_ruta__["a" /* RutaPage */], { lat: lat, lng: lng });
+    };
+    ContenidoPage.prototype.loadSlider = function () {
+    };
+    ContenidoPage.prototype.ngAfterViewInit = function () {
+        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+        //Add 'implements AfterViewInit' to the class.
+        this.loader.dismiss();
+    };
+    return ContenidoPage;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Nav */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Nav */])
+], ContenidoPage.prototype, "nav", void 0);
+ContenidoPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-contenido',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\contenido\contenido.html"*/'<ion-header>\n  <ion-navbar color="pederNaranja">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <!-- <strong>Ionic 3</strong> Start Theme -->\n      {{ titulo }}\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding class="animated fadeIn common-bg">\n  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content \n      pullingIcon="arrow-down"\n      refreshingSpinner="circles">\n    </ion-refresher-content>\n  </ion-refresher>\n  <div *ngIf="this.contenido!=false">\n    <div  *ngFor="let item of aux">\n      <!-- <div class="container trip-info card round"  (click)="verMas(item.titulo,item.id)" no-padding color="pederNaranja"> -->\n      <div class="container trip-info card round" no-padding color="pederNaranja">\n          <ion-card class="cardBlanca max-width" no-padding>\n            <div >\n              <ion-slides #slides *ngIf="item.image?.length>1" autoplay="5000" loop="true" speed="500" class="slides" pager="true">\n              <!-- <ion-slides #slides *ngIf="imgInfo && imgInfo.length" autoplay="5000" loop="true" speed="500" class="slides" pager="true">/ -->\n                <ion-slide *ngFor="let img of item.image">\n                <!-- <ion-slide> -->\n                  <!-- <div> -->\n                    <img  src="{{ this.server.DOMAINIMG }}/archivos/toma/{{  img.url }}/400x300" />\n                  <!-- </div>/ -->\n                </ion-slide>\n              </ion-slides>\n              <div *ngIf="item.nimage==1">\n                <img  *ngFor="let img of item.image" src="{{ this.server.DOMAINIMG }}/archivos/toma/{{  img.url }}/400x300" alt="">\n              </div>\n            </div>\n            <!-- <ion-fab right top *ngIf="item.lat!=0">\n              <button ion-fab (click)="irUbicacion(item.lat,item.lng)">\n                <ion-icon name="pin"></ion-icon>\n              </button>\n            </ion-fab>\n            <ion-fab left top >\n              <button ion-fab (click)="videos(item.id)">\n                <ion-icon name="logo-youtube"></ion-icon>\n              </button>\n            </ion-fab> -->\n            <ion-item class="pCuerpo" *ngIf="item.lat!=0">\n              <button ion-fab (click)="irUbicacion(item.lat,item.lng)">\n                <ion-icon name="pin"></ion-icon>\n              </button>\n            </ion-item>\n            <ion-item *ngIf="item.video" >\n              <button ion-button clear (click)="videos(item.id)">\n                <ion-icon name="logo-youtube"></ion-icon>\n              </button>\n            </ion-item>\n            <ion-item class="pCuerpo" *ngIf="item.lugar" >\n              <ion-icon name="pin" item-start color="primary"></ion-icon><h2 class="lugar">{{ item.lugar }}</h2>\n              \n            </ion-item>\n            <ion-card-content>\n              <ion-card-title>\n                {{item.titulo}}\n              </ion-card-title>\n              <p class="pPrincipal">{{ item.resena }}</p>\n            </ion-card-content>\n          </ion-card>\n      </div>\n      <br>\n      <br>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\contenido\contenido.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], ContenidoPage);
+
+//# sourceMappingURL=contenido.js.map
+
+/***/ }),
+
+/***/ 125:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GaleriaPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__visor360_visor360__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__photos_photos__ = __webpack_require__(126);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the GaleriaPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var GaleriaPage = (function () {
+    function GaleriaPage(navCtrl, navParams, server) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.server = server;
+    }
+    GaleriaPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad GaleriaPage');
+    };
+    GaleriaPage.prototype.openphotos = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__photos_photos__["a" /* PhotosPage */]);
+    };
+    GaleriaPage.prototype.open360 = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__visor360_visor360__["a" /* Visor360Page */]);
+    };
+    return GaleriaPage;
+}());
+GaleriaPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-galeria',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\galeria\galeria.html"*/'<!--\n  Generated template for the GaleriaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>Galeria</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <img src="{{ this.server.DOMAINIMG }}/archivos/toma/5c6b05cc33a03.jpg/600x100" height="100px" width="100%" alt="">\n  <div class="botones">\n    <button ion-button block (click)="openphotos()" color="primary">GALERIA DE FOTOS</button>\n    <br>\n    <!-- <button ion-button block (click)="open360()" color="primary">IMAGENES 360</button> -->\n  </div>\n  <div class="image">\n    <img src="assets/logo/icon2.png" width="50%">\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\galeria\galeria.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_server_server__["a" /* ServerProvider */]])
+], GaleriaPage);
+
+//# sourceMappingURL=galeria.js.map
+
+/***/ }),
+
+/***/ 126:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PhotosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_gallery_modal__ = __webpack_require__(185);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the PhotosPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PhotosPage = (function () {
+    function PhotosPage(navCtrl, navParams, server, loadingCtrl, modalCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.server = server;
+        this.loadingCtrl = loadingCtrl;
+        this.modalCtrl = modalCtrl;
+        this.imagesResize = [];
+        this.images = [];
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        this.loader.present().then(function () {
+            _this.server.getFotos().then(function (dato) {
+                var data = dato.RES;
+                for (var i = 0; i < (dato.RES).length; i++) {
+                    _this.imagesResize.push({
+                        url: _this.server.DOMAINIMG + '/archivos/toma/' + data[i]['nombre'] + '/350x200'
+                    });
+                    _this.images.push({
+                        url: _this.server.DOMAINIMG + '/archivos/toma/' + data[i]['nombre'] + ''
+                    });
+                }
+            });
+        });
+    }
+    PhotosPage.prototype.ionViewDidLoad = function () {
+        this.loader.dismiss();
+    };
+    // ionViewWillEnter(){
+    // }
+    PhotosPage.prototype.verImagen = function (image, i) {
+        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3_ionic_gallery_modal__["a" /* GalleryModal */], {
+            photos: this.images,
+            initialSlide: i
+        });
+        modal.present();
+        // this.photoViewer.show(this.server.DOMAINIMG+'/archivos/toma/'+image);
+    };
+    return PhotosPage;
+}());
+PhotosPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-photos',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\photos\photos.html"*/'<!--\n  Generated template for the PhotosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>Fotos</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <!-- <ion-segment [(ngModel)]="galleryType">\n\n  </ion-segment> -->\n  <div>\n    <!-- <ion-grid>\n      <ion-row>\n        <ion-col col-6 com-md-4 col-xl-3 *ngFor="let img of images" >\n          <div class="image-container" [style.background-image]="\'url(assets/segment/\' + img.image + \')\'"></div>\n        </ion-col>\n      </ion-row>\n    </ion-grid> -->\n    <div class="images">\n      <div class="one-image" *ngFor="let img of imagesResize;let i = index">\n        <img src="{{img.url}}" (click)="verImagen(img,i)" alt="" >\n      </div>\n    </div>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\photos\photos.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */]])
+], PhotosPage);
+
+//# sourceMappingURL=photos.js.map
+
+/***/ }),
+
+/***/ 127:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoEmergenciaPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number__ = __webpack_require__(95);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the InfoEmergenciaPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var InfoEmergenciaPage = (function () {
+    function InfoEmergenciaPage(navCtrl, navParams, server, loadingCtrl, callNumber, platform) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.server = server;
+        this.loadingCtrl = loadingCtrl;
+        this.callNumber = callNumber;
+        this.platform = platform;
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        this.loader.present();
+    }
+    InfoEmergenciaPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad InfoEmergenciaPage');
+    };
+    InfoEmergenciaPage.prototype.ionViewWillEnter = function () {
+        this.loader.dismiss();
+    };
+    InfoEmergenciaPage.prototype.ionViewCanEnter = function () {
+        this.si = 1;
+    };
+    InfoEmergenciaPage.prototype.handleIFrameLoadEvent = function () {
+        this.loader.dismiss();
+    };
+    InfoEmergenciaPage.prototype.llamrEmergencia = function (numero) {
+        if (this.platform.is('cordova')) {
+            this.callNumber.callNumber(numero, true)
+                .then(function (res) { console.log('Launched dialer!', res); console.log('then'); })
+                .catch(function (err) { return console.log(JSON.stringify(err)); });
+        }
+        else {
+            console.log('Llamando al numero: ' + numero + '...');
+        }
+    };
+    return InfoEmergenciaPage;
+}());
+InfoEmergenciaPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-info-emergencia',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\info-emergencia\info-emergencia.html"*/'<!--\n  Generated template for the InfoEmergenciaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>En caso de Emergencia</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <img src="{{ this.server.DOMAINIMG }}/archivos/toma/5c6b05cc33a03.jpg/500x100" height="100px" width="100%" alt="">\n  <div class="titulo"><h1>En caso de emergencia</h1></div>\n  <ion-grid>\n    <ion-row>\n      <ion-col (click)="llamrEmergencia(\'911\')" >\n        <img [ngStyle]="{\'border-radius\': \'12%\'}" src="{{this.server.DOMAINIMG}}/archivos/toma/ecu911.png/200x200" (load)="si ? handleIFrameLoadEvent() : null" alt="" srcset="">\n      </ion-col>\n      <ion-col (click)="llamrEmergencia(\'135\')">\n        <img [ngStyle]="{\'border-radius\': \'12%\'}" src="{{this.server.DOMAINIMG}}/archivos/toma/policia.png/200x200" alt="" srcset="">\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col (click)="llamrEmergencia(\'052681102\')">\n        <img [ngStyle]="{\'border-radius\': \'12%\'}" src="{{this.server.DOMAINIMG}}/archivos/toma/bomberos.png/200x200" alt="" srcset="">\n      </ion-col>\n      <ion-col (click)="llamrEmergencia(\'0990696167\')">\n        <img [ngStyle]="{\'border-radius\': \'12%\'}" src="{{this.server.DOMAINIMG}}/archivos/toma/salvavidas.png/200x200" alt="" srcset="">\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\info-emergencia\info-emergencia.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_call_number__["a" /* CallNumber */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
+], InfoEmergenciaPage);
+
+//# sourceMappingURL=info-emergencia.js.map
+
+/***/ }),
+
+/***/ 128:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoConsejoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_server_server__ = __webpack_require__(11);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the InfoConsejoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var InfoConsejoPage = (function () {
+    function InfoConsejoPage(navCtrl, navParams, server, loadingCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.server = server;
+        this.loadingCtrl = loadingCtrl;
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        this.loader.present().then(function () {
+            _this.server.getMasInfo(1).then(function (data) {
+                _this.contenido = data['RES'];
+                console.log(_this.contenido);
+                _this.aux = _this.contenido;
+                var j = 0;
+                for (var i = 0; i < _this.contenido.length; i++) {
+                    console.log(i);
+                    console.log(_this.contenido[i]['icono']);
+                    _this.aux[j]['icono'] = _this.contenido[i]['icono'];
+                    var texto = _this.contenido[i]['texto'];
+                    var parser = new DOMParser();
+                    var html = parser.parseFromString(texto, 'text/html');
+                    _this.aux[j]['texto'] = html.activeElement;
+                    console.log(_this.aux[j]['texto']);
+                    console.log(html.activeElement);
+                    j++;
+                }
+                console.log(_this.aux);
+                _this.loader.dismiss();
+                // this.contenido.forEach(a => {
+                //   this.server.getImageInfoAtractivo(a.id).then(dato => {
+                //     this.imgInfo = dato['RES'];
+                //     for (let index = 0; index < this.aux.length; index++) {
+                //       for (let a = 0; a < this.imgInfo.length; a++) {
+                //         if (this.aux[index]['id']==this.imgInfo[a]['id_guia']) {
+                //           this.aux[index]['image'] = this.imgInfo;    
+                //         }
+                //       }
+                //       if (this.imgInfo.length) {
+                //         this.aux[index]['nimage'] = this.imgInfo.length;  
+                //       }else {
+                //         this.aux[index]['nimage'] = 0;
+                //       }
+                //     } 
+                //   });  
+                // });
+            });
+        });
+    }
+    InfoConsejoPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad InfoConsejoPage');
+    };
+    return InfoConsejoPage;
+}());
+InfoConsejoPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-info-consejo',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\info-consejo\info-consejo.html"*/'<!--\n  Generated template for the InfoConsejoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>CONSEJOS DE VIAJE</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div class="titulo"><h1>CONSEJOS DE VIAJE</h1></div>\n  <ion-list no-lines>\n    <ion-item text-wrap *ngFor="let item of aux">\n      <ion-avatar item-start>\n        <img src="{{ this.server.DOMAINIMG }}/archivos/toma/{{ item.icono }}/50x50">\n      </ion-avatar>\n      <h2>{{item.texto.innerText}}</h2>\n      <!-- <p>Ugh. As if.</p> -->\n    </ion-item>\n    <!-- <ion-item text-wrap>\n      <ion-avatar item-start>\n        <img src="{{ this.server.DOMAINIMG }}/archivos/toma/mototaxi.png/50x50">\n      </ion-avatar>\n      <h2>\n        <ul>\n          <li>La mototaxi debe tener su número de registro correspondiente.</li>\n          <li>Deben tener placa.</li>\n        </ul>\n      </h2>\n    </ion-item>\n    <ion-item text-wrap>\n      <ion-avatar item-start>\n        <img src="{{ this.server.DOMAINIMG }}/archivos/toma/salud.png/50x50">\n      </ion-avatar>\n      <h2>\n        <ul>\n          <li>La atención médica en Pedernales es gratuita en el centro de Salud Pública.</li>\n          <li>Como precaución, siempre beba agua embotellada.</li>\n        </ul>\n      </h2>\n    </ion-item>\n    <ion-item text-wrap>\n      <ion-avatar item-start>\n        <img src="{{ this.server.DOMAINIMG }}/archivos/toma/viajero.png/50x50">\n      </ion-avatar>\n      <h2>\n        <ul>\n          <li>Siga las recomendaciones del guía, al igual que las reglas y regulaciones de cada lugar.</li>\n        </ul>\n      </h2>\n    </ion-item>\n    <ion-item text-wrap>\n      <ion-avatar item-start>\n        <img src="{{ this.server.DOMAINIMG }}/archivos/toma/nadador.png/50x50">\n      </ion-avatar>\n      <h2>\n        <ul>\n          <li>Cuando ingrese a la playa identifique dónde están ubicados las torres de salvavidas.</li>\n          <li>Respetar siempre las advertencias de los salvavidades.</li>\n        </ul>\n      </h2>\n    </ion-item> -->\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\info-consejo\info-consejo.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], InfoConsejoPage);
+
+//# sourceMappingURL=info-consejo.js.map
+
+/***/ }),
+
+/***/ 129:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoVisitanosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__ = __webpack_require__(97);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the InfoVisitanosPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var InfoVisitanosPage = (function () {
+    function InfoVisitanosPage(navCtrl, navParams, server, iab) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.server = server;
+        this.iab = iab;
+    }
+    InfoVisitanosPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad InfoVisitanosPage');
+    };
+    InfoVisitanosPage.prototype.openlink = function (link) {
+        console.log(link);
+        var browser = this.iab.create(link);
+        // browser.executeScript(...);
+        // browser.insertCSS(...);
+        browser.on('loadstop').subscribe(function (event) {
+            browser.insertCSS({ code: "body{color: red;" });
+        });
+        browser.close();
+    };
+    return InfoVisitanosPage;
+}());
+InfoVisitanosPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-info-visitanos',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\info-visitanos\info-visitanos.html"*/'<!--\n  Generated template for the InfoVisitanosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>Visitanos</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <img src="{{ this.server.DOMAINIMG }}/archivos/toma/5c6b05cc33a03.jpg/600x100" height="100px" width="100%" alt="">\n  <br><br>\n  <div class="titulo"><h1>Para información turítica visita:</h1></div>\n  <br>\n  <div [ngStyle]="{\'padding-left\': \'5%\',\'padding-right\': \'5%\', \'text-align\':\'center\'} ">\n    <ion-grid fixed [ngStyle]="{\'text-align\':\'center\'}">\n      <ion-row (click)="openlink(\'http://www.pedernalesturistico.com/\')">\n        <ion-col col-12><p>Pedernales Turístico</p></ion-col>\n      </ion-row>\n      <ion-row (click)="openlink(\'https://www.pedernales.gob.ec/\')">\n        <ion-col col-12><p>GADMP</p></ion-col>\n      </ion-row>\n      <ion-row (click)="openlink(\'https://www.facebook.com/gadmpedernales/\')">\n        <ion-col col-2>\n          <ion-thumbnail item-start>\n            <img src="assets/icon/facebook.png">\n          </ion-thumbnail>\n        </ion-col>\n        <ion-col col-10>\n          <p>Municipio de Pedernales</p>\n        </ion-col>\n      </ion-row>\n      <ion-row (click)="openlink(\'https://www.youtube.com/channel/UCXM3gp0dbkVqYljq8S5BsKw\')">\n        <ion-col col-2>\n          <ion-thumbnail item-start>\n            <img src="assets/icon/youtube.png">\n          </ion-thumbnail>\n        </ion-col>\n        <ion-col col-10>\n          <p>Gobierno Municipal de Pedernales</p>\n        </ion-col>\n      </ion-row>\n      <ion-row (click)="openlink(\'https://www.instagram.com/gadmpedernales/?hl=es-la\')">\n        <ion-col col-2>\n          <ion-thumbnail item-start>\n            <img src="assets/icon/instagram.png">\n          </ion-thumbnail>\n        </ion-col>\n        <ion-col col-10>\n          <p>@gadmpedernales</p>\n        </ion-col>\n      </ion-row>\n      <ion-row (click)="openlink(\'https://twitter.com/gadmpedernales\')">\n        <ion-col col-2>\n          <ion-thumbnail item-start>\n            <img src="assets/icon/twitter.png">\n          </ion-thumbnail>\n        </ion-col>\n        <ion-col col-10>\n          <p>@gadmpedernales</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\info-visitanos\info-visitanos.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
+], InfoVisitanosPage);
+
+//# sourceMappingURL=info-visitanos.js.map
+
+/***/ }),
+
+/***/ 130:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LogoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(56);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the LogoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var LogoPage = (function () {
+    function LogoPage(navCtrl, navParams, menu, statusBar, platform) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.menu = menu;
+        this.statusBar = statusBar;
+        this.platform = platform;
+        this.splash = true;
+        this.menu.swipeEnable(false);
+        this.platform.ready().then(function () {
+            _this.statusBar.backgroundColorByHexString('#fff');
+        });
+    }
+    LogoPage.prototype.ionViewDidLoad = function () {
+        var click = document.getElementById('click');
+        setTimeout(function () {
+            //   // this.splash = stop;
+            click.classList.remove('nada');
+            //   // this.sideMenu.style.display = 'flex';
+            //   // this.navCtrl.setRoot(HomePage);
+        }, 4000);
+    };
+    LogoPage.prototype.openApp = function () {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+    };
+    return LogoPage;
+}());
+LogoPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-logo',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\logo\logo.html"*/'<!--\n  Generated template for the LogoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<div id="custom-overlay" [style.display]="splash ? \'flex\': \'none\'">\n    \n  <div class="flb">\n    <div class="Aligner-item Aligner-item--top"></div>\n    <img src="assets/logo/icon2.png" height="100%" width="80%">\n    \n    <div class="Aligner-item Aligner-item--bottom" id="noti"></div>\n    <div class="blanco shine nada" id="click" (click)="openApp()">Haga click aqui!</div>\n  </div>\n  \n</div>\n\n\n<ion-content padding >\n  \n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\logo\logo.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
+], LogoPage);
+
+//# sourceMappingURL=logo.js.map
+
+/***/ }),
+
+/***/ 139:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 139;
+
+/***/ }),
+
+/***/ 180:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"../pages/atractivo-contenido/atractivo-contenido.module": [
+		330,
+		18
+	],
+	"../pages/atractivos/atractivos.module": [
+		331,
+		17
+	],
+	"../pages/contenido-completo/contenido-completo.module": [
+		333,
+		16
+	],
+	"../pages/contenido/contenido.module": [
+		334,
+		15
+	],
+	"../pages/galeria/galeria.module": [
+		335,
+		14
+	],
+	"../pages/gastro/gastro.module": [
+		332,
+		0
+	],
+	"../pages/guia-turistica/guia-turistica.module": [
+		347,
+		13
+	],
+	"../pages/info-consejo/info-consejo.module": [
+		337,
+		12
+	],
+	"../pages/info-emergencia/info-emergencia.module": [
+		336,
+		11
+	],
+	"../pages/info-visitanos/info-visitanos.module": [
+		338,
+		10
+	],
+	"../pages/informacion/informacion.module": [
+		339,
+		9
+	],
+	"../pages/logo/logo.module": [
+		341,
+		8
+	],
+	"../pages/photos/photos.module": [
+		340,
+		7
+	],
+	"../pages/ruta/ruta.module": [
+		348,
+		6
+	],
+	"../pages/turismo/turismo.module": [
+		342,
+		5
+	],
+	"../pages/ver-mas/ver-mas.module": [
+		344,
+		4
+	],
+	"../pages/videos/videos.module": [
+		343,
+		3
+	],
+	"../pages/visor360/visor360.module": [
+		345,
+		2
+	],
+	"../pages/vista360/vista360.module": [
+		346,
+		1
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 180;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 186:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NotificationsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var NotificationsPage = (function () {
+    function NotificationsPage(viewCtrl) {
+        this.viewCtrl = viewCtrl;
+    }
+    NotificationsPage.prototype.close = function () {
+        this.viewCtrl.dismiss();
+    };
+    return NotificationsPage;
+}());
+NotificationsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-notifications',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\notifications\notifications.html"*/'<ion-list class="no-margin">\n  <ion-list-header class="no-margin">\n  	<ion-icon name="notifications" color="pederNaranja"></ion-icon>\n  	<span ion-text color="pederNaranja" class="bold">Notifications</span>\n  </ion-list-header>\n  <button ion-item color="secondary" class="text-1x" tappable (click)="close()">\n  	<ion-icon name="mail"></ion-icon>\n  	New booking success!\n  </button>\n  <button ion-item color="secondary" class="text-1x" tappable (click)="close()">\n  	<ion-icon name="mail"></ion-icon>\n  	Activity rescheduled\n  </button>\n  <button ion-item class="text-1x" tappable (click)="close()">\n  	<ion-icon name="mail-open" color="secondary"></ion-icon>\n  	<span ion-text color="secondary">Activity rescheduled</span>\n  </button>\n  <button ion-item class="text-1x" tappable (click)="close()">\n  	<ion-icon name="mail-open" color="secondary"></ion-icon>\n  	<span ion-text color="secondary">Activity rescheduled</span>\n  </button>\n</ion-list>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\notifications\notifications.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* ViewController */]])
+], NotificationsPage);
+
+//# sourceMappingURL=notifications.js.map
+
+/***/ }),
+
+/***/ 187:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(98);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SettingsPage = (function () {
+    function SettingsPage(nav) {
+        this.nav = nav;
+    }
+    // logout
+    SettingsPage.prototype.logout = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_2__login_login__["a" /* LoginPage */]);
+    };
+    return SettingsPage;
+}());
+SettingsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-settings',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\settings\settings.html"*/'<!-- -->\n<ion-header class="no-shadow">\n\n  <ion-navbar class="no-border">\n    <ion-title>\n      <ion-icon name="cog" class="text-primary"></ion-icon>\n      <span class="text-primary">Settings</span>\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="common-bg">\n  <!-- User settings-->\n  <ion-item-group>\n    <ion-item-divider color="secondary" class="bold">User Settings</ion-item-divider>\n    <ion-item>\n      <ion-label>Language</ion-label>\n      <ion-select [(ngModel)]="language" cancelText="Cancel" okText="OK">\n        <ion-option value="en-US" selected="true">English (US)</ion-option>\n        <ion-option value="en-GB">English (UK)</ion-option>\n        <ion-option value="en-CA">English (CA)</ion-option>\n        <ion-option value="en-AU">English (AU)</ion-option>\n        <ion-option value="en-IN">English (IN)</ion-option>\n        <ion-option value="pt-BR">Portuguese (BR)</ion-option>\n        <ion-option value="pt-PT">Portuguese (PT)</ion-option>\n        <ion-option value="es-ES">Spanish (ES)</ion-option>\n        <ion-option value="es-AR">Spanish (AR)</ion-option>\n        <ion-option value="es-CO">Spanish (CO)</ion-option>\n        <ion-option value="es-CL">Spanish (CL)</ion-option>\n        <ion-option value="es-MX">Spanish (MX)</ion-option>\n        <ion-option value="zh-CN">Chinese (CN)</ion-option>\n        <ion-option value="zh-TW">Chinese (TW)</ion-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label>Currency</ion-label>\n      <ion-select [(ngModel)]="currency" cancelText="Cancel" okText="OK">\n        <ion-option value="USD" selected="true">U.S Dollar (US$)</ion-option>\n        <ion-option value="EUR">Euro (€)</ion-option>\n        <ion-option value="GBP">Pound (£)</ion-option>\n        <ion-option value="BRL">Brazilian Real (R$)</ion-option>\n        <ion-option value="CNY">Chinese Yuan</ion-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label>Units</ion-label>\n      <ion-select [(ngModel)]="munits" cancelText="Cancel" okText="OK">\n        <ion-option value="M" selected="true">Miles (ft²)</ion-option>\n        <ion-option value="K">Kilometers (m²)</ion-option>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label>Notifications?</ion-label>\n      <ion-toggle checked="true"></ion-toggle>\n    </ion-item>\n  </ion-item-group>\n  <!-- App settings-->\n  <ion-item-group>\n    <ion-item-divider color="secondary" class="bold">App Settings</ion-item-divider>\n    <ion-item>\n      <span>Clear Private Data</span>\n    </ion-item>\n    <ion-item>\n      <ion-label>Push Notifications?</ion-label>\n      <ion-toggle checked="false"></ion-toggle>\n    </ion-item>\n    <ion-item>\n      <span>Privacy Policy</span>\n    </ion-item>\n  </ion-item-group>  \n\n  <!--sign out button-->\n  <button ion-button color="pederNaranja" full tappable (click)="logout()">LOG OUT</button>\n\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\settings\settings.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]])
+], SettingsPage);
+
+//# sourceMappingURL=settings.js.map
+
+/***/ }),
+
+/***/ 188:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(38);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var RegisterPage = (function () {
+    function RegisterPage(nav) {
+        this.nav = nav;
+    }
+    // register and go to home page
+    RegisterPage.prototype.register = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+    };
+    // go to login page
+    RegisterPage.prototype.login = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_2__login_login__["a" /* LoginPage */]);
+    };
+    return RegisterPage;
+}());
+RegisterPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-register',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\register\register.html"*/'<!-- -->\n<ion-content class="auth-page">\n  <div class="login-content">\n\n    <!-- Logo -->\n    <div padding text-center>\n      <div class="logo"></div>\n      <h2 ion-text class="text-primary">\n        <strong>Ionic 3</strong> Start Theme\n      </h2>\n    </div>\n\n    <!-- Login form -->\n    <form class="list-form">\n      <ion-item>\n        <ion-label floating>\n          <ion-icon name="person" item-start class="text-primary"></ion-icon>\n          Full Name\n        </ion-label>\n        <ion-input type="text"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>\n          <ion-icon name="mail" item-start class="text-primary"></ion-icon>\n          Email\n        </ion-label>\n        <ion-input type="email"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>\n          <ion-icon name="lock" item-start class="text-primary"></ion-icon>\n          Password\n        </ion-label>\n        <ion-input type="password"></ion-input>\n      </ion-item>\n    </form>\n\n    <div margin-top>\n      <button ion-button block color="dark" tappable (click)="register()">\n        SIGN UP\n      </button>\n\n      <p text-center ion-text color="secondary">Or Sign Up with:</p>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col col-4>\n            <button ion-button icon-only block class="btn-facebook">\n              <ion-icon name="logo-facebook"></ion-icon>\n            </button>\n          </ion-col>\n          <ion-col col-4>\n            <button ion-button icon-only block class="btn-twitter">\n              <ion-icon name="logo-twitter"></ion-icon>\n            </button>\n          </ion-col>\n          <ion-col col-4>\n            <button ion-button icon-only block class="btn-gplus">\n              <ion-icon name="logo-googleplus"></ion-icon>\n            </button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n\n    <!-- Other links -->\n    <div text-center margin-top>\n      <span ion-text color="pederNaranja" tappable (click)="login()">I have an account</span>\n    </div>\n\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\register\register.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]])
+], RegisterPage);
+
+//# sourceMappingURL=register.js.map
+
+/***/ }),
+
+/***/ 189:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TripsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_trip_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__trip_detail_trip_detail__ = __webpack_require__(190);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var TripsPage = (function () {
+    function TripsPage(nav, tripService) {
+        this.nav = nav;
+        this.tripService = tripService;
+        // set sample data
+        this.trips = tripService.getAll();
+    }
+    // view trip detail
+    TripsPage.prototype.viewDetail = function (id) {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_3__trip_detail_trip_detail__["a" /* TripDetailPage */], { id: id });
+    };
+    return TripsPage;
+}());
+TripsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-trips',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\trips\trips.html"*/'<!-- -->\n<ion-header>\n  <ion-navbar color="pederNaranja">\n    <ion-title>\n      <span ion-text>Activities</span>\n    </ion-title>\n  </ion-navbar>\n\n  <!--  -->\n  <ion-toolbar padding color="light">\n    <p ion-text no-margin class="text-white">\n      <strong>4</strong> results found!\n    </p>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content padding class="trips detail-bg">\n  <!--list of trips-->\n  <div class="trip card" *ngFor="let trip of trips" tappable (click)="viewDetail(trip.id)" margin-bottom>\n    <div class="background border-bottom" [ngStyle]="{\'background-image\': \'url(\' + trip.thumb + \')\'}">\n      <div class="background-filter rlt">\n        <div class="align-bottom" padding-left padding-right>\n          <h6 class="pull-left text-white" ion-text>{{ trip.name }}</h6>\n          <h6 class="pull-right text-white" ion-text>{{ trip.price_adult | currency:\'USD\':true }}</h6>\n          <div class="clear"></div>\n        </div>\n      </div>\n    </div>\n    <div class="padding-sm primary-bg">\n      <ion-icon name="time" class="text-white"></ion-icon>\n      <span ion-text class="text-white">{{ trip.time }}</span>\n      <span class="pull-right" ion-text color="light"><strong>per adult</strong> (childs has <span ion-text  class="text-green bold">50% OFF</span>)</span>\n    </div>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\trips\trips.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_trip_service__["a" /* TripService */]])
+], TripsPage);
+
+//# sourceMappingURL=trips.js.map
+
+/***/ }),
+
+/***/ 190:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TripDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_trip_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__checkout_trip_checkout_trip__ = __webpack_require__(191);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var TripDetailPage = (function () {
+    function TripDetailPage(nav, tripService) {
+        this.nav = nav;
+        this.tripService = tripService;
+        // number of adult
+        this.adults = 2;
+        // number of children
+        this.children = 0;
+        // set sample data
+        this.trip = tripService.getItem(1);
+    }
+    // minus adult when click minus button
+    TripDetailPage.prototype.minusAdult = function () {
+        this.adults--;
+    };
+    // plus adult when click plus button
+    TripDetailPage.prototype.plusAdult = function () {
+        this.adults++;
+    };
+    // minus children when click minus button
+    TripDetailPage.prototype.minusChildren = function () {
+        this.children--;
+    };
+    // plus children when click plus button
+    TripDetailPage.prototype.plusChildren = function () {
+        this.children++;
+    };
+    // go to checkout page
+    TripDetailPage.prototype.checkout = function () {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_3__checkout_trip_checkout_trip__["a" /* CheckoutTripPage */]);
+    };
+    return TripDetailPage;
+}());
+TripDetailPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-trip-detail',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\trip-detail\trip-detail.html"*/'<!-- -->\n<ion-header>\n\n  <ion-navbar  color="pederNaranja">\n    <ion-title>\n      <span ion-text>{{ trip.name }}</span>\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="common-bg">\n  <!--slides-->\n  <ion-slides class="to-top" pager>\n    <ion-slide *ngFor="let image of trip.images">\n      <img [src]="image" alt="">\n    </ion-slide>\n  </ion-slides>\n\n  <!--services-->\n  <ion-grid class="border-bottom dark-bg">\n    <ion-row>\n      <ion-col text-center>\n        <div class="text-sm">\n          <div>\n            <ion-icon name="time" class="text-white"></ion-icon>\n            <span ion-text color="light">{{ trip.time }}</span>\n            <ion-icon name="checkbox-outline" margin-left class="text-white" *ngIf="trip.free_cancellation"></ion-icon>\n            <span ion-text color="light" *ngIf="trip.free_cancellation">Free cancellation</span>\n            <ion-icon name="list-box" margin-left class="text-white" *ngIf="trip.electric_voucher"></ion-icon>\n            <span ion-text color="light" *ngIf="trip.electric_voucher">Electronic voucher</span>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <!--high light-->\n  <div class="border-bottom" padding>\n    <span ion-text color="dark" class="bold">HIGHLIGHT</span>\n    <ul class="highlight">\n      <li *ngFor="let highlight of trip.highlights">\n        <ion-icon name="checkmark" class="text-green"></ion-icon>\n        <span ion-text color="pederNaranja">{{ highlight }}</span>\n      </li>\n    </ul>\n  </div>\n\n  <!--booking form-->\n  <div class="booking-form card round" margin>\n    <div class="border-bottom" padding>\n      <h5>{{ trip.sub_name }}</h5>\n\n      <!--choose guest-->\n      <ion-grid class="filters" no-padding margin-top>\n        <ion-row>\n          <ion-col class="adult" width-70>\n            <span ion-text color="pederNaranja"><strong>{{ trip.price_adult | currency:\'USD\':true }}</strong> Adults</span>\n          </ion-col>\n          <ion-col width-10 text-center>\n            <ion-icon name="remove-circle" class="text-2x" tappable (click)="minusAdult()" [hidden]="adults < 2"\n                      color="secondary"></ion-icon>\n          </ion-col>\n          <ion-col width-10 text-center>{{ adults }}</ion-col>\n          <ion-col width-10 text-center>\n            <ion-icon name="add-circle" class="text-2x" tappable (click)="plusAdult()" color="secondary"></ion-icon>\n          </ion-col>\n        </ion-row>\n        <ion-row margin-top>\n          <ion-col width-70>\n            <span ion-text color="pederNaranja"><strong>{{ trip.price_child | currency:\'USD\':true }}</strong> Child (0-12 years)</span>\n          </ion-col>\n          <ion-col width-10 text-center>\n            <ion-icon name="remove-circle" class="text-2x" tappable (click)="minusChildren()" [hidden]="children < 1"\n                      color="secondary"></ion-icon>\n          </ion-col>\n          <ion-col width-10 text-center>{{ children }}</ion-col>\n          <ion-col width-10 text-center>\n            <ion-icon name="add-circle" class="text-2x" tappable (click)="plusChildren()" color="secondary"></ion-icon>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n    <div padding class="form-bottom">\n<!--       <span ion-text color="dark" class="bold">{{ adults }} Adults</span> -->\n      <!--booking button-->\n      <button ion-button class="pull-right" color="secondary" tappable (click)="checkout()">Book Now {{ adults * trip.price_adult +\n        children * trip.price_child | currency:\'USD\':true }}\n      </button>\n      <div class="clear"></div>\n    </div>\n  </div>\n\n  <!--description-->\n  <div class="border-bottom" padding>\n    <span ion-text color="pederNaranja" class="bold">DESCRIPTION</span>\n    <p ion-text>{{ trip.description }}</p>\n  </div>\n\n  <!--address-->\n  <div class="border-bottom" padding>\n    <span ion-text color="pederNaranja" class="bold">LOCATION</span>\n    <p ion-text>{{ trip.location }}</p>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\trip-detail\trip-detail.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_trip_service__["a" /* TripService */]])
+], TripDetailPage);
+
+//# sourceMappingURL=trip-detail.js.map
+
+/***/ }),
+
+/***/ 191:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckoutTripPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_trip_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(38);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var CheckoutTripPage = (function () {
+    function CheckoutTripPage(nav, tripService, loadingCtrl, toastCtrl) {
+        this.nav = nav;
+        this.tripService = tripService;
+        this.loadingCtrl = loadingCtrl;
+        this.toastCtrl = toastCtrl;
+        // number of adults
+        this.adults = 2;
+        // date
+        this.date = new Date();
+        this.paymethods = 'creditcard';
+        // set sample data
+        this.trip = tripService.getItem(1);
+    }
+    // process send button
+    CheckoutTripPage.prototype.send = function () {
+        var _this = this;
+        // send booking info
+        var loader = this.loadingCtrl.create({
+            content: "Please wait..."
+        });
+        // show message
+        var toast = this.toastCtrl.create({
+            showCloseButton: true,
+            cssClass: 'profile-bg',
+            message: 'Book Activity Success!',
+            duration: 3000,
+            position: 'bottom'
+        });
+        loader.present();
+        setTimeout(function () {
+            loader.dismiss();
+            toast.present();
+            // back to home page
+            _this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+        }, 3000);
+    };
+    return CheckoutTripPage;
+}());
+CheckoutTripPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-checkout-trip',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\checkout-trip\checkout-trip.html"*/'<!-- -->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>Activity Checkout</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding class="checkout-trip common-bg">\n  <!--trip information-->\n  <div class="trip-info card round">\n    <div class="trip-image border-bottom" [ngStyle]="{\'background-image\': \'url(\' + trip.thumb + \')\'}"></div>\n    <ion-grid padding>\n      <ion-row>\n        <ion-col width-66>\n          <h5 ion-text color="pederNaranja">{{ trip.name }}</h5>\n          <div>\n            <span class="bold">{{ trip.sub_name }}</span>\n            <br/>\n            <span ion-text color="dark">{{ adults }} Adults</span>\n          </div>\n          <div margin-top>\n            <span ion-text color="dark">{{ date | date: \'EEE, MMM dd\' }}</span>\n            <br/>\n            <span ion-text>{{ trip.location }}</span>\n          </div>\n          <div margin-top>\n            <ion-icon name="checkmark" class="text-green" *ngIf="trip.free_cancellation"></ion-icon>\n            <span ion-text *ngIf="trip.free_cancellation">Free cancellation</span>\n          </div>\n        </ion-col>\n        <ion-col col-4>\n          <span ion-text>Total with Tax</span>\n          <h5 ion-text color="pederNaranja" class="bold" no-margin>{{ trip.price_adult * adults | currency:\'USD\':true }}</h5>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </div>\n\n    <!--more info-->\n  <h5>Guest Details</h5>\n  <div class="card round" margin-top>\n\n    <ion-list no-margin>\n      <ion-item class="primary-bg">\n        <ion-avatar item-start>\n          <img src="assets/img/avatar.jpeg">\n        </ion-avatar>\n        <h2 ion-text class="text-white bold">João Firmino</h2>\n        <p ion-text class="text-secondary bold">User</p>\n      </ion-item>\n    </ion-list>\n\n    <div padding>\n      <h5 ion-text color="secondary">Other Guests</h5>\n\n      <ion-item no-padding>\n        <ion-label color="dark" stacked>Adult 1 Name:</ion-label>\n        <ion-input type="text" placeholder="Ex. Joe Doe" value=""></ion-input>\n      </ion-item>\n      <ion-item no-padding>\n        <ion-label color="dark" stacked>Child 1 Name:</ion-label>\n        <ion-input type="text" placeholder="Ex. Joe Doe" value=""></ion-input>\n      </ion-item>\n    </div>\n  </div>\n\n  <!--payment info-->\n  <h5>Payment Methods</h5>\n  <ion-segment color="secondary" [(ngModel)]="paymethods">\n    <ion-segment-button value="creditcard" >\n      Credit card\n    </ion-segment-button>\n    <ion-segment-button value="paypal">\n      PayPal\n    </ion-segment-button>\n  </ion-segment>\n\n  <div class="card round" margin-top margin-bottom>\n\n    <div [ngSwitch]="paymethods">\n      <ion-grid *ngSwitchCase="\'creditcard\'" padding>\n        <ion-row>\n          <ion-col no-padding text-center>\n            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCA0OCA0OCIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4Ij48ZyBpZD0ic3VyZmFjZTEiPjxwYXRoIHN0eWxlPSIgZmlsbDojMTU2NUMwOyIgZD0iTSA0NSAzNSBDIDQ1IDM3LjIxMDkzOCA0My4yMTA5MzggMzkgNDEgMzkgTCA3IDM5IEMgNC43ODkwNjMgMzkgMyAzNy4yMTA5MzggMyAzNSBMIDMgMTMgQyAzIDEwLjc4OTA2MyA0Ljc4OTA2MyA5IDcgOSBMIDQxIDkgQyA0My4yMTA5MzggOSA0NSAxMC43ODkwNjMgNDUgMTMgWiAiLz48cGF0aCBzdHlsZT0iIGZpbGw6I0ZGRkZGRjsiIGQ9Ik0gMTUuMTg3NSAxOSBMIDEyLjU1ODU5NCAyNi44MzIwMzEgQyAxMi41NTg1OTQgMjYuODMyMDMxIDExLjg5NDUzMSAyMy41MTk1MzEgMTEuODI4MTI1IDIzLjEwMTU2MyBDIDEwLjMzMjAzMSAxOS42OTE0MDYgOC4xMjUgMTkuODgyODEzIDguMTI1IDE5Ljg4MjgxMyBMIDEwLjcyNjU2MyAzMCBMIDEwLjcyNjU2MyAyOS45OTYwOTQgTCAxMy44ODY3MTkgMjkuOTk2MDk0IEwgMTguMjU3ODEzIDE5IFogIi8+PHBhdGggc3R5bGU9IiBmaWxsOiNGRkZGRkY7IiBkPSJNIDE3LjY4NzUgMzAgTCAyMC41NTg1OTQgMzAgTCAyMi4yOTY4NzUgMTkgTCAxOS4zOTA2MjUgMTkgWiAiLz48cGF0aCBzdHlsZT0iIGZpbGw6I0ZGRkZGRjsiIGQ9Ik0gMzguMDA3ODEzIDE5IEwgMzQuOTg4MjgxIDE5IEwgMzAuMjc3MzQ0IDMwIEwgMzMuMTI4OTA2IDMwIEwgMzMuNzE4NzUgMjguNDI5Njg4IEwgMzcuMzEyNSAyOC40Mjk2ODggTCAzNy42MTcxODggMzAgTCA0MC4yMzA0NjkgMzAgWiBNIDM0LjUxMTcxOSAyNi4zMjgxMjUgTCAzNi4wNzQyMTkgMjIuMTcxODc1IEwgMzYuODk0NTMxIDI2LjMyODEyNSBaICIvPjxwYXRoIHN0eWxlPSIgZmlsbDojRkZGRkZGOyIgZD0iTSAyNi4zNjcxODggMjIuMjA3MDMxIEMgMjYuMzY3MTg4IDIxLjYwMTU2MyAyNi44NjcxODggMjEuMTQ4NDM4IDI4LjI5Njg3NSAyMS4xNDg0MzggQyAyOS4yMjI2NTYgMjEuMTQ4NDM4IDMwLjI4NTE1NiAyMS44MjQyMTkgMzAuMjg1MTU2IDIxLjgyNDIxOSBMIDMwLjc1MzkwNiAxOS41MTU2MjUgQyAzMC43NTM5MDYgMTkuNTE1NjI1IDI5LjM5NDUzMSAxOSAyOC4wNjI1IDE5IEMgMjUuMDQyOTY5IDE5IDIzLjQ4NDM3NSAyMC40NDE0MDYgMjMuNDg0Mzc1IDIyLjI2OTUzMSBDIDIzLjQ4NDM3NSAyNS41NzgxMjUgMjcuNDY0ODQ0IDI1LjEyNSAyNy40NjQ4NDQgMjYuODIwMzEzIEMgMjcuNDY0ODQ0IDI3LjExMzI4MSAyNy4yMzQzNzUgMjcuNzg1MTU2IDI1LjU3NDIxOSAyNy43ODUxNTYgQyAyMy45MTQwNjMgMjcuNzg1MTU2IDIyLjgxNjQwNiAyNy4xNzU3ODEgMjIuODE2NDA2IDI3LjE3NTc4MSBMIDIyLjMyMDMxMyAyOS4zOTQ1MzEgQyAyMi4zMjAzMTMgMjkuMzk0NTMxIDIzLjM4NjcxOSAzMCAyNS40Mzc1IDMwIEMgMjcuNDk2MDk0IDMwIDMwLjM1NTQ2OSAyOC40NjA5MzggMzAuMzU1NDY5IDI2LjI0NjA5NCBDIDMwLjM1NTQ2OSAyMy41ODU5MzggMjYuMzY3MTg4IDIzLjM5NDUzMSAyNi4zNjcxODggMjIuMjA3MDMxIFogIi8+PHBhdGggc3R5bGU9IiBmaWxsOiNGRkMxMDc7IiBkPSJNIDEyLjIxMDkzOCAyNC45NDUzMTMgTCAxMS4yNDYwOTQgMjAuMTk1MzEzIEMgMTEuMjQ2MDk0IDIwLjE5NTMxMyAxMC44MDg1OTQgMTkuMTY3OTY5IDkuNjcxODc1IDE5LjE2Nzk2OSBDIDguNTM1MTU2IDE5LjE2Nzk2OSA1LjIzNDM3NSAxOS4xNjc5NjkgNS4yMzQzNzUgMTkuMTY3OTY5IEMgNS4yMzQzNzUgMTkuMTY3OTY5IDEwLjg5NDUzMSAyMC44Mzk4NDQgMTIuMjEwOTM4IDI0Ljk0NTMxMyBaICIvPjwvZz48L3N2Zz4=" alt="Visa" />\n            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCA0OCA0OCIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4Ij48ZyBpZD0ic3VyZmFjZTEiPjxwYXRoIHN0eWxlPSIgZmlsbDojM0Y1MUI1OyIgZD0iTSA0NSAzNSBDIDQ1IDM3LjIxMDkzOCA0My4yMTA5MzggMzkgNDEgMzkgTCA3IDM5IEMgNC43ODkwNjMgMzkgMyAzNy4yMTA5MzggMyAzNSBMIDMgMTMgQyAzIDEwLjc4OTA2MyA0Ljc4OTA2MyA5IDcgOSBMIDQxIDkgQyA0My4yMTA5MzggOSA0NSAxMC43ODkwNjMgNDUgMTMgWiAiLz48cGF0aCBzdHlsZT0iIGZpbGw6I0ZGQzEwNzsiIGQ9Ik0gNDAgMjQgQyA0MCAyOS41MjM0MzggMzUuNTIzNDM4IDM0IDMwIDM0IEMgMjQuNDc2NTYzIDM0IDIwIDI5LjUyMzQzOCAyMCAyNCBDIDIwIDE4LjQ3NjU2MyAyNC40NzY1NjMgMTQgMzAgMTQgQyAzNS41MjM0MzggMTQgNDAgMTguNDc2NTYzIDQwIDI0IFogIi8+PHBhdGggc3R5bGU9IiBmaWxsOiNGRjNEMDA7IiBkPSJNIDIyLjAxNTYyNSAzMCBDIDIxLjU1MDc4MSAyOS4zODI4MTMgMjEuMTUyMzQ0IDI4LjcxNDg0NCAyMC44Mzk4NDQgMjggTCAyNi4xNjQwNjMgMjggQyAyNi40NDE0MDYgMjcuMzYzMjgxIDI2LjY2MDE1NiAyNi42OTUzMTMgMjYuODAwNzgxIDI2IEwgMjAuMjAzMTI1IDI2IEMgMjAuMDcwMzEzIDI1LjM1NTQ2OSAyMCAyNC42ODc1IDIwIDI0IEwgMjcgMjQgQyAyNyAyMy4zMTI1IDI2LjkyOTY4OCAyMi42NDQ1MzEgMjYuODAwNzgxIDIyIEwgMjAuMTk5MjE5IDIyIEMgMjAuMzQzNzUgMjEuMzA0Njg4IDIwLjU1ODU5NCAyMC42MzY3MTkgMjAuODM5ODQ0IDIwIEwgMjYuMTY0MDYzIDIwIEMgMjUuODUxNTYzIDE5LjI4NTE1NiAyNS40NTMxMjUgMTguNjE3MTg4IDI0Ljk4ODI4MSAxOCBMIDIyLjAxNTYyNSAxOCBDIDIyLjQ0OTIxOSAxNy40MjE4NzUgMjIuOTQ1MzEzIDE2Ljg3ODkwNiAyMy40OTYwOTQgMTYuNDA2MjUgQyAyMS43NDYwOTQgMTQuOTEwMTU2IDE5LjQ4MDQ2OSAxNCAxNyAxNCBDIDExLjQ3NjU2MyAxNCA3IDE4LjQ3NjU2MyA3IDI0IEMgNyAyOS41MjM0MzggMTEuNDc2NTYzIDM0IDE3IDM0IEMgMjAuMjY5NTMxIDM0IDIzLjE2MDE1NiAzMi40MjU3ODEgMjQuOTg0Mzc1IDMwIFogIi8+PC9nPjwvc3ZnPg==" alt="mastercard">\n            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCA0OCA0OCIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4Ij48ZyBpZD0ic3VyZmFjZTEiPjxwYXRoIHN0eWxlPSIgZmlsbDojRTFFN0VBOyIgZD0iTSA0NSAzNSBDIDQ1IDM3LjE5OTIxOSA0My4xOTkyMTkgMzkgNDEgMzkgTCA3IDM5IEMgNC44MDA3ODEgMzkgMyAzNy4xOTkyMTkgMyAzNSBMIDMgMTMgQyAzIDEwLjgwMDc4MSA0LjgwMDc4MSA5IDcgOSBMIDQxIDkgQyA0My4xOTkyMTkgOSA0NSAxMC44MDA3ODEgNDUgMTMgWiAiLz48cGF0aCBzdHlsZT0iIGZpbGw6I0ZGNkQwMDsiIGQ9Ik0gNDUgMzUgQyA0NSAzNy4xOTkyMTkgNDMuMTk5MjE5IDM5IDQxIDM5IEwgMTYgMzkgQyAxNiAzOSAzOS42MDE1NjMgMzUuMTk5MjE5IDQ1IDI0IFogTSAyMiAyNCBDIDIyIDI1LjY5OTIxOSAyMy4zMDA3ODEgMjcgMjUgMjcgQyAyNi42OTkyMTkgMjcgMjggMjUuNjk5MjE5IDI4IDI0IEMgMjggMjIuMzAwNzgxIDI2LjY5OTIxOSAyMSAyNSAyMSBDIDIzLjMwMDc4MSAyMSAyMiAyMi4zMDA3ODEgMjIgMjQgWiAiLz48cGF0aCBzdHlsZT0iICIgZD0iTSAxMS4xOTkyMTkgMjEgTCAxMi4zMDA3ODEgMjEgTCAxMi4zMDA3ODEgMjcgTCAxMS4xOTkyMTkgMjcgWiBNIDE3LjE5OTIxOSAyNCBDIDE3LjE5OTIxOSAyNS42OTkyMTkgMTguNSAyNyAyMC4xOTkyMTkgMjcgQyAyMC42OTkyMTkgMjcgMjEuMTAxNTYzIDI2Ljg5ODQzOCAyMS42MDE1NjMgMjYuNjk5MjE5IEwgMjEuNjAxNTYzIDI1LjM5ODQzOCBDIDIxLjE5OTIxOSAyNS44MDA3ODEgMjAuODAwNzgxIDI2IDIwLjE5OTIxOSAyNiBDIDE5LjEwMTU2MyAyNiAxOC4zMDA3ODEgMjUuMTk5MjE5IDE4LjMwMDc4MSAyNCBDIDE4LjMwMDc4MSAyMi44OTg0MzggMTkuMTAxNTYzIDIyIDIwLjE5OTIxOSAyMiBDIDIwLjY5OTIxOSAyMiAyMS4xMDE1NjMgMjIuMTk5MjE5IDIxLjYwMTU2MyAyMi42MDE1NjMgTCAyMS42MDE1NjMgMjEuMzAwNzgxIEMgMjEuMTAxNTYzIDIxLjEwMTU2MyAyMC42OTkyMTkgMjAuODk4NDM4IDIwLjE5OTIxOSAyMC44OTg0MzggQyAxOC41IDIxIDE3LjE5OTIxOSAyMi4zOTg0MzggMTcuMTk5MjE5IDI0IFogTSAzMC42MDE1NjMgMjQuODk4NDM4IEwgMjkgMjEgTCAyNy44MDA3ODEgMjEgTCAzMC4zMDA3ODEgMjcgTCAzMC44OTg0MzggMjcgTCAzMy4zOTg0MzggMjEgTCAzMi4xOTkyMTkgMjEgWiBNIDMzLjg5ODQzOCAyNyBMIDM3LjEwMTU2MyAyNyBMIDM3LjEwMTU2MyAyNiBMIDM1IDI2IEwgMzUgMjQuMzk4NDM4IEwgMzcgMjQuMzk4NDM4IEwgMzcgMjMuMzk4NDM4IEwgMzUgMjMuMzk4NDM4IEwgMzUgMjIgTCAzNy4xMDE1NjMgMjIgTCAzNy4xMDE1NjMgMjEgTCAzMy44OTg0MzggMjEgWiBNIDQxLjUgMjIuODAwNzgxIEMgNDEuNSAyMS42OTkyMTkgNDAuODAwNzgxIDIxIDM5LjUgMjEgTCAzNy44MDA3ODEgMjEgTCAzNy44MDA3ODEgMjcgTCAzOC44OTg0MzggMjcgTCAzOC44OTg0MzggMjQuNjAxNTYzIEwgMzkgMjQuNjAxNTYzIEwgNDAuNjAxNTYzIDI3IEwgNDIgMjcgTCA0MC4xOTkyMTkgMjQuNSBDIDQxIDI0LjMwMDc4MSA0MS41IDIzLjY5OTIxOSA0MS41IDIyLjgwMDc4MSBaIE0gMzkuMTk5MjE5IDIzLjgwMDc4MSBMIDM4Ljg5ODQzOCAyMy44MDA3ODEgTCAzOC44OTg0MzggMjIgTCAzOS4xOTkyMTkgMjIgQyAzOS44OTg0MzggMjIgNDAuMzAwNzgxIDIyLjMwMDc4MSA0MC4zMDA3ODEgMjIuODk4NDM4IEMgNDAuMzAwNzgxIDIzLjM5ODQzOCA0MCAyMy44MDA3ODEgMzkuMTk5MjE5IDIzLjgwMDc4MSBaIE0gNy42OTkyMTkgMjEgTCA2IDIxIEwgNiAyNyBMIDcuNjAxNTYzIDI3IEMgMTAuMTAxNTYzIDI3IDEwLjY5OTIxOSAyNC44OTg0MzggMTAuNjk5MjE5IDI0IEMgMTAuODAwNzgxIDIyLjE5OTIxOSA5LjUgMjEgNy42OTkyMTkgMjEgWiBNIDcuMzk4NDM4IDI2IEwgNy4xMDE1NjMgMjYgTCA3LjEwMTU2MyAyMiBMIDcuNSAyMiBDIDkgMjIgOS42MDE1NjMgMjMgOS42MDE1NjMgMjQgQyA5LjYwMTU2MyAyNC4zOTg0MzggOS41IDI2IDcuMzk4NDM4IDI2IFogTSAxNS4zMDA3ODEgMjMuMzAwNzgxIEMgMTQuNjAxNTYzIDIzIDE0LjM5ODQzOCAyMi44OTg0MzggMTQuMzk4NDM4IDIyLjYwMTU2MyBDIDE0LjM5ODQzOCAyMi4xOTkyMTkgMTQuODAwNzgxIDIyIDE1LjE5OTIxOSAyMiBDIDE1LjUgMjIgMTUuODAwNzgxIDIyLjEwMTU2MyAxNi4xMDE1NjMgMjIuNSBMIDE2LjY5OTIxOSAyMS42OTkyMTkgQyAxNi4xOTkyMTkgMjEuMTk5MjE5IDE1LjY5OTIxOSAyMSAxNSAyMSBDIDE0IDIxIDEzLjE5OTIxOSAyMS42OTkyMTkgMTMuMTk5MjE5IDIyLjY5OTIxOSBDIDEzLjE5OTIxOSAyMy41IDEzLjYwMTU2MyAyMy44OTg0MzggMTQuNjAxNTYzIDI0LjMwMDc4MSBDIDE1LjE5OTIxOSAyNC41IDE1LjY5OTIxOSAyNC42OTkyMTkgMTUuNjk5MjE5IDI1LjE5OTIxOSBDIDE1LjY5OTIxOSAyNS42OTkyMTkgMTUuMzAwNzgxIDI2IDE0LjgwMDc4MSAyNiBDIDE0LjMwMDc4MSAyNiAxMy44MDA3ODEgMjUuNjk5MjE5IDEzLjYwMTU2MyAyNS4xOTkyMTkgTCAxMi44OTg0MzggMjUuODk4NDM4IEMgMTMuMzk4NDM4IDI2LjY5OTIxOSAxNCAyNyAxNC44OTg0MzggMjcgQyAxNi4xMDE1NjMgMjcgMTYuODk4NDM4IDI2LjE5OTIxOSAxNi44OTg0MzggMjUuMTAxNTYzIEMgMTYuODk4NDM4IDI0LjE5OTIxOSAxNi41IDIzLjgwMDc4MSAxNS4zMDA3ODEgMjMuMzAwNzgxIFogIi8+PC9nPjwvc3ZnPg==" alt="discover">\n            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNTIgMjUyIiB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4Ij48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0ibm9uZSIgZm9udC13ZWlnaHQ9Im5vbmUiIGZvbnQtc2l6ZT0ibm9uZSIgdGV4dC1hbmNob3I9Im5vbmUiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMCwyNTJ2LTI1MmgyNTJ2MjUyeiIgZmlsbD0ibm9uZSIvPjxnPjxnIGlkPSJzdXJmYWNlMSI+PHBhdGggZD0iTTIzNi4yNSwxODMuNzVjMCwxMS42MDc0MiAtOS4zOTI1OCwyMSAtMjEsMjFoLTE3OC41Yy0xMS42MDc0MiwwIC0yMSwtOS4zOTI1OCAtMjEsLTIxdi0xMTUuNWMwLC0xMS42MDc0MiA5LjM5MjU4LC0yMSAyMSwtMjFoMTc4LjVjMTEuNjA3NDIsMCAyMSw5LjM5MjU4IDIxLDIxeiIgZmlsbD0iIzE2YTA4NSIvPjxwYXRoIGQ9Ik0xMTYuODMzMDEsMTA1bC0xMS4wOTQ3MywyNC41ODg4N2wtMTEuMDMzMiwtMjQuNTg4ODdoLTE0LjE1MDM5djM1LjMxNDQ2bC0xNS43NzA1MSwtMzUuMzE0NDZoLTExLjkzNTU1bC0xNi4wOTg2MywzNi42NDc0Nmg5LjUzNjEzbDMuNTA2ODQsLTguMTgyNjJoMTguMDI2MzdsMy41ODg4Nyw4LjE4MjYyaDE4LjE5MDQzdi0yNy4yMTM4N2wxMi4wNTg1OSwyNy4yMTM4N2g4LjIwMzEzbDEyLjM0NTcxLC0yNi43NDIxOXYyNi43NDIxOWg5LjA0Mzk0di0zNi42NDc0NnpNNTMuMjE3NzcsMTI1LjU0ODgzbDUuMzczMDQsLTEyLjc5Njg3bDUuNTk4NjQsMTIuNzk2ODh6IiBmaWxsPSIjZmZmZmZmIi8+PHBhdGggZD0iTTE5OC44ODQ3NywxMjIuOTIzODNsMTYuMzY1MjMsLTE3LjgyMTI5aC0xMS42NDg0NGwtMTAuNDU4OTgsMTEuMzYxMzNsLTEwLjEzMDg2LC0xMS40NjM4N2gtMzYuMDExNzJ2MzYuNjQ3NDZoMzQuODQyNzdsMTAuOTcxNjgsLTEyLjEyMDEybDEwLjcwNTA4LDEyLjIyMjY2aDExLjYwNzQyek0xNzcuMDY0NDYsMTMzLjk1NzAzaC0yMS4wNDEwMnYtNy4yMzkyNmgyMC4xMzg2N3YtNi45NTIxNWgtMjAuMTM4Njd2LTYuODcwMTJsMjIuMjA5OTYsMC4wNjE1Mmw4LjkwMDM5LDkuOTY2OHoiIGZpbGw9IiNmZmZmZmYiLz48L2c+PC9nPjwvZz48L3N2Zz4=" alt="Amex">\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col>\n            <ion-item no-padding>\n              <ion-input type="text" placeholder="Card Holder"></ion-input>\n<!--               <ion-icon name="person" item-end no-margin></ion-icon> -->\n            </ion-item>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col>\n            <ion-item no-padding>\n              <ion-input placeholder="Card Number" type="number"></ion-input>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col col-4>\n            <ion-item no-padding>\n              <ion-select placeholder="MM" class="max-width full-width">\n                <ion-option value="01">01</ion-option>\n                <ion-option value="02">02</ion-option>\n                <ion-option value="03">03</ion-option>\n                <ion-option value="04">04</ion-option>\n                <ion-option value="05">05</ion-option>\n                <ion-option value="06">06</ion-option>\n                <ion-option value="07">07</ion-option>\n                <ion-option value="08">08</ion-option>\n                <ion-option value="09">09</ion-option>\n                <ion-option value="10">10</ion-option>\n                <ion-option value="11">11</ion-option>\n                <ion-option value="12">12</ion-option>\n              </ion-select>\n            </ion-item>\n          </ion-col>\n          <ion-col col-4>\n            <ion-item no-padding>\n              <ion-select placeholder="YY" class="max-width full-width">\n                <ion-option value="19">19</ion-option>\n                <ion-option value="20">20</ion-option>\n                <ion-option value="21">21</ion-option>\n                <ion-option value="22">22</ion-option>\n                <ion-option value="23">23</ion-option>\n                <ion-option value="24">24</ion-option>\n              </ion-select>\n            </ion-item>\n          </ion-col>\n          <ion-col col-4>\n            <ion-item no-padding>\n              <ion-input placeholder="CVV" type="number"></ion-input>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <ion-grid *ngSwitchCase="\'paypal\'" padding>\n        <ion-row>\n          <ion-col no-padding text-center>\n            <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCA0OCA0OCIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4Ij48ZyBpZD0ic3VyZmFjZTEiPjxwYXRoIHN0eWxlPSIgZmlsbDojMTU2NUMwOyIgZD0iTSAxOC42OTkyMTkgMTMuNzY1NjI1IEwgMTguNzAzMTI1IDEzLjc2OTUzMSBDIDE4LjgwODU5NCAxMy4zMjQyMTkgMTkuMTg3NSAxMyAxOS42NjAxNTYgMTMgTCAzMy4xMzI4MTMgMTMgQyAzMy4xNDg0MzggMTMgMzMuMTY0MDYzIDEyLjk5MjE4OCAzMy4xODM1OTQgMTIuOTkyMTg4IEMgMzIuODk0NTMxIDguMjE0ODQ0IDI4Ljg4NjcxOSA2IDI1LjM1MTU2MyA2IEwgMTEuODc4OTA2IDYgQyAxMS40MDIzNDQgNiAxMS4wMjczNDQgNi4zMzU5MzggMTAuOTIxODc1IDYuNzc3MzQ0IEwgMTAuOTE3OTY5IDYuNzczNDM4IEwgNS4wMjczNDQgMzMuODEyNSBMIDUuMDQyOTY5IDMzLjgxMjUgQyA1LjAyNzM0NCAzMy44Nzg5MDYgNS4wMDM5MDYgMzMuOTM3NSA1LjAwMzkwNiAzNC4wMDc4MTMgQyA1LjAwMzkwNiAzNC41NjI1IDUuNDQ5MjE5IDM1IDYuMDAzOTA2IDM1IEwgMTQuMDc0MjE5IDM1IFogIi8+PHBhdGggc3R5bGU9IiBmaWxsOiMwMzlCRTU7IiBkPSJNIDMzLjE4MzU5NCAxMi45OTIxODggQyAzMy4yMzQzNzUgMTMuODcxMDk0IDMzLjE3OTY4OCAxNC44MjQyMTkgMzIuOTUzMTI1IDE1Ljg3NSBDIDMxLjY3MTg3NSAyMS44NzEwOTQgMjcuMDQyOTY5IDI0Ljk5MjE4OCAyMS4zMjAzMTMgMjQuOTkyMTg4IEMgMjEuMzIwMzEzIDI0Ljk5MjE4OCAxNy44NDc2NTYgMjQuOTkyMTg4IDE3LjAwNzgxMyAyNC45OTIxODggQyAxNi40ODQzNzUgMjQuOTkyMTg4IDE2LjIzODI4MSAyNS4yOTY4NzUgMTYuMTI1IDI1LjUzMTI1IEwgMTQuMzg2NzE5IDMzLjU3ODEyNSBMIDE0LjA4MjAzMSAzNS4wMDc4MTMgTCAxNC4wNzQyMTkgMzUuMDA3ODEzIEwgMTIuODEyNSA0MC44MDQ2ODggTCAxMi44MjQyMTkgNDAuODA0Njg4IEMgMTIuODEyNSA0MC44NzEwOTQgMTIuNzg1MTU2IDQwLjkyOTY4OCAxMi43ODUxNTYgNDEgQyAxMi43ODUxNTYgNDEuNTU0Njg4IDEzLjIzNDM3NSA0MiAxMy43ODUxNTYgNDIgTCAyMS4xMTcxODggNDIgTCAyMS4xMzI4MTMgNDEuOTg4MjgxIEMgMjEuNjA1NDY5IDQxLjk4NDM3NSAyMS45ODA0NjkgNDEuNjQ0NTMxIDIyLjA3ODEyNSA0MS4yMDMxMjUgTCAyMi4wOTM3NSA0MS4xODc1IEwgMjMuOTA2MjUgMzIuNzY5NTMxIEMgMjMuOTA2MjUgMzIuNzY5NTMxIDI0LjAzMTI1IDMxLjk2ODc1IDI0Ljg3ODkwNiAzMS45Njg3NSBDIDI1LjcyMjY1NiAzMS45Njg3NSAyOS4wNTQ2ODggMzEuOTY4NzUgMjkuMDU0Njg4IDMxLjk2ODc1IEMgMzQuNzc3MzQ0IDMxLjk2ODc1IDM5LjQ1NzAzMSAyOC44NjMyODEgNDAuNzM4MjgxIDIyLjg2NzE4OCBDIDQyLjE3OTY4OCAxNi4xMDU0NjkgMzcuMzU5Mzc1IDEzLjAxOTUzMSAzMy4xODM1OTQgMTIuOTkyMTg4IFogIi8+PHBhdGggc3R5bGU9IiBmaWxsOiMyODM1OTM7IiBkPSJNIDE5LjY2MDE1NiAxMyBDIDE5LjE4NzUgMTMgMTguODA4NTk0IDEzLjMyNDIxOSAxOC43MDMxMjUgMTMuNzY5NTMxIEwgMTguNjk5MjE5IDEzLjc2NTYyNSBMIDE2LjEyNSAyNS41MzEyNSBDIDE2LjIzODI4MSAyNS4yOTY4NzUgMTYuNDg0Mzc1IDI0Ljk5MjE4OCAxNy4wMDM5MDYgMjQuOTkyMTg4IEMgMTcuODQ3NjU2IDI0Ljk5MjE4OCAyMS4yMzgyODEgMjQuOTkyMTg4IDIxLjIzODI4MSAyNC45OTIxODggQyAyNi45NjQ4NDQgMjQuOTkyMTg4IDMxLjY3MTg3NSAyMS44NzEwOTQgMzIuOTUzMTI1IDE1Ljg3ODkwNiBDIDMzLjE3OTY4OCAxNC44MjQyMTkgMzMuMjM0Mzc1IDEzLjg3MTA5NCAzMy4xODM1OTQgMTIuOTk2MDk0IEMgMzMuMTY0MDYzIDEyLjk5MjE4OCAzMy4xNDg0MzggMTMgMzMuMTMyODEzIDEzIFogIi8+PC9nPjwvc3ZnPg==" alt="paypal">\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col>\n            <ion-item no-padding>\n              <ion-input type="mail" placeholder="E-mail"></ion-input>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col>\n            <ion-item no-padding>\n              <ion-input placeholder="Password" type="password"></ion-input>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n\n  </div>\n\n  <!--submit button-->\n  <button ion-button class="round" color="pederNaranja" margin-top full tappable (click)="send()">SEND</button>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\checkout-trip\checkout-trip.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_trip_service__["a" /* TripService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ToastController */]])
+], CheckoutTripPage);
+
+//# sourceMappingURL=checkout-trip.js.map
+
+/***/ }),
+
+/***/ 192:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchLocationPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(99);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+// import {SearchCarsPage} from "../search-cars/search-cars";
+var SearchLocationPage = (function () {
+    function SearchLocationPage(storage, nav, navParams) {
+        this.storage = storage;
+        this.nav = nav;
+        this.navParams = navParams;
+        // places
+        this.places = {
+            nearby: [
+                {
+                    id: 1,
+                    name: "Current Location"
+                },
+                {
+                    id: 2,
+                    name: "Rio de Janeiro, Brazil"
+                },
+                {
+                    id: 3,
+                    name: "São Paulo, Brazil"
+                },
+                {
+                    id: 4,
+                    name: "New York, United States"
+                },
+                {
+                    id: 5,
+                    name: "London, United Kingdom"
+                },
+                {
+                    id: 6,
+                    name: "Same as pickup"
+                }
+            ],
+            recent: [
+                {
+                    id: 1,
+                    name: "Rio de Janeiro"
+                }
+            ]
+        };
+        this.fromto = this.navParams.data;
+    }
+    // search by item
+    SearchLocationPage.prototype.searchBy = function (item) {
+        if (this.fromto === 'from') {
+            this.storage.set('pickup', item.name);
+        }
+        if (this.fromto === 'to') {
+            this.storage.set('dropOff', item.name);
+        }
+        // this.nav.push(SearchCarsPage);
+        this.nav.pop();
+    };
+    return SearchLocationPage;
+}());
+SearchLocationPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-search-location',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\search-location\search-location.html"*/'<!-- # -->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-input placeholder="Enter Destination" padding-left autofocus></ion-input>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  <div class="list-no-border">\n    <!--nearby places-->\n    <ion-item *ngFor="let item of places.nearby" tappable (click)="searchBy(item)">\n      <ion-icon name="md-locate" item-left color="pederNaranja"></ion-icon>\n      <span ion-text color="pederNaranja">{{ item.name }}</span>\n    </ion-item>\n    <!--recent places-->\n    <ion-item *ngFor="let item of places.recent" tappable (click)="searchBy(item)">\n      <ion-icon name="md-time" item-left color="pederNaranja"></ion-icon>\n      <span ion-text color="pederNaranja">{{ item.name }}</span>\n    </ion-item>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\search-location\search-location.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+], SearchLocationPage);
+
+//# sourceMappingURL=search-location.js.map
+
+/***/ }),
+
+/***/ 236:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WeatherProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var WeatherProvider = (function () {
+    function WeatherProvider(http) {
+        this.http = http;
+        this.apiKey = '1e4a0bdb251c64e4';
+        console.log('Hello WeatherProvider Provider');
+        this.url = 'http://api.wunderground.com/api/' + this.apiKey + '/conditions/q/';
+    }
+    WeatherProvider.prototype.getWeather = function (state, city) {
+        return this.http.get(this.url + state + '/' + city + '.json').map(function (res) { return res; });
+    };
+    return WeatherProvider;
+}());
+WeatherProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+], WeatherProvider);
+
+//# sourceMappingURL=weather.js.map
+
+/***/ }),
+
+/***/ 238:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PushnotificationsProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_onesignal__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var PushnotificationsProvider = (function () {
+    function PushnotificationsProvider(oneSignal, platform, events) {
+        this.oneSignal = oneSignal;
+        this.platform = platform;
+        this.events = events;
+        console.log('Hello PushnotificationsProvider Provider');
+    }
+    PushnotificationsProvider.prototype.notifications = function () {
+        var _this = this;
+        console.log('funcion de notificacion');
+        if (this.platform.is('cordova')) {
+            this.oneSignal.startInit('bc8ff245-ceb0-42ad-b331-cb8e52840dd8', '143603766421');
+            this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+            this.oneSignal.handleNotificationReceived().subscribe(function () {
+                // do something when notification is received
+                console.log('notificacion recibida');
+            });
+            this.oneSignal.handleNotificationOpened().subscribe(function (data) {
+                // do something when a notification is opened
+                console.log('notificacion abierta' + JSON.stringify(data));
+                console.log("tipo: " + data["notification"]["payload"]["additionalData"]["id_contenido"]);
+                /* let id_contenido:any = data["notification"]["payload"]["additionalData"["id_contenido"]];
+                let id:any = data["notification"]["payload"]["additionalData"["id"]]; */
+                /*   if (id_contenido == 1) {
+                    this.app.getActiveNav().push(ShownewsPage, {idNew: id});
+                  } else if (id_contenido == 2) {
+                    this.app.getActiveNav().push(ShoweventsPage, { idEve: id });
+                  }
+                  else if (id_contenido == 3) {
+                  } */
+                console.log('notificacion abierta');
+                console.log('notificacion abierta' + JSON.stringify(data));
+                console.log("tipo: " + data["notification"]["payload"]["additionalData"]["id_contenido"]);
+                var titulo = data["notification"]["payload"]["additionalData"]["titulo"];
+                var id_contenido = data["notification"]["payload"]["additionalData"]["id_contenido"];
+                var menu = data["notification"]["payload"]["additionalData"]["menu"];
+                var submenu = data["notification"]["payload"]["additionalData"]["submenu"];
+                var tipo = data["notification"]["payload"]["additionalData"]["tipo"];
+                var categoria = data["notification"]["payload"]["additionalData"]["categoria"];
+                // let id:any = data["notification"]["payload"]["additionalData"]["id"];
+                // let id_verificacion:any = data["notification"]["payload"]["additionalData"]["id_verificacion"];
+                _this.events.publish('notification:created', titulo, id_contenido, menu, submenu, tipo, categoria);
+            });
+            this.oneSignal.endInit();
+        }
+        else {
+            console.log('va todo bien');
+        }
+    };
+    return PushnotificationsProvider;
+}());
+PushnotificationsProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ionic_native_onesignal__["a" /* OneSignal */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* Events */]])
+], PushnotificationsProvider);
+
+//# sourceMappingURL=pushnotifications.js.map
+
+/***/ }),
+
+/***/ 240:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TurismoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_server_server__ = __webpack_require__(11);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var TurismoPage = (function () {
+    function TurismoPage(navCtrl, navParams, http, server) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.http = http;
+        this.server = server;
+        this.ImageArray = [];
+        this.contenido = [];
+        this.id = navParams.get('id');
+    }
+    TurismoPage.prototype.cargarSubMenu = function () {
+        var _this = this;
+        this.server.getContenido(this.id_menu, this.id_submenu).then(function (data) {
+            _this.contenido = data['RES'];
+        });
+    };
+    ;
+    TurismoPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad TurismoPage');
+    };
+    return TurismoPage;
+}());
+TurismoPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-turismo',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\turismo\turismo.html"*/'<ion-header>\n    <ion-navbar color="pederNaranja">\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title >\n        <!-- <strong>Ionic 3</strong> Start Theme -->\n        {{title}}\n      </ion-title>\n      <!-- <ion-buttons end>\n        <button ion-button tappable (click)="presentNotifications($event)">\n          <ion-icon name="notifications"></ion-icon>\n        </button>\n        <button ion-button tappable (click)="goToAccount()">\n          <ion-icon name="cog"></ion-icon>\n        </button>\n      </ion-buttons> -->\n    </ion-navbar>\n  </ion-header>\n\n\n<ion-content padding>\n    <div class="container trip-info card round">\n        \n        <ion-slides autoplay="5000" loop="true" speed="3000"> \n    \n          <ion-slide *ngFor="let image of ImageArray" class="trip-image border-bottom">\n            <img src="{{image.img}}" alt="" height="593" width="890">\n            \n          </ion-slide>\n        </ion-slides>\n        <p class="pPrincipal">Pedernales cuenta con una importante planta hotelera y de servicios, destacando la amplia variedad de restaurantes y sitios de diversión que se extienden por todo el malecón.</p>\n        <p class="pPrincipal">Punta Los Frailes, al sur de Pedernales, es un sitio de descanso de aves marinas hasta donde se puede llegar luego de una corta caminata de 15 minutos por la playa.</p>\n        \n    </div>\n\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\turismo\turismo.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_server_server__["a" /* ServerProvider */]])
+], TurismoPage);
+
+//# sourceMappingURL=turismo.js.map
+
+/***/ }),
+
+/***/ 241:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_module__ = __webpack_require__(259);
+
+
+
+// this is the magic wand
+Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_21" /* enableProdMode */])();
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 259:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_vista360_vista360__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_keyboard__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_activity_service__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_trip_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_weather__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_http__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_component__ = __webpack_require__(325);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_settings_settings__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_checkout_trip_checkout_trip__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_home_home__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_notifications_notifications__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_register_register__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_search_location_search_location__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_trip_detail_trip_detail__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_trips_trips__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_local_weather_local_weather__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_location_accuracy__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_native_open_native_settings_ngx__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__ionic_native_call_number__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__ionic_native_youtube_video_player__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_native_onesignal__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ionic_native_screen_orientation__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ionic_native_in_app_browser__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__ionic_native_photo_viewer__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_ionic_gallery_modal__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_logo_logo__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_turismo_turismo__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__ionic_native_geolocation__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__ionic_native_native_page_transitions__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__pages_contenido_contenido__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__pages_contenido_completo_contenido_completo__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__pages_ruta_ruta__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__pages_guia_turistica_guia_turistica__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__pages_ver_mas_ver_mas__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__pages_visor360_visor360__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_videos_videos__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__providers_pushnotifications_pushnotifications__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__pages_atractivos_atractivos__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__pages_atractivo_contenido_atractivo_contenido__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__pages_informacion_informacion__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__pages_info_consejo_info_consejo__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__pages_info_emergencia_info_emergencia__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__pages_info_visitanos_info_visitanos__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__pages_galeria_galeria__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__pages_photos_photos__ = __webpack_require__(126);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AppModule = (function () {
+    function AppModule() {
+    }
+    return AppModule;
+}());
+AppModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_14__pages_settings_settings__["a" /* SettingsPage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_checkout_trip_checkout_trip__["a" /* CheckoutTripPage */],
+            __WEBPACK_IMPORTED_MODULE_16__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_login_login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_34__pages_turismo_turismo__["a" /* TurismoPage */],
+            __WEBPACK_IMPORTED_MODULE_38__pages_contenido_contenido__["a" /* ContenidoPage */],
+            __WEBPACK_IMPORTED_MODULE_39__pages_contenido_completo_contenido_completo__["a" /* ContenidoCompletoPage */],
+            __WEBPACK_IMPORTED_MODULE_40__pages_ruta_ruta__["a" /* RutaPage */],
+            __WEBPACK_IMPORTED_MODULE_41__pages_guia_turistica_guia_turistica__["a" /* GuiaTuristicaPage */],
+            __WEBPACK_IMPORTED_MODULE_23__pages_local_weather_local_weather__["a" /* LocalWeatherPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_notifications_notifications__["a" /* NotificationsPage */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_register_register__["a" /* RegisterPage */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_search_location_search_location__["a" /* SearchLocationPage */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_trip_detail_trip_detail__["a" /* TripDetailPage */],
+            __WEBPACK_IMPORTED_MODULE_22__pages_trips_trips__["a" /* TripsPage */],
+            __WEBPACK_IMPORTED_MODULE_33__pages_logo_logo__["a" /* LogoPage */],
+            __WEBPACK_IMPORTED_MODULE_42__pages_ver_mas_ver_mas__["a" /* VerMasPage */],
+            __WEBPACK_IMPORTED_MODULE_43__pages_visor360_visor360__["a" /* Visor360Page */],
+            __WEBPACK_IMPORTED_MODULE_44__pages_videos_videos__["a" /* VideosPage */],
+            __WEBPACK_IMPORTED_MODULE_0__pages_vista360_vista360__["a" /* Vista360Page */],
+            __WEBPACK_IMPORTED_MODULE_47__pages_atractivo_contenido_atractivo_contenido__["a" /* AtractivoContenidoPage */],
+            __WEBPACK_IMPORTED_MODULE_46__pages_atractivos_atractivos__["a" /* AtractivosPage */],
+            __WEBPACK_IMPORTED_MODULE_48__pages_informacion_informacion__["a" /* InformacionPage */],
+            __WEBPACK_IMPORTED_MODULE_49__pages_info_consejo_info_consejo__["a" /* InfoConsejoPage */],
+            __WEBPACK_IMPORTED_MODULE_50__pages_info_emergencia_info_emergencia__["a" /* InfoEmergenciaPage */],
+            __WEBPACK_IMPORTED_MODULE_51__pages_info_visitanos_info_visitanos__["a" /* InfoVisitanosPage */],
+            __WEBPACK_IMPORTED_MODULE_52__pages_galeria_galeria__["a" /* GaleriaPage */],
+            __WEBPACK_IMPORTED_MODULE_53__pages_photos_photos__["a" /* PhotosPage */]
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["b" /* HttpClientModule */],
+            __WEBPACK_IMPORTED_MODULE_12__angular_http__["c" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_32_ionic_gallery_modal__["c" /* GalleryModalModule */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* MyApp */], {
+                scrollPadding: false,
+                scrollAssist: true,
+                autoFocusAssist: false,
+                backButtonText: 'Inicio'
+            }, {
+                links: [
+                    { loadChildren: '../pages/atractivo-contenido/atractivo-contenido.module#AtractivoContenidoPageModule', name: 'AtractivoContenidoPage', segment: 'atractivo-contenido', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/atractivos/atractivos.module#AtractivosPageModule', name: 'AtractivosPage', segment: 'atractivos', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/gastro/gastro.module#GastroPageModule', name: 'GastroPage', segment: 'gastro', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/contenido-completo/contenido-completo.module#ContenidoCompletoPageModule', name: 'ContenidoCompletoPage', segment: 'contenido-completo', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/contenido/contenido.module#ContenidoPageModule', name: 'ContenidoPage', segment: 'contenido', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/galeria/galeria.module#GaleriaPageModule', name: 'GaleriaPage', segment: 'galeria', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/info-emergencia/info-emergencia.module#InfoEmergenciaPageModule', name: 'InfoEmergenciaPage', segment: 'info-emergencia', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/info-consejo/info-consejo.module#InfoConsejoPageModule', name: 'InfoConsejoPage', segment: 'info-consejo', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/info-visitanos/info-visitanos.module#InfoVisitanosPageModule', name: 'InfoVisitanosPage', segment: 'info-visitanos', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/informacion/informacion.module#InformacionPageModule', name: 'InformacionPage', segment: 'informacion', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/photos/photos.module#PhotosPageModule', name: 'PhotosPage', segment: 'photos', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/logo/logo.module#LogoPageModule', name: 'LogoPage', segment: 'logo', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/turismo/turismo.module#TurismoPageModule', name: 'TurismoPage', segment: 'turismo', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/videos/videos.module#VideosPageModule', name: 'VideosPage', segment: 'videos', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/ver-mas/ver-mas.module#VerMasPageModule', name: 'VerMasPage', segment: 'ver-mas', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/visor360/visor360.module#Visor360PageModule', name: 'Visor360Page', segment: 'visor360', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/vista360/vista360.module#Vista360PageModule', name: 'Vista360Page', segment: 'vista360', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/guia-turistica/guia-turistica.module#GuiaTuristicaPageModule', name: 'GuiaTuristicaPage', segment: 'guia-turistica', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/ruta/ruta.module#RutaPageModule', name: 'RutaPage', segment: 'ruta', priority: 'low', defaultHistory: [] }
+                ]
+            }),
+            __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["a" /* IonicStorageModule */].forRoot({
+                name: '__ionic3_start_theme',
+                driverOrder: ['indexeddb', 'sqlite', 'websql']
+            }),
+        ],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicApp */]],
+        entryComponents: [
+            __WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_14__pages_settings_settings__["a" /* SettingsPage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_checkout_trip_checkout_trip__["a" /* CheckoutTripPage */],
+            __WEBPACK_IMPORTED_MODULE_16__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_login_login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_33__pages_logo_logo__["a" /* LogoPage */],
+            __WEBPACK_IMPORTED_MODULE_34__pages_turismo_turismo__["a" /* TurismoPage */],
+            __WEBPACK_IMPORTED_MODULE_38__pages_contenido_contenido__["a" /* ContenidoPage */],
+            __WEBPACK_IMPORTED_MODULE_39__pages_contenido_completo_contenido_completo__["a" /* ContenidoCompletoPage */],
+            __WEBPACK_IMPORTED_MODULE_40__pages_ruta_ruta__["a" /* RutaPage */],
+            __WEBPACK_IMPORTED_MODULE_41__pages_guia_turistica_guia_turistica__["a" /* GuiaTuristicaPage */],
+            __WEBPACK_IMPORTED_MODULE_23__pages_local_weather_local_weather__["a" /* LocalWeatherPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_notifications_notifications__["a" /* NotificationsPage */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_register_register__["a" /* RegisterPage */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_search_location_search_location__["a" /* SearchLocationPage */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_trip_detail_trip_detail__["a" /* TripDetailPage */],
+            __WEBPACK_IMPORTED_MODULE_22__pages_trips_trips__["a" /* TripsPage */],
+            __WEBPACK_IMPORTED_MODULE_42__pages_ver_mas_ver_mas__["a" /* VerMasPage */],
+            __WEBPACK_IMPORTED_MODULE_43__pages_visor360_visor360__["a" /* Visor360Page */],
+            __WEBPACK_IMPORTED_MODULE_44__pages_videos_videos__["a" /* VideosPage */],
+            __WEBPACK_IMPORTED_MODULE_0__pages_vista360_vista360__["a" /* Vista360Page */],
+            __WEBPACK_IMPORTED_MODULE_47__pages_atractivo_contenido_atractivo_contenido__["a" /* AtractivoContenidoPage */],
+            __WEBPACK_IMPORTED_MODULE_46__pages_atractivos_atractivos__["a" /* AtractivosPage */],
+            __WEBPACK_IMPORTED_MODULE_48__pages_informacion_informacion__["a" /* InformacionPage */],
+            __WEBPACK_IMPORTED_MODULE_49__pages_info_consejo_info_consejo__["a" /* InfoConsejoPage */],
+            __WEBPACK_IMPORTED_MODULE_50__pages_info_emergencia_info_emergencia__["a" /* InfoEmergenciaPage */],
+            __WEBPACK_IMPORTED_MODULE_51__pages_info_visitanos_info_visitanos__["a" /* InfoVisitanosPage */],
+            __WEBPACK_IMPORTED_MODULE_52__pages_galeria_galeria__["a" /* GaleriaPage */],
+            __WEBPACK_IMPORTED_MODULE_53__pages_photos_photos__["a" /* PhotosPage */]
+        ],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_27__ionic_native_youtube_video_player__["a" /* YoutubeVideoPlayer */],
+            __WEBPACK_IMPORTED_MODULE_26__ionic_native_call_number__["a" /* CallNumber */],
+            __WEBPACK_IMPORTED_MODULE_24__ionic_native_location_accuracy__["a" /* LocationAccuracy */],
+            __WEBPACK_IMPORTED_MODULE_25__ionic_native_open_native_settings_ngx__["a" /* OpenNativeSettings */],
+            __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_37__providers_server_server__["a" /* ServerProvider */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_keyboard__["a" /* Keyboard */],
+            __WEBPACK_IMPORTED_MODULE_9__services_activity_service__["a" /* ActivityService */],
+            __WEBPACK_IMPORTED_MODULE_10__services_trip_service__["a" /* TripService */],
+            __WEBPACK_IMPORTED_MODULE_11__services_weather__["a" /* WeatherProvider */],
+            __WEBPACK_IMPORTED_MODULE_35__ionic_native_geolocation__["a" /* Geolocation */],
+            __WEBPACK_IMPORTED_MODULE_36__ionic_native_native_page_transitions__["a" /* NativePageTransitions */],
+            __WEBPACK_IMPORTED_MODULE_28__ionic_native_onesignal__["a" /* OneSignal */],
+            __WEBPACK_IMPORTED_MODULE_45__providers_pushnotifications_pushnotifications__["a" /* PushnotificationsProvider */],
+            __WEBPACK_IMPORTED_MODULE_29__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
+            __WEBPACK_IMPORTED_MODULE_30__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+            __WEBPACK_IMPORTED_MODULE_31__ionic_native_photo_viewer__["a" /* PhotoViewer */],
+            {
+                provide: __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["d" /* HAMMER_GESTURE_CONFIG */],
+                useClass: __WEBPACK_IMPORTED_MODULE_32_ionic_gallery_modal__["b" /* GalleryModalHammerConfig */],
+            }
+        ]
+    })
+], AppModule);
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ 298:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TRIPS; });
+var TRIPS = [
+    {
+        id: 1,
+        name: "Copacabana Beach",
+        price_adult: 60,
+        price_child: 30,
+        time: "12h",
+        free_cancellation: 1,
+        electric_voucher: 1,
+        sub_name: "English Commentary Tour",
+        thumb: "assets/img/trip/thumb/trip_1.jpg",
+        description: "From sexy Ipanema and Copacabana, to more secluded and slightly lesser-known stretches of sand, like Prainha Beach, Brazil's Rio de Janeiro is best known for its beaches. Grab your sunscreen and Brazilian bikinis and head to the sunny shores of Rio's best beaches.",
+        location: "Rio de Janeiro, Brazil",
+        images: [
+            "assets/img/trip/thumb/trip_5.jpg",
+            "assets/img/trip/thumb/trip_6.jpg",
+            "assets/img/trip/thumb/trip_7.jpg",
+            "assets/img/trip/thumb/trip_8.jpg",
+        ],
+        highlights: [
+            "Numerous kiosks",
+            "First in a string of Atlantic Ocean-facing beaches",
+            "Sand is flanked by mountains in the background",
+            "Swing in the turquoise waters",
+            "Water Sports",
+        ]
+    },
+    {
+        id: 2,
+        name: "Christ the Redeemer",
+        price_adult: 90,
+        price_child: 45,
+        time: "4h",
+        free_cancellation: 1,
+        electric_voucher: 1,
+        sub_name: "English Commentary Tour",
+        thumb: "assets/img/trip/thumb/trip_2.jpg",
+        description: "From sexy Ipanema and Copacabana, to more secluded and slightly lesser-known stretches of sand, like Prainha Beach, Brazil's Rio de Janeiro is best known for its beaches. Grab your sunscreen and Brazilian bikinis and head to the sunny shores of Rio's best beaches.",
+        location: "Rio de Janeiro, Brazil",
+        images: [],
+        highlights: []
+    },
+    {
+        id: 3,
+        name: "Ipiranga Museum",
+        price_adult: 30,
+        price_child: 15,
+        time: "6h",
+        free_cancellation: 1,
+        electric_voucher: 1,
+        sub_name: "English Commentary Tour",
+        thumb: "assets/img/trip/thumb/trip_3.jpg",
+        description: "From sexy Ipanema and Copacabana, to more secluded and slightly lesser-known stretches of sand, like Prainha Beach, Brazil's Rio de Janeiro is best known for its beaches. Grab your sunscreen and Brazilian bikinis and head to the sunny shores of Rio's best beaches.",
+        location: "São Paulo, Brazil",
+        images: [],
+        highlights: []
+    },
+    {
+        id: 4,
+        name: "Fernando de Noronha",
+        price_adult: 500,
+        price_child: 250,
+        time: "24h",
+        free_cancellation: 1,
+        electric_voucher: 1,
+        sub_name: "English Commentary Tour",
+        thumb: "assets/img/trip/thumb/trip_4.jpg",
+        description: "From sexy Ipanema and Copacabana, to more secluded and slightly lesser-known stretches of sand, like Prainha Beach, Brazil's Rio de Janeiro is best known for its beaches. Grab your sunscreen and Brazilian bikinis and head to the sunny shores of Rio's best beaches.",
+        location: "Fernando de Noronha, Brazil",
+        images: [],
+        highlights: []
+    }
+];
+//# sourceMappingURL=mock-trips.js.map
+
+/***/ }),
+
+/***/ 323:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivityService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_activities__ = __webpack_require__(324);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ActivityService = (function () {
+    function ActivityService() {
+        this.activities = __WEBPACK_IMPORTED_MODULE_1__mock_activities__["a" /* ACTIVITIES */];
+    }
+    ActivityService.prototype.getAll = function () {
+        return this.activities;
+    };
+    ActivityService.prototype.getItem = function (id) {
+        for (var i = 0; i < this.activities.length; i++) {
+            if (this.activities[i].id === parseInt(id)) {
+                return this.activities[i];
+            }
+        }
+        return null;
+    };
+    ActivityService.prototype.remove = function (item) {
+        this.activities.splice(this.activities.indexOf(item), 1);
+    };
+    return ActivityService;
+}());
+ActivityService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [])
+], ActivityService);
+
+//# sourceMappingURL=activity-service.js.map
+
+/***/ }),
+
+/***/ 324:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ACTIVITIES; });
+var ACTIVITIES = [];
+//# sourceMappingURL=mock-activities.js.map
+
+/***/ }),
+
+/***/ 325:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_logo_logo__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_screen_orientation__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_contenido_completo_contenido_completo__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_guia_turistica_guia_turistica__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_visor360_visor360__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_pushnotifications_pushnotifications__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_location_accuracy__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_informacion_informacion__ = __webpack_require__(65);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+// import { TurismoPage } from "../pages/turismo/turismo";
+
+
+
+
+
+
+var MyApp = (function () {
+    function MyApp(platform, statusBar, splashScreen, keyboard, server, http, push, screenOrientation, locationAccuracy) {
+        var _this = this;
+        this.platform = platform;
+        this.statusBar = statusBar;
+        this.splashScreen = splashScreen;
+        this.keyboard = keyboard;
+        this.server = server;
+        this.http = http;
+        this.push = push;
+        this.screenOrientation = screenOrientation;
+        this.locationAccuracy = locationAccuracy;
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_logo_logo__["a" /* LogoPage */];
+        this.menu = new Array();
+        this.isSubMenu = false;
+        this.SUB = false;
+        console.log(this.screenOrientation.type); // logs the current orientation, example: 'landscape'
+        // set to landscape
+        this.initializeApp();
+        if (this.platform.is('android')) {
+            this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+            this.locationAccuracy.canRequest().then(function (canRequest) {
+                _this;
+                if (canRequest) {
+                    // the accuracy option will be ignored by iOS
+                    _this.locationAccuracy.request(_this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(function () { console.log('Ya sale'); }, function (error) { return console.log('Error requesting location permissions', error); });
+                }
+            });
+        }
+    }
+    MyApp.prototype.cargarMenu = function () {
+        var _this = this;
+        this.server.getMenu().then(function (data) {
+            _this.menu = data['RES'];
+            console.log(_this.menu);
+        });
+    };
+    ;
+    MyApp.prototype.cargarSubMenu = function () {
+        var _this = this;
+        this.server.getMenuCompleto().then(function (data) {
+            _this.submenu = data['RES'];
+            for (var i = 0; i < _this.submenu.length; i++) {
+                if (!_this.submenu[i]['id_submenu']) {
+                }
+            }
+            console.log(_this.submenu);
+        });
+    };
+    ;
+    MyApp.prototype.initializeApp = function () {
+        var _this = this;
+        this.cargarMenu();
+        this.cargarSubMenu();
+        this.platform.ready().then(function () {
+            // Okay, so the platform is ready and our plugins are available.
+            //*** Control Splash Screen
+            // this.splashScreen.show();
+            // this.splashScreen.hide();
+            //*** Control Status Bar
+            // this.statusBar.styleDefault();
+            _this.statusBar.styleLightContent();
+            _this.statusBar.overlaysWebView(false);
+            _this.push.notifications();
+            if (_this.platform.is('ios')) {
+                _this.statusBar.backgroundColorByHexString('#F48E28');
+            }
+            //*** Control Keyboard
+            _this.keyboard.disableScroll(true);
+        });
+    };
+    MyApp.prototype.toggleSection = function (i) {
+        console.log(i);
+        this.menu[i].open = !this.menu[i].open;
+        console.log(this.menu);
+        // this.SUB = true;
+    };
+    MyApp.prototype.toggleItem = function (i, j) {
+        console.log(i);
+        console.log(j);
+        // this.submenu[i].children[j].open = !this.submenu[i].children[j].open;
+    };
+    MyApp.prototype.openPage = function (menu, submenu, i, a, titulo) {
+        console.log('menu: ' + menu);
+        console.log('submenu: ' + submenu);
+        console.log('i: ' + i);
+        console.log('a: ' + a);
+        console.log('titulo: ' + titulo);
+        for (var n = 0; n < this.menu.length; n++) {
+            if (this.menu[n].open) {
+                this.menu[i].open = !this.menu[i].open;
+            }
+            else {
+            }
+        }
+        console.log(i);
+        console.log(a);
+        if (menu == 7) {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_12__pages_guia_turistica_guia_turistica__["a" /* GuiaTuristicaPage */]);
+        }
+        else if (menu == 8) {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_16__pages_informacion_informacion__["a" /* InformacionPage */]);
+        }
+        else if (menu == 13) {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_13__pages_visor360_visor360__["a" /* Visor360Page */]);
+        }
+        else {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_11__pages_contenido_completo_contenido_completo__["a" /* ContenidoCompletoPage */], { id: menu, id_submenu: submenu, titulo: titulo });
+        }
+        console.log(titulo);
+        // Reset the content nav to have just this page
+        // we wouldn't want the back button to show in this scenario
+        // this.nav.popToRoot()
+    };
+    // logout() {
+    //   this.nav.setRoot(HomePage);
+    // }
+    MyApp.prototype.irInicio = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */]);
+    };
+    return MyApp;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Nav */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Nav */])
+], MyApp.prototype, "nav", void 0);
+MyApp = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\app\app.html"*/'<ion-menu side="left" id="authenticated" [content]="content">\n  <ion-header>\n    <ion-toolbar class="user-profile">\n          <img src="assets/logo/icon2.png" width="50%" alt="" (click)="irInicio()" menuClose>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content class="fondo" color="pederNaranja" id="menu">\n    <ion-list class="accordion-list menu-list" no-lines no-padding no-background>\n      <!--  -->\n      <ion-list-header class="itemMenu" *ngFor="let item of menu; let i = index" no-lines no-padding no-background>\n        <button ion-item class="itemMenu" (click)="openPage(item.id,0,i,1,item.menu)" menuClose detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}" *ngIf="item.submenu==0">\n          <ion-icon item-left  *ngIf="!item.open && item.childNum!=0"><img style="color:#F48E28; background-color: #F48E28; border-radius:20%;" src="{{ this.server.DOMAINIMG }}/archivos/toma/{{ item.img_point }}/200x200" height="50px" alt=""></ion-icon>\n          <!-- <ion-icon item-left name="arrow-down" *ngIf="item.open && item.childNum!=0"></ion-icon> -->\n          {{ item.menu }}\n        </button>\n        <button ion-item class="itemMenu" (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}" *ngIf="item.submenu==1">\n          <ion-icon item-left class="icono" *ngIf="!item.open && item.childNum!=0"><img style="color:#F48E28; background-color: #F48E28; border-radius:20%;" src="{{ this.server.DOMAINIMG }}/archivos/toma/{{ item.img_point }}/200x200" height="50px" alt=""></ion-icon>\n          <!-- <ion-icon item-left name="arrow-down" *ngIf="item.open && item.childNum!=0"></ion-icon> -->\n          {{ item.menu }}\n        </button>\n        <div *ngIf="item.id && item.open" no-lines no-padding no-detail no-background class="itemMenu">\n          <ion-list *ngFor="let sub of submenu; let j = index"  no-padding  [style.visibility]="item.open ? \'visible\' : \'hidden\'" class="itemMenu">  \n              <button ion-item *ngIf="sub.id_menu==item.id && sub.id_submenu" menuClose  class="child itemMenu" detail-none (click)="openPage(item.id,sub.id_submenu,j,2,item.menu)">\n                <ion-icon item-left name="add" *ngIf="!sub.open"></ion-icon>\n                <ion-icon item-left name="close" *ngIf="sub.open"></ion-icon>\n                {{ sub.submenu }}\n              </button>\n          </ion-list>    \n        </div>\n        <!-- <ion-list  *ngIf="item.children && item.open" no-lines> -->\n        <!-- Second Level -->\n        <!-- <ion-list-header *ngFor="let child of item.children; let j = index" no-padding> -->\n        <!-- Toggle Button -->\n        <!-- <button ion-item (click)="toggleItem(i, j)" menuClose  class="child" detail-none (click)="openPage(child.component)">\n            <ion-icon item-left name="add" *ngIf="!child.open"></ion-icon>\n            <ion-icon item-left name="close" *ngIf="child.open"></ion-icon>\n            {{ child.name }}\n          </button>\n          </ion-list-header>    \n        </ion-list> -->\n      </ion-list-header>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\app\app.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */],
+        __WEBPACK_IMPORTED_MODULE_9__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_14__providers_pushnotifications_pushnotifications__["a" /* PushnotificationsProvider */],
+        __WEBPACK_IMPORTED_MODULE_10__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
+        __WEBPACK_IMPORTED_MODULE_15__ionic_native_location_accuracy__["a" /* LocationAccuracy */]])
+], MyApp);
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 326:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocalWeatherPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_weather__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(99);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+// import { HttpErrorResponse } from '@angular/common/http';
+var LocalWeatherPage = (function () {
+    function LocalWeatherPage(navCtrl, weatherProvider, storage) {
+        this.navCtrl = navCtrl;
+        this.weatherProvider = weatherProvider;
+        this.storage = storage;
+        this.locationList = [
+            { city: 'Los Angeles', state: 'CA' },
+            { city: 'Miami', state: 'FL' },
+            { city: 'New York', state: 'NY' },
+            { city: 'Seattle', state: 'WA' }
+        ];
+    }
+    LocalWeatherPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.storage.get('location').then(function (val) {
+            if (val != null) {
+                _this.location = JSON.parse(val);
+            }
+            else {
+                _this.location = {
+                    state: 'NY',
+                    city: 'New York'
+                };
+            }
+            _this.getWeather(_this.location);
+        });
+    };
+    LocalWeatherPage.prototype.getWeather = function (location) {
+        var _this = this;
+        if (typeof location === 'string') {
+            this.location = JSON.parse(location);
+            console.log(this.location);
+        }
+        else {
+            this.location = location;
+        }
+        this.weatherProvider.getWeather(this.location.state, this.location.city).subscribe(function (weather) {
+            _this.weather = weather.current_observation;
+        });
+    };
+    return LocalWeatherPage;
+}());
+LocalWeatherPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-local-weather',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\local-weather\local-weather.html"*/'<ion-header>\n    <ion-navbar color="pederNaranja">\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Local Weather</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding class="common-bg">\n  <ion-card class="full-width" no-margin margin-bottom>\n    <ion-card-content no-padding>\n\n      <ion-item>\n        <ion-label class="text-1x bold">Select Local</ion-label>\n        <ion-select [(ngModel)]="location" (ionChange)="getWeather(location)">\n          <ion-option *ngFor="let location of locationList" [value]="location">{{ location.city }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n    </ion-card-content>\n  </ion-card>\n\n  <ion-grid class="card" padding *ngIf="weather">\n    <ion-row>\n        <ion-col width-50 offset-25>\n            <h2 class="location text-dark">{{weather.display_location.full}}</h2>\n            <div class="icon"><img src="{{weather.icon_url}}" alt="weather"></div>\n            <h3 class="desc">{{weather.weather}}</h3>\n            <h1 class="temp">{{weather.temp_c}}&deg;</h1>\n        </ion-col>\n    </ion-row>\n    <ion-row>\n        <ion-col width-100>\n            <ion-list>\n\n                <ion-item>\n                <strong>Temp:</strong> {{weather.temperature_string}}\n                </ion-item>\n                 <ion-item>\n                    <strong>Relative Humidity:</strong> {{weather.relative_humidity}}\n                </ion-item>\n                 <ion-item>\n                    <strong>Dewpoint:</strong> {{weather.dewpoint_string}}\n                </ion-item>\n                 <ion-item>\n                    <strong>Visibility:</strong> {{weather.visibility_km}}\n                </ion-item>\n                <ion-item>\n                    <strong>Heat Index:</strong> {{weather.heat_index_string}}\n                </ion-item>\n\n            </ion-list>\n        </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\local-weather\local-weather.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2__services_weather__["a" /* WeatherProvider */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
+], LocalWeatherPage);
+
+//# sourceMappingURL=local-weather.js.map
+
+/***/ }),
+
+/***/ 33:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RutaPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(55);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+// import { GuiaTuristicaPage } from './../guia-turistica/guia-turistica';
+
+
+
+
+
+var RutaPage = (function () {
+    function RutaPage(navCtrl, navParams, geolocation, locationAccuracy, alertCtrl, platform, nav, events) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.geolocation = geolocation;
+        this.locationAccuracy = locationAccuracy;
+        this.alertCtrl = alertCtrl;
+        this.platform = platform;
+        this.nav = nav;
+        this.events = events;
+        this.confirm = this.alertCtrl.create({
+            title: 'Error en la dirección',
+            message: 'Se produjo un error al trazar la ruta hacia la ubicación escogida.',
+            buttons: [
+                {
+                    text: 'Volver',
+                    handler: function () {
+                        _this.navCtrl.pop();
+                    }
+                }
+            ]
+        });
+        this.lat = this.navParams.get('lat');
+        this.lng = this.navParams.get('lng');
+        if (this.platform.is('android')) {
+            this.locationAccuracy.canRequest().then(function (canRequest) {
+                _this;
+                if (canRequest) {
+                    // the accuracy option will be ignored by iOS
+                    _this.locationAccuracy.request(_this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(function () { _this.initMap(); }, function (error) { return console.log('Error requesting location permissions', error); });
+                }
+            });
+        }
+        else {
+            this.initMap();
+        }
+    }
+    RutaPage.prototype.ionViewDidLoad = function () {
+        // this.loadMap();
+        // this.getPosition();
+        // this.initMap();
+    };
+    // showPrompt() {
+    // }
+    /*------------------- funciona*/
+    // loadMap(){
+    //   this.geolocation.getCurrentPosition().then((position)=>{
+    //   let latLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+    //     let mapOptions = {
+    //       center: latLng,
+    //       zoom:16,
+    //       mapTypeId: google.maps.MapTypeId.ROADMAP,
+    //       streetViewControl: false,
+    //       mapTypeControl:false
+    //     }
+    //     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    //     let ubicacion = new google.maps.LatLng(this.lat,this.lng);
+    //     console.log(ubicacion);
+    //     console.log(latLng);
+    //     var marker1 = new google.maps.Marker({position: latLng, map: this.map});
+    //     var infowindow1 = new google.maps.InfoWindow({
+    //       content: '<h2 style="color:red;">Usted esta aqui</h2>'
+    //     });
+    //     marker1.addListener('click', function() {
+    //       infowindow1.open(this.map, marker1);
+    //     });
+    //     var marker2 = new google.maps.Marker({icon:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',position: ubicacion, map: this.map});
+    //     var infowindow2 = new google.maps.InfoWindow({
+    //       content: '<h2 >Ubicacion del evento</h2>'
+    //     });
+    //     marker2.addListener('click', function() {
+    //       infowindow2.open(this.map, marker2);
+    //     });
+    //   }, (err) => {
+    //     console.log(err);
+    //   });
+    // }
+    /*------------------- funciona*/
+    RutaPage.prototype.centrar = function () {
+        // gMap.setCenter(new google.maps.LatLng(37.4419, -122.1419));
+        this.initMap();
+        // this.geolocation.getCurrentPosition().then((position)=>{
+        //   this.map.setCenter({lat:position.coords.latitude,lng:position.coords.longitude});
+        // });
+    };
+    RutaPage.prototype.initMap = function () {
+        var _this = this;
+        this.geolocation.getCurrentPosition().then(function (position) {
+            // let latLng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+            _this.imageYo = {
+                url: 'assets/icon/me.png',
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(40, 40)
+            };
+            var imageB = {
+                url: 'assets/icon/meta.png',
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(0, 40),
+                scaledSize: new google.maps.Size(40, 40)
+            };
+            var pointA = new google.maps.LatLng(position.coords.latitude, position.coords.longitude), pointB = new google.maps.LatLng(_this.lat, _this.lng), myOptions = {
+                zoom: 7,
+                center: pointA,
+                streetViewControl: false,
+                mapTypeControl: false,
+                fullscreenControl: false
+            };
+            _this.map = new google.maps.Map(_this.mapElement.nativeElement, myOptions);
+            // Instantiate a directions service.
+            var directionsService = new google.maps.DirectionsService, directionsDisplay = new google.maps.DirectionsRenderer({
+                map: _this.map,
+                polylineOptions: {
+                    strokeColor: "#F48E28"
+                }
+            });
+            _this.markerYo = new google.maps.Marker({
+                position: pointA,
+                map: _this.map,
+                icon: _this.imageYo,
+            });
+            var markerB = new google.maps.Marker({
+                position: pointB,
+                map: _this.map,
+                icon: imageB
+            });
+            directionsDisplay.addListener('directions_changed', function () {
+                var result = directionsDisplay.getDirections();
+                var total = 0;
+                var myroute = result.routes[0];
+                for (var i = 0; i < myroute.legs.length; i++) {
+                    total += myroute.legs[i].distance.value;
+                }
+                total = total / 1000;
+                if (total > 1) {
+                    total = total;
+                    console.log(total + ' km');
+                    this.distancia = total + ' km';
+                }
+                else {
+                    total = total * 1000;
+                    this.distancia = total + ' m';
+                    console.log(total + ' m');
+                }
+                document.getElementById('distancia').innerText = this.distancia;
+                // console.log(total);
+                //  this.computeTotalDistance(directionsDisplay.getDirections());
+            });
+            // get route from A to B
+            try {
+                _this.calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB, markerB);
+                setInterval(function () {
+                    _this.markerYo.setMap(null);
+                    _this.geolocation.getCurrentPosition().then(function (position) {
+                        var pointRA = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                        // markerA.setMap(null);
+                        _this.markerYo = new google.maps.Marker({
+                            position: pointRA,
+                            map: _this.map,
+                            icon: _this.imageYo,
+                        });
+                        directionsService.route({
+                            origin: pointRA,
+                            destination: pointB,
+                            avoidTolls: true,
+                            avoidHighways: false,
+                            travelMode: google.maps.TravelMode.WALKING,
+                        }, function (response, status) {
+                            // console.log(status);
+                            // console.log(response);
+                            if (status == google.maps.DirectionsStatus.OK) {
+                                console.log('ok');
+                                directionsDisplay.setDirections(response);
+                                directionsDisplay.setOptions({ suppressMarkers: true });
+                            }
+                            else {
+                                // window.alert('Directions request failed due to ' + status);
+                                console.log('mal');
+                                _this.confirm.present();
+                            }
+                        });
+                        // this.map.setCenter(pointA);
+                        // this.calculateAndDisplayRoute(directionsService, directionsDisplay, pointRA, pointB, markerB);  
+                    });
+                }, 4000);
+            }
+            catch (error) {
+                console.log(error);
+            }
+            // console.log('hola');
+        }, function (err) {
+            console.log('hola');
+            console.log(err);
+        });
+    };
+    RutaPage.prototype.calculateAndDisplayRoute = function (directionsService, directionsDisplay, pointA, pointB, markerB) {
+        var _this = this;
+        directionsService.route({
+            origin: pointA,
+            destination: pointB,
+            avoidTolls: true,
+            avoidHighways: false,
+            travelMode: google.maps.TravelMode.WALKING,
+        }, function (response, status) {
+            // console.log(status);
+            // console.log(response);
+            if (status == google.maps.DirectionsStatus.OK) {
+                console.log('ok');
+                directionsDisplay.setDirections(response);
+                directionsDisplay.setOptions({ suppressMarkers: true });
+            }
+            else {
+                // window.alert('Directions request failed due to ' + status);
+                console.log('mal');
+                _this.confirm.present();
+            }
+        });
+        // if(status == 'ZERO_RESULT'){
+        //   this.navCtrl.pop();
+        // }
+    };
+    RutaPage.prototype.computeTotalDistance = function (result) {
+        var total = 0;
+        var myroute = result.routes[0];
+        for (var i = 0; i < myroute.legs.length; i++) {
+            total += myroute.legs[i].distance.value;
+        }
+        total = total / 1000;
+        // document.getElementById('total').innerHTML = total + ' km';
+        console.log(total);
+    };
+    RutaPage.prototype.regresar = function () {
+        this.navCtrl.pop();
+    };
+    return RutaPage;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_14" /* ViewChild */])('map'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ElementRef */])
+], RutaPage.prototype, "mapElement", void 0);
+RutaPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
+        selector: 'page-ruta',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\ruta\ruta.html"*/'<!--\n  Generated template for the RutaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>Ruta</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n  <ion-fab center center>\n      <br>\n      <ion-badge item-center id="distancia"></ion-badge>\n    <!-- <button ion-fab distancia color="pederCafe" id="distancia"></button>  -->\n    \n    <!-- <ion-item class="cardDistance">\n      <ion-icon name="logo-twitter" item-start></ion-icon>\n      Followers\n      <ion-badge item-end>260k</ion-badge>\n    </ion-item> -->\n  </ion-fab>\n  <div #map id="map" style="width:100%; height:100%;" class="trip-info"></div>\n  <ion-fab left bottom #fab>\n    <button ion-fab color="pederCafe" (click)="centrar()"><ion-icon name="compass"></ion-icon></button> \n  </ion-fab>\n</ion-content>\n\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\ruta\ruta.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */],
+        __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__["a" /* LocationAccuracy */],
+        __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["b" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["n" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* Nav */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["c" /* Events */]])
+], RutaPage);
+
+//# sourceMappingURL=ruta.js.map
+
+/***/ }),
+
+/***/ 38:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__notifications_notifications__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__settings_settings__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__trips_trips__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__search_location_search_location__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_toPromise__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_timeout__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_timeout__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__contenido_contenido__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__contenido_completo_contenido_completo__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__galeria_galeria__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_open_native_settings_ngx__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ruta_ruta__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__atractivos_atractivos__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__atractivo_contenido_atractivo_contenido__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__videos_videos__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_in_app_browser__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__informacion_informacion__ = __webpack_require__(65);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+// import {Storage} from '@ionic/storage';
+
+
+
+
+// import { Http } from '@angular/http';
+
+
+
+
+
+
+// import { LocationAccuracy } from '@ionic-native/location-accuracy';
+
+
+
+
+
+
+
+var HomePage = (function () {
+    function HomePage(nav, popoverCtrl, menu, server, loadingCtrl, actionSheetCtrl, openNativeSettings, events, statusBar, platform, alertCtrl, iab) {
+        var _this = this;
+        this.nav = nav;
+        this.popoverCtrl = popoverCtrl;
+        this.menu = menu;
+        this.server = server;
+        this.loadingCtrl = loadingCtrl;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.openNativeSettings = openNativeSettings;
+        this.events = events;
+        this.statusBar = statusBar;
+        this.platform = platform;
+        this.alertCtrl = alertCtrl;
+        this.iab = iab;
+        // search condition
+        this.search = {
+            name: "Rio de Janeiro, Brazil",
+            date: new Date().toISOString()
+        };
+        this.ImageArray = [];
+        this.ImageCards = [];
+        this.splash = true;
+        this.datos = [];
+        this.principal = [];
+        this.submenu = [];
+        this.imgInfo = [];
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        this.possibleButtons = [];
+        this.platform.ready().then(function () {
+            _this.statusBar.backgroundColorByHexString('#F48E28');
+        });
+        events.subscribe('notification:created', function (titulo, id_contenido, menu, submenu, tipo, categoria) {
+            console.log('****---- LLEGO LA NOTIFICACION ----****');
+            console.log("Notificacion Creada " + titulo + ' menu: ' + menu + ' submenu: ' + submenu);
+            if (tipo == 0) {
+                _this.nav.push(__WEBPACK_IMPORTED_MODULE_11__contenido_completo_contenido_completo__["a" /* ContenidoCompletoPage */], { titulo: titulo, id: menu, id_submenu: submenu });
+            }
+            else if (tipo == 1) {
+                var titulo;
+                if (categoria == 8) {
+                    titulo = 'Atractivos Naturales';
+                }
+                else {
+                    titulo = 'Atractivos Culturales';
+                }
+                _this.nav.push(__WEBPACK_IMPORTED_MODULE_16__atractivo_contenido_atractivo_contenido__["a" /* AtractivoContenidoPage */], { titulo: titulo, tipo: categoria });
+            }
+        });
+        this.ImageArray = [
+            { 'image': 'assets/slider/p1.png' },
+            { 'image': 'assets/slider/p2.png' },
+            { 'image': 'assets/slider/p3.png' },
+            { 'image': 'assets/slider/p4.png' }
+        ];
+        this.ImageCards = [
+            { 'image': 'assets/segment/festividades.png' },
+            { 'image': 'assets/segment/ecoturismo.png' },
+            { 'image': 'assets/segment/sol-playa.png' },
+            { 'image': 'assets/segment/deporte.png' },
+            { 'image': 'assets/segment/gastro.png' }
+        ];
+        this.menu.swipeEnable(true);
+        // let localData = http.get('assets/cards.json').map(res => res.json().items);
+        // localData.subscribe(data => {
+        //   this.cards = data;
+        // });
+        this.loader.present().then(function () {
+            _this.server.getMenu().then(function (data) {
+                _this.principal = data['RES'];
+                console.log(_this.principal[0]['id']);
+                // for (let n = 0; n < this.principal.length; n++) {
+                //   this.server.getImageInfo(this.principal[n]['id']).then(data => {
+                //     this.imgInfo = data['RES'];
+                //     console.log(this.imgInfo);
+                //   });
+                // }
+                _this.server.getMenuCompleto().then(function (data) {
+                    _this.submenu = data['RES'];
+                    // for (let i = 0; i < this.submenu.length; i++) {
+                    //   if (!this.submenu[i]['id_submenu']) {
+                    //   }
+                    // }
+                    _this.loader.dismiss();
+                });
+                console.log(_this.imgInfo);
+            });
+        });
+    }
+    HomePage.prototype.doRefresh = function (event) {
+        var _this = this;
+        this.server.getMenu().then(function (data) {
+            _this.principal = data['RES'];
+            console.log(_this.principal);
+            _this.server.getMenuCompleto().then(function (data) {
+                _this.submenu = data['RES'];
+            });
+            console.log(_this.imgInfo);
+            // this.loader.dismiss();
+            event.complete();
+        });
+    };
+    HomePage.prototype.enableLocation = function (setting) {
+        console.log('click');
+        this.openNativeSettings.open('location').then(function (val) {
+            alert(setting);
+        }).catch(function (err) {
+            alert(JSON.stringify(err));
+        });
+    };
+    HomePage.prototype.actionSheet = function (title, id, buttons) {
+        console.log(title);
+        console.log(buttons);
+        var actionSheet = this.actionSheetCtrl.create({
+            title: title,
+            cssClass: 'action-sheets-basic-page',
+            buttons: buttons
+        });
+        actionSheet.present();
+    };
+    HomePage.prototype.ionViewDidLoad = function () {
+        // this.cargarParroquias();
+    };
+    // go to result page
+    HomePage.prototype.doSearch = function () {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_5__trips_trips__["a" /* TripsPage */]);
+    };
+    HomePage.prototype.irMenu = function (id, menu, submenu) {
+        var _this = this;
+        if (submenu == 1) {
+            var _loop_1 = function (i) {
+                if (this_1.submenu[i]['id_menu'] == id) {
+                    console.log(this_1.submenu);
+                    console.log(this_1.submenu[i]['id_submenu']);
+                    console.log(this_1.submenu[i]['imgsub_point']);
+                    var button = void 0;
+                    if (this_1.submenu[i]['id_menu'] == 20 && this_1.submenu[i]['id_submenu'] == 18) {
+                        button = {
+                            text: this_1.submenu[i]['submenu'],
+                            // icon: this.submenu[i]['imgsub_point'],
+                            cssClass: 'botton',
+                            handler: function () {
+                                var browser = _this.iab.create('http://www.pedernalesturistico.com/');
+                                // browser.executeScript(...);
+                                // browser.insertCSS(...);
+                                browser.on('loadstop').subscribe(function (event) {
+                                    browser.insertCSS({ code: "body{color: red;" });
+                                });
+                                browser.close();
+                            }
+                        };
+                    }
+                    else if (this_1.submenu[i]['id_menu'] == 20 && this_1.submenu[i]['id_submenu'] == 19) {
+                        button = {
+                            text: this_1.submenu[i]['submenu'],
+                            // icon: this.submenu[i]['imgsub_point'],
+                            cssClass: 'botton',
+                            handler: function () {
+                                _this.nav.push(__WEBPACK_IMPORTED_MODULE_19__informacion_informacion__["a" /* InformacionPage */]);
+                            }
+                        };
+                    }
+                    else {
+                        button = {
+                            text: this_1.submenu[i]['submenu'],
+                            // icon: this.submenu[i]['imgsub_point'],
+                            cssClass: 'botton',
+                            handler: function () {
+                                _this.nav.push(__WEBPACK_IMPORTED_MODULE_10__contenido_contenido__["a" /* ContenidoPage */], { titulo: _this.submenu[i]['submenu'], id_menu: _this.submenu[i]['id_menu'], id_submenu: _this.submenu[i]['id_submenu'] });
+                            }
+                        };
+                    }
+                    this_1.possibleButtons.push(button);
+                }
+            };
+            var this_1 = this;
+            for (var i = 0; i < this.submenu.length; i++) {
+                _loop_1(i);
+            }
+            var buttonCancell = {
+                text: 'Cancelar',
+                role: 'cancel',
+                handler: function () {
+                    console.log('Cancel clicked');
+                }
+            };
+            this.possibleButtons.push(buttonCancell);
+            console.log(this.possibleButtons);
+            this.actionSheet(menu, id, this.possibleButtons);
+            this.possibleButtons = [];
+        }
+        else if (menu == "GUIA TURISTICA") {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_15__atractivos_atractivos__["a" /* AtractivosPage */]);
+            console.log('abriendo guia turistica');
+        }
+        else if (menu == "GALERIA") {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_12__galeria_galeria__["a" /* GaleriaPage */]);
+            console.log('abriendo el visor');
+        }
+        else if (menu == "COMO LLEGAR") {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_14__ruta_ruta__["a" /* RutaPage */], { lat: 0.0731181, lng: -80.0513928 });
+        }
+        else if (menu == "VIDEOS") {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_17__videos_videos__["a" /* VideosPage */]);
+        }
+        else if (menu == "MAS INFORMACION") {
+            this.nav.push(__WEBPACK_IMPORTED_MODULE_19__informacion_informacion__["a" /* InformacionPage */]);
+        }
+        else {
+            console.log(id);
+            this.server.getContenido(id, 0).then(function (data) {
+                console.log(data.RES);
+                console.log(data.RES.id_menu);
+                console.log(data.RES.id_menusub);
+                if (data.RES) {
+                    _this.nav.push(__WEBPACK_IMPORTED_MODULE_10__contenido_contenido__["a" /* ContenidoPage */], { titulo: menu, id_menu: data.RES[0]['id_menu'], id_submenu: data.RES[0]['id_menusub'] });
+                }
+                else {
+                    var confirm_1 = _this.alertCtrl.create({
+                        title: 'Aún no hay contenido agregado.',
+                        message: 'Muy pronto se agregará el contenido en esta opción.',
+                        buttons: [
+                            {
+                                text: 'Aceptar',
+                                handler: function () {
+                                }
+                            }
+                        ]
+                    });
+                    confirm_1.present();
+                }
+            });
+        }
+    };
+    // choose place
+    HomePage.prototype.choosePlace = function (from) {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_6__search_location_search_location__["a" /* SearchLocationPage */], from);
+    };
+    // to go account page
+    HomePage.prototype.goToAccount = function () {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_4__settings_settings__["a" /* SettingsPage */]);
+    };
+    HomePage.prototype.presentNotifications = function (myEvent) {
+        console.log(myEvent);
+        var popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_3__notifications_notifications__["a" /* NotificationsPage */]);
+        popover.present({
+            ev: myEvent
+        });
+    };
+    return HomePage;
+}());
+HomePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-home',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar color="pederNaranja">\n    <button ion-button menuToggle>\n      <ion-icon name="list" class="menu"></ion-icon>\n    </button>\n    <ion-title>\n      Inicio\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content no-padding class="animated fadeIn common-bg">\n  <!-- <div>\n    <div class="container trip-info card round">\n        <ion-card> \n        <ion-slides autoplay="5000" loop="true" speed="3000" effect="coverflow"> \n\n          <ion-slide *ngFor="let image of ImageArray" class="trip-image border-bottom">\n            <img src="{{image.image}}" alt="" height="593" width="890">\n            \n          </ion-slide>\n          \n        </ion-slides>\n        <ion-card-content>\n            <p class="pPrincipal">Pedernales cuenta con una importante planta hotelera y de servicios, destacando la amplia variedad de restaurantes y sitios de diversión que se extienden por todo el malecón.</p>\n            <p class="pPrincipal">Punta Los Frailes, al sur de Pedernales, es un sitio de descanso de aves marinas hasta donde se puede llegar luego de una corta caminata de 15 minutos por la playa.</p>\n        </ion-card-content>\n        </ion-card>\n    </div>\n    <br><br><br>\n      <div align="center">\n        <ion-row >\n          <ion-col *ngFor="let item of principal">\n            <button ion-button icon-bottom>\n              <ion-icon ><img src="http://localhost:8001/archivos/toma/{{ item.img_point }}" height="30px" alt=""></ion-icon>\n            </button><br>\n            <ion-label for="">{{ item.menu }}</ion-label>\n          </ion-col>\n        </ion-row>\n      </div>\n  </div> -->\n  <!-- <button ion-button color="danger" (click)="enableLocation(\'location\')"> Location </button> -->\n  <!-- <ion-refresher  (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content\n      pullingIcon="arrow-dropdown"\n      pullingText=""\n      refreshingSpinner="circles"\n      refreshingText="Cargando...">\n    </ion-refresher-content>\n  </ion-refresher> -->\n  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content \n      pullingIcon="arrow-down"\n      refreshingSpinner="circles">\n    </ion-refresher-content>\n  </ion-refresher>\n  <ion-grid >  \n    <ion-row align-items-center>\n      <ion-col col-6 *ngFor="let item of principal" class="columna" [ngStyle]="{\'background-image\': \'url(\' +this.server.DOMAINIMG +\'/archivos/toma/\' + item.imagen + \'/200x200)\', \'background-size\': \'cover\', \'background-position\': \'center\', \'opacity\':\'0.8\'  }" align-items-center (click)="irMenu(item.id,item.menu,item.submenu)"> \n        <br><br>\n          <ion-icon ><img src="{{ this.server.DOMAINIMG }}/archivos/toma/{{ item.img_point }}/200x200" height="100px" alt=""></ion-icon>\n          <ion-label>{{ item.menu }}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\home\home.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* PopoverController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_9__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
+        __WEBPACK_IMPORTED_MODULE_13__ionic_native_open_native_settings_ngx__["a" /* OpenNativeSettings */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_18__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
+], HomePage);
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 45:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContenidoCompletoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ruta_ruta__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__videos_videos__ = __webpack_require__(46);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the ContenidoCompletoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ContenidoCompletoPage = (function () {
+    function ContenidoCompletoPage(navCtrl, navParams, loadingCtrl, server, events) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.loadingCtrl = loadingCtrl;
+        this.server = server;
+        this.events = events;
+        this.imgInfo = [];
+        this.contenido = [];
+        this.aux = [];
+        this.imageArray = [];
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        this.titulo = this.navParams.get('titulo');
+        this.id = this.navParams.get('id');
+        this.id_submenu = this.navParams.get('id_submenu');
+        this.loader.present().then(function () {
+            _this.server.getContenido(_this.id_menu, _this.id_submenu).then(function (data) {
+                _this.contenido = data['RES'];
+                _this.aux = _this.contenido;
+                _this.contenido.forEach(function (a) {
+                    _this.server.getImageInfo(a.id).then(function (data) {
+                        _this.imgInfo = data['RES'];
+                        for (var index = 0; index < _this.aux.length; index++) {
+                            for (var a_1 = 0; a_1 < _this.imgInfo.length; a_1++) {
+                                if (_this.aux[index]['id'] == _this.imgInfo[a_1]['id_turismo']) {
+                                    _this.aux[index]['image'] = _this.imgInfo;
+                                }
+                            }
+                            _this.aux[index]['nimage'] = _this.imgInfo.length;
+                            _this.loader.dismiss();
+                        }
+                    });
+                });
+            });
+        });
+    }
+    ContenidoCompletoPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ContenidoCompletoPage');
+    };
+    ContenidoCompletoPage.prototype.doRefresh = function (event) {
+        var _this = this;
+        this.server.getContenidoId(this.id).then(function (data) {
+            _this.contenido = data['RES'];
+            console.log(_this.contenido);
+            event.complete();
+            for (var n = 0; n < _this.contenido.length; n++) {
+                _this.server.getImageInfo(_this.contenido[n]['id']).then(function (data) {
+                    _this.imgInfo = data['RES'];
+                    console.log(_this.imgInfo);
+                });
+            }
+        });
+    };
+    ContenidoCompletoPage.prototype.videos = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__videos_videos__["a" /* VideosPage */]);
+    };
+    ContenidoCompletoPage.prototype.irUbicacion = function (lat, lng) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__ruta_ruta__["a" /* RutaPage */], { lat: lat, lng: lng });
+    };
+    return ContenidoCompletoPage;
+}());
+ContenidoCompletoPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-contenido-completo',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\contenido-completo\contenido-completo.html"*/'<ion-header>\n    <ion-navbar color="pederNaranja">\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>\n        <!-- <strong>Ionic 3</strong> Start Theme -->\n        {{ titulo }}\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n\n  <ion-content padding class="animated fadeIn common-bg">\n    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">\n      <ion-refresher-content\n        pullingIcon="arrow-dropdown"\n        pullingText="Pull to refresh"\n        refreshingSpinner="circles"\n        refreshingText="Cargando...">\n      </ion-refresher-content>\n    </ion-refresher>\n    <div *ngIf="this.contenido!=false">\n      <div *ngFor="let item of aux">\n        <div  class="container trip-info card round"  color="pederNaranja" no-padding>\n          <ion-card no-padding>\n            <div >\n              {{item.nimage}}\n              <ion-slides #slides *ngIf="item.nimage>1" autoplay="5000" loop="true" speed="500" class="slides" pager="true">\n                <ion-slide *ngFor="let img of item.image">\n                  <img src="{{ this.server.DOMAINIMG }}/archivos/toma/{{  img.url }}/400x300" />\n                </ion-slide>\n              </ion-slides>\n              <div *ngIf="item.nimage==1">\n                <img  *ngFor="let img of item.image" src="{{ this.server.DOMAINIMG }}/archivos/toma/{{  img.url }}/400x300" alt="">\n              </div>\n              <div *ngIf="item.nimage==0">\n                <!-- <img  *ngFor="let img of item.image" src="{{ this.server.DOMAINIMG }}/archivos/toma/{{  img.url }}" alt=""> -->\n              </div>\n            </div>\n            <ion-fab right top *ngIf="item.lat!=0">\n              <button ion-fab (click)="irUbicacion(item.lat,item.lng)">\n                <ion-icon name="pin"></ion-icon>\n              </button>\n            </ion-fab>\n            <!-- <ion-fab left top >\n              <button ion-fab (click)="videos()">\n                <ion-icon name="logo-youtube"></ion-icon>\n              </button>\n            </ion-fab> -->\n            <ion-item class="pCuerpo">\n                <ion-icon name="pin" item-start large ></ion-icon>\n                <h2>{{ item.lugar }}</h2>\n              </ion-item>\n            <ion-card-content>\n              <ion-card-title class="pPrincipal">\n                {{ item.titulo }}\n                </ion-card-title>\n                <p class="pCuerpo">{{ item.descripcion }}</p>\n            </ion-card-content>\n          </ion-card>\n        </div> \n        <br>\n        <br>\n      </div>\n    </div>\n  </ion-content>'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\contenido-completo\contenido-completo.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]])
+], ContenidoCompletoPage);
+
+//# sourceMappingURL=contenido-completo.js.map
+
+/***/ }),
+
+/***/ 46:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VideosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_screen_orientation__ = __webpack_require__(96);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the VideosPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var VideosPage = (function () {
+    function VideosPage(navCtrl, navParams, dom, loadingCtrl, server, platform, screenOrientation) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.dom = dom;
+        this.loadingCtrl = loadingCtrl;
+        this.server = server;
+        this.platform = platform;
+        this.screenOrientation = screenOrientation;
+        // vid = 'https://www.youtube.com/embed/wkQ_eGqalVw';
+        this.trustedVideoUrl = [];
+        this.nvideo = [];
+        this.video = [];
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        this.id = this.navParams.get('id');
+        console.log(this.id);
+        this.loader.present().then(function () {
+            _this.server.getVideos().then(function (res) {
+                console.log(res.RES);
+                _this.nvideo = res.RES;
+                _this.loader.dismiss();
+            });
+        });
+    }
+    VideosPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad VideosPage');
+        if (this.platform.is('android')) {
+            this.screenOrientation.unlock();
+        }
+        // this.screenOrientation.onChange().subscribe(
+        //   value => alert('Orientation changed'),
+        //   error => alert('Changed error: ' + error),
+        //   () => alert('Done')
+        // )
+    };
+    VideosPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        console.log(this.id);
+        this.server.getVideos().then(function (res) {
+            var data = res.RES;
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i]['enlace']);
+                _this.video[i] = 'https://www.youtube.com/embed/' + data[i]['enlace'];
+                _this.trustedVideoUrl[i] = _this.dom.bypassSecurityTrustResourceUrl(_this.video[i]);
+            }
+            console.log(_this.trustedVideoUrl);
+            _this.loading = _this.loadingCtrl.create({});
+            _this.loading.present();
+            _this.loader.dismiss();
+            // 'https://www.youtube.com/embed/'
+        });
+        console.log(this.video);
+        console.log(this.video[0]);
+        console.log('aqui');
+    };
+    VideosPage.prototype.handleIFrameLoadEvent = function () {
+        this.loading.dismiss();
+    };
+    return VideosPage;
+}());
+VideosPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-videos',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\videos\videos.html"*/'<!--\n  Generated template for the VideosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>Videos</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div *ngFor="let v of nvideo; let i = index" >\n    <iframe width="100%"\n    height="315"\n    [src]="trustedVideoUrl[i] ? trustedVideoUrl[i] : null"\n    (load)="trustedVideoUrl[i] ? handleIFrameLoadEvent() : null"\n    frameborder="0"\n    allowfullscreen></iframe>\n  </div>\n  <!-- <iframe   src="https://www.youtube.com/embed/wkQ_eGqalVw" frameborder="0" allowfullscreen width="100%" frameborder="1"></iframe> -->\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\videos\videos.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_native_screen_orientation__["a" /* ScreenOrientation */]])
+], VideosPage);
+
+//# sourceMappingURL=videos.js.map
+
+/***/ }),
+
+/***/ 57:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TripService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_trips__ = __webpack_require__(298);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var TripService = (function () {
+    function TripService() {
+        this.trips = __WEBPACK_IMPORTED_MODULE_1__mock_trips__["a" /* TRIPS */];
+    }
+    TripService.prototype.getAll = function () {
+        return this.trips;
+    };
+    TripService.prototype.getItem = function (id) {
+        for (var i = 0; i < this.trips.length; i++) {
+            if (this.trips[i].id === parseInt(id)) {
+                return this.trips[i];
+            }
+        }
+        return null;
+    };
+    TripService.prototype.remove = function (item) {
+        this.trips.splice(this.trips.indexOf(item), 1);
+    };
+    return TripService;
+}());
+TripService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [])
+], TripService);
+
+//# sourceMappingURL=trip-service.js.map
+
+/***/ }),
+
+/***/ 62:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AtractivoContenidoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_server_server__ = __webpack_require__(11);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the AtractivoContenidoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var AtractivoContenidoPage = (function () {
+    function AtractivoContenidoPage(navCtrl, 
+        // public menu: MenuController,
+        loadingCtrl, server, navParams) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.server = server;
+        this.navParams = navParams;
+        this.contenido = [];
+        this.aux = [];
+        this.imgInfo = [];
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        // this.menu.swipeEnable(true);
+        this.titulo = this.navParams.get('titulo');
+        this.tipo = this.navParams.get('tipo');
+        this.loader.present().then(function () {
+            console.log(_this.tipo);
+            _this.server.getAtractivoContenido(_this.tipo).then(function (data) {
+                _this.contenido = data['RES'];
+                console.log(_this.contenido);
+                _this.aux = _this.contenido;
+                _this.contenido.forEach(function (a) {
+                    _this.server.getImageInfoAtractivo(a.id).then(function (dato) {
+                        _this.imgInfo = dato['RES'];
+                        for (var index = 0; index < _this.aux.length; index++) {
+                            for (var a_1 = 0; a_1 < _this.imgInfo.length; a_1++) {
+                                if (_this.aux[index]['id'] == _this.imgInfo[a_1]['id_guia']) {
+                                    _this.aux[index]['image'] = _this.imgInfo;
+                                }
+                            }
+                            if (_this.imgInfo.length) {
+                                _this.aux[index]['nimage'] = _this.imgInfo.length;
+                            }
+                            else {
+                                _this.aux[index]['nimage'] = 0;
+                            }
+                            _this.loader.dismiss();
+                        }
+                    });
+                });
+            });
+        });
+    }
+    AtractivoContenidoPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AtractivoContenidoPage');
+    };
+    AtractivoContenidoPage.prototype.doRefresh = function (event) {
+        var _this = this;
+        this.server.getAtractivoContenido(this.tipo).then(function (data) {
+            _this.contenido = data['RES'];
+            _this.aux = _this.contenido;
+            _this.contenido.forEach(function (a) {
+                _this.server.getImageInfoAtractivo(a.id).then(function (dato) {
+                    _this.imgInfo = dato['RES'];
+                    for (var index = 0; index < _this.aux.length; index++) {
+                        for (var a_2 = 0; a_2 < _this.imgInfo.length; a_2++) {
+                            if (_this.aux[index]['id'] == _this.imgInfo[a_2]['id_guia']) {
+                                _this.aux[index]['image'] = _this.imgInfo;
+                            }
+                        }
+                        if (_this.imgInfo.length) {
+                            _this.aux[index]['nimage'] = _this.imgInfo.length;
+                        }
+                        else {
+                            _this.aux[index]['nimage'] = 0;
+                        }
+                        event.complete();
+                    }
+                    // console.log(this.aux);
+                });
+            });
+        });
+    };
+    return AtractivoContenidoPage;
+}());
+AtractivoContenidoPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-atractivo-contenido',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\atractivo-contenido\atractivo-contenido.html"*/'<ion-header>\n  <ion-navbar color="pederNaranja">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      <!-- <strong>Ionic 3</strong> Start Theme -->\n      {{ titulo }}\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding class="animated fadeIn common-bg">\n  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content \n      pullingIcon="arrow-down"\n      refreshingSpinner="circles">\n    </ion-refresher-content>\n  </ion-refresher>\n  <div *ngIf="this.contenido!=false">\n    <div  *ngFor="let item of aux">\n      <!-- <div class="container trip-info card round"  (click)="verMas(item.titulo,item.id)" no-padding color="pederNaranja"> -->\n      <div class="container trip-info card round" no-padding color="pederNaranja">\n          <ion-card class="cardBlanca max-width" no-padding>\n            <div >\n              <ion-slides #slides *ngIf="item.image?.length>1" autoplay="5000" loop="true" speed="500" class="slides" pager="true">\n              <!-- <ion-slides #slides *ngIf="imgInfo && imgInfo.length" autoplay="5000" loop="true" speed="500" class="slides" pager="true">/ -->\n                <ion-slide *ngFor="let img of item.image">\n                <!-- <ion-slide> -->\n                  <!-- <div> -->\n                    <img  src="{{ this.server.DOMAINIMG }}/archivos/toma/{{  img.url }}/400x300" />\n                  <!-- </div>/ -->\n                </ion-slide>\n              </ion-slides>\n              <div *ngIf="item.nimage==1">\n                <img  *ngFor="let img of item.image" src="{{ this.server.DOMAINIMG }}/archivos/toma/{{  img.url }}/400x300" alt="">\n              </div>\n            </div>\n            <!-- <ion-fab right top *ngIf="item.lat!=0">\n              <button ion-fab (click)="irUbicacion(item.lat,item.lng)">\n                <ion-icon name="pin"></ion-icon>\n              </button>\n            </ion-fab>\n            <ion-fab left top >\n              <button ion-fab (click)="videos(item.id)">\n                <ion-icon name="logo-youtube"></ion-icon>\n              </button>\n            </ion-fab> -->\n            <!-- <ion-item class="pCuerpo" *ngIf="item.lat!=0 && item.point">\n              <button ion-fab (click)="irUbicacion(item.lat,item.lng)">\n                <ion-icon name="pin"></ion-icon>\n              </button>\n            </ion-item>\n            <ion-item *ngIf="item.video" >\n              <button ion-button clear (click)="videos(item.id)">\n                <ion-icon name="logo-youtube"></ion-icon>\n              </button>\n            </ion-item>\n            <ion-item class="pCuerpo" *ngIf="item.lugar" >\n              <ion-icon name="pin" item-start color="primary"></ion-icon><h2 class="lugar">{{ item.lugar }}</h2>\n              \n            </ion-item> -->\n            <ion-card-content>\n              <ion-card-title>\n                {{item.titulo}}\n              </ion-card-title>\n              <p class="pPrincipal" [innerHTML]=" item.descripcion "></p>\n            </ion-card-content>\n          </ion-card>\n      </div>\n      <br>\n      <br>\n    </div>\n  </div>\n</ion-content>'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\atractivo-contenido\atractivo-contenido.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+], AtractivoContenidoPage);
+
+//# sourceMappingURL=atractivo-contenido.js.map
+
+/***/ }),
+
+/***/ 63:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GuiaTuristicaPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ver_mas_ver_mas__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ruta_ruta__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_call_number__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_location_accuracy__ = __webpack_require__(55);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+var GuiaTuristicaPage = (function () {
+    function GuiaTuristicaPage(navCtrl, navParams, geolocation, server, loadingCtrl, actionSheetCtrl, callNumber, locationAccuracy) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.geolocation = geolocation;
+        this.server = server;
+        this.loadingCtrl = loadingCtrl;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.callNumber = callNumber;
+        this.locationAccuracy = locationAccuracy;
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        this.categorias = [];
+        this.markers = [];
+        this.tipo = this.navParams.get('tipo');
+        console.log(this.tipo);
+        this.loader.present().then(function () {
+            _this.locationAccuracy.canRequest().then(function (canRequest) {
+                if (canRequest) {
+                    // the accuracy option will be ignored by iOS
+                    _this.locationAccuracy.request(_this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(function () { _this.loadMap(); }, function (error) { return console.log('Error requesting location permissions', error); });
+                }
+            });
+            _this.server.getGuiaCategorias().then(function (data) {
+                _this.categorias = data['RES'];
+                _this.loader.dismiss();
+            });
+        });
+    }
+    GuiaTuristicaPage.prototype.actionSheet = function (title, id, lat, lng, telf) {
+        var _this = this;
+        if (telf != null) {
+            var actionSheet = this.actionSheetCtrl.create({
+                title: title,
+                cssClass: 'action-sheets-basic-page',
+                buttons: [
+                    {
+                        text: 'Ver Mas',
+                        cssClass: 'botton',
+                        handler: function () {
+                            console.log('este es el id = ' + id);
+                            _this.verMas(title, id);
+                        }
+                    },
+                    {
+                        text: 'LLamar ' + telf,
+                        icon: 'call',
+                        cssClass: 'botton',
+                        handler: function () {
+                            console.log('este es el id = ' + id);
+                            _this.llamar(telf);
+                        }
+                    },
+                    {
+                        text: 'Como llegar',
+                        icon: 'navigate',
+                        cssClass: 'botton',
+                        handler: function () {
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__ruta_ruta__["a" /* RutaPage */], { lat: lat, lng: lng });
+                        }
+                    },
+                    {
+                        text: 'Cancelar',
+                        role: 'cancel',
+                        handler: function () {
+                            console.log('Cancel clicked');
+                        }
+                    }
+                ]
+            });
+            actionSheet.present();
+        }
+        else {
+            var actionSheet = this.actionSheetCtrl.create({
+                title: title,
+                cssClass: 'action-sheets-basic-page',
+                buttons: [
+                    {
+                        text: 'Ver Mas',
+                        // role: 'destructive',
+                        handler: function () {
+                            console.log('este es el id = ' + id);
+                            _this.verMas(title, id);
+                        }
+                    },
+                    {
+                        text: 'Como llegar',
+                        icon: 'navigate',
+                        handler: function () {
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__ruta_ruta__["a" /* RutaPage */], { lat: lat, lng: lng });
+                        }
+                    },
+                    {
+                        text: 'Cancelar',
+                        role: 'cancel',
+                        handler: function () {
+                            console.log('Cancel clicked');
+                        }
+                    }
+                ]
+            });
+            actionSheet.present();
+        }
+    };
+    GuiaTuristicaPage.prototype.centrar = function () {
+        var _this = this;
+        // gMap.setCenter(new google.maps.LatLng(37.4419, -122.1419));
+        this.markerYo.setMap(null);
+        this.geolocation.getCurrentPosition().then(function (position) {
+            var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            _this.map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
+            _this.markerYo = new google.maps.Marker({
+                position: latLng,
+                map: _this.map,
+                animation: google.maps.Animation.DROP,
+                icon: _this.imageYo
+            });
+        });
+    };
+    GuiaTuristicaPage.prototype.ionViewDidLoad = function () {
+        this.loadMap();
+        // this.tomarTodaCategoria();
+        // this.server.getGuiaCategorias().then(data => {
+        //   console.log(data);
+        // });
+    };
+    GuiaTuristicaPage.prototype.verMas = function (title, id) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__ver_mas_ver_mas__["a" /* VerMasPage */], { title: title, id: id });
+    };
+    GuiaTuristicaPage.prototype.llamar = function (telf) {
+        this.callNumber.callNumber(telf, true)
+            .then(function (res) { console.log('Launched dialer!', res); console.log('then'); })
+            .catch(function (err) { return console.log(JSON.stringify(err)); });
+    };
+    /*------------------- funciona*/
+    GuiaTuristicaPage.prototype.loadMap = function () {
+        var _this = this;
+        this.geolocation.getCurrentPosition().then(function (position) {
+            var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            // console.log(latLng);
+            var mapOptions = {
+                center: latLng,
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                disableDefaultUI: true
+            };
+            _this.map = new google.maps.Map(_this.mapElement.nativeElement, mapOptions);
+            _this.imageYo = {
+                url: 'assets/icon/me.png',
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(40, 40)
+            };
+            _this.markerYo = new google.maps.Marker({
+                position: latLng,
+                map: _this.map,
+                animation: google.maps.Animation.DROP,
+                icon: _this.imageYo
+            });
+        });
+    };
+    GuiaTuristicaPage.prototype.tomarTodaCategoria = function () {
+        var _this = this;
+        this.server.getGuiaCategoriasFull().then(function (data) {
+            _this.markers = data['RES'];
+            console.log(_this.markers);
+            _this.markers.forEach(function (marker) {
+                if (marker.lat) {
+                    var latLng = { position: { latitude: marker.lat, longitude: marker.lng }, icon: marker.pin, titulo: marker.titulo, id: marker.id, telf: marker.telefono };
+                    // var latLng = {
+                    //   position:{
+                    //     latitude: -1.038749,
+                    //     longitude: -80.473897,
+                    //   },
+                    //   id:'1'
+                    // }
+                    _this.addMarker(latLng);
+                }
+            });
+        });
+    };
+    GuiaTuristicaPage.prototype.addMarker = function (options) {
+        // let latLng = new google.maps.LatLng(-1.0396448,-80.4729474);
+        // console.log(options);
+        var image = {
+            url: this.server.DOMAINIMG + '/archivos/toma/' + options.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(50, 50)
+        };
+        this.markerOptions = new google.maps.Marker({
+            position: new google.maps.LatLng(options.position.latitude, options.position.longitude),
+            title: options.titulo,
+            map: this.map,
+            animation: google.maps.Animation.DROP,
+            icon: image
+        });
+        this.markers.push(this.markerOptions);
+        this.addInfoWindow(this.markerOptions, options);
+    };
+    GuiaTuristicaPage.prototype.addInfoWindow = function (marker, options) {
+        var _this = this;
+        google.maps.event.addListener(marker, 'click', function () {
+            // infoWindow.open(this.map,marker);
+            _this.actionSheet(options.titulo, options.id, options.position.latitude, options.position.longitude, options.telf);
+            // this.irFormulario(content)
+        });
+    };
+    /*------------------- funciona*/
+    GuiaTuristicaPage.prototype.setMapOnAll = function (map) {
+        if (this.markerOptions) {
+            // this.markerOptions.setMap(null);
+            // this.markerOptions.forEach(mar => {
+            //   console.log(mar);
+            // });
+            // console.log(this.markerOptions.length);
+            for (var i = 0; i < this.markers.length; i++) {
+                // console.log(this.markerOptions.length)
+                this.markers[i].setMap(map);
+            }
+        }
+    };
+    GuiaTuristicaPage.prototype.clearMarkers = function () {
+        this.setMapOnAll(null);
+        // this.markerOptions.setMap(null);
+    };
+    GuiaTuristicaPage.prototype.tomarLugares = function (id) {
+        var _this = this;
+        this.clearMarkers();
+        console.log(id);
+        var marcador = [];
+        this.server.getGuiaCategoriasId(id).then(function (data) {
+            marcador = data.RES;
+            console.log(marcador);
+            marcador.forEach(function (lug) {
+                // console.log(lug.lat)
+                // console.log(lug.lng)
+                var latLng = { position: { latitude: lug.lat, longitude: lug.lng }, icon: lug.pin, titulo: lug.titulo, id: lug.id, telf: lug.telefono };
+                // var latLng = {
+                //   position:{
+                //     latitude: -1.038749,
+                //     longitude: -80.473897,
+                //   },
+                //   id:'1'
+                // }
+                _this.addMarker(latLng);
+            });
+        });
+    };
+    GuiaTuristicaPage.prototype.lugares = function (event, fab, id) {
+        var _this = this;
+        this.loadMap();
+        this.server.getGuiaCategoriasId(id).then(function (data) {
+            _this.markers = data['RES'];
+            _this.markers.forEach(function (marker) {
+                if (marker.lat) {
+                    var latLng = { position: { latitude: marker.lat, longitude: marker.lng }, icon: marker.url, titulo: marker.titulo, id: marker.id, telf: marker.telefono };
+                    _this.addMarker(latLng);
+                }
+            });
+        });
+        fab.close();
+    };
+    return GuiaTuristicaPage;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewChild */])('map'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */])
+], GuiaTuristicaPage.prototype, "mapElement", void 0);
+GuiaTuristicaPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-guia-turistica',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\guia-turistica\guia-turistica.html"*/'<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>Guia Turistica</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content no-padding >\n  <div #map id="map" class="container trip-info "></div>\n  <ion-fab left bottom #fab>\n      <button ion-fab color="pederCafe" (click)="centrar()"><ion-icon name="compass"></ion-icon></button> \n  </ion-fab>\n  <ion-fab right bottom #fab> \n      \n    <button ion-fab  color="pederNaranja"><ion-icon name="apps"></ion-icon></button> \n    <!-- <ion-fab-list side="top" >  -->\n    <ion-fab-list side="top" *ngFor="let item of categorias"> \n      <!-- <button ion-fab color="pederCafe" (click)="lugares($event,fab,item.id)"></button>  -->\n      \n      <button ion-fab value="{{ item.categoria }}" *ngFor="let item of categorias" (click)="tomarLugares(item.id)">\n        <ion-icon name="">\n          <img src="{{ this.server.DOMAINIMG }}/archivos/toma/{{ item.url }}/200x200" >\n          \n        </ion-icon>\n        <div class="label">{{ item.categoria }}</div>\n      </button>\n      <!-- <button ion-fab color="pederNaranja"><ion-icon name="logo-facebook"></ion-icon></button>\n      <button ion-fab color="pederNaranja"><ion-icon name="logo-twitter"></ion-icon></button>\n      <button ion-fab color="pederNaranja"><ion-icon name="logo-linkedin"></ion-icon></button>  -->\n    </ion-fab-list> \n   </ion-fab>\n  <!-- <div *ngFor="let item of categorias">{{ item.id }}</div> -->\n</ion-content>\n<script src="map-icons/dist/js/map-icons.js"></script>'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\guia-turistica\guia-turistica.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_server_server__["a" /* ServerProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
+        __WEBPACK_IMPORTED_MODULE_6__ionic_native_call_number__["a" /* CallNumber */],
+        __WEBPACK_IMPORTED_MODULE_7__ionic_native_location_accuracy__["a" /* LocationAccuracy */]])
+], GuiaTuristicaPage);
+
+//# sourceMappingURL=guia-turistica.js.map
+
+/***/ }),
+
+/***/ 64:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Visor360Page; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_server_server__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pannellum_build_pannellum_js__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pannellum_build_pannellum_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_pannellum_build_pannellum_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__vista360_vista360__ = __webpack_require__(121);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var Visor360Page = (function () {
+    function Visor360Page(nav, navParams, loadingCtrl, server) {
+        this.nav = nav;
+        this.navParams = navParams;
+        this.loadingCtrl = loadingCtrl;
+        this.server = server;
+        this.img360 = [];
+        this.loader = this.loadingCtrl.create({
+            content: '',
+        });
+        this.defaultOptions = {};
+        this.combinedOptions = {};
+        this.titulo = this.navParams.get('titulo');
+        this.img = 'https://pannellum.org/images/cerro-toco-0.jpg';
+        console.log(this.container);
+        if (!window.FileReader.prototype.addEventListener) {
+            window.FileReader.prototype.addEventListener = function (type, listener) {
+                if (type === 'loadend') {
+                    this.onloadend = listener;
+                }
+            };
+            console.log('FileReader patch for loadend injected');
+        }
+        this.id = 'panoid';
+    }
+    Visor360Page.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        console.log(this.container);
+        this.loader.present().then(function () {
+            _this.server.getImage360().then(function (data) {
+                _this.img360 = data['RES'];
+                _this.loader.dismiss();
+            });
+        });
+    };
+    Visor360Page.prototype.ver360 = function (id, nombre, lugar) {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_4__vista360_vista360__["a" /* Vista360Page */], { id: id, nombre: nombre, lugar: lugar });
+    };
+    return Visor360Page;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewChild */])('container'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */])
+], Visor360Page.prototype, "container", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewChild */])('frame'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */])
+], Visor360Page.prototype, "frame", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", String)
+], Visor360Page.prototype, "src", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], Visor360Page.prototype, "options", void 0);
+Visor360Page = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-visor360',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\visor360\visor360.html"*/'<!--\n  Generated template for the Visor360Page page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>Visor 360</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content no-padding>\n  <ion-grid>\n    <ion-row align-items-center *ngFor="let img of img360" padding>\n      <ion-col size="10"  class="columna" [ngStyle]="{\'background-image\': \'url(\' +this.server.DOMAINIMG +\'/archivos/toma/\' + img.url + \')\', \'background-size\': \'cover\', \'opacity\':\'0.8\',\'border-radius\': \'1\'  }" align-items-center (click)="ver360(img.id,img.nombre,img.lugar)">\n        \n        <ion-label><ion-icon name="pin"></ion-icon> {{img.lugar}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n    <!-- <div class="principal"  >\n      <div class="columna">\n        <ion-thumbnail (click)="ver360(img.id,img.nombre,img.lugar)">\n          <img src="{{this.server.DOMAINIMG}}/archivos/toma/{{img.nombre}}" >\n        </ion-thumbnail>\n        <ion-label>{{img.lugar}}</ion-label>\n      </div>\n    </div> -->\n        <!-- <ion-thumbnail slot="start"> -->\n          <!-- <img src="{{this.server.DOMAINIMG}}/archivos/toma/{{img.nombre}}"> (click)="ver360(img.id,img.nombre)" -->\n        <!-- </ion-thumbnail> -->\n    \n</ion-content>'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\visor360\visor360.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_server_server__["a" /* ServerProvider */]])
+], Visor360Page);
+
+//# sourceMappingURL=visor360.js.map
+
+/***/ }),
+
+/***/ 65:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InformacionPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__info_consejo_info_consejo__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__info_emergencia_info_emergencia__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__info_visitanos_info_visitanos__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_server_server__ = __webpack_require__(11);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/**
+ * Generated class for the InformacionPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var InformacionPage = (function () {
+    function InformacionPage(navCtrl, navParams, server) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.server = server;
+    }
+    InformacionPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad InformacionPage');
+    };
+    InformacionPage.prototype.consejos = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__info_consejo_info_consejo__["a" /* InfoConsejoPage */]);
+    };
+    InformacionPage.prototype.emergencia = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__info_emergencia_info_emergencia__["a" /* InfoEmergenciaPage */]);
+    };
+    InformacionPage.prototype.visitanos = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__info_visitanos_info_visitanos__["a" /* InfoVisitanosPage */]);
+    };
+    return InformacionPage;
+}());
+InformacionPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-informacion',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\informacion\informacion.html"*/'<!--\n  Generated template for the InformacionPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="pederNaranja">\n    <ion-title>Más Información</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <img src="{{ this.server.DOMAINIMG }}/archivos/toma/5c6b05cc33a03.jpg" height="100px" width="100%" alt="">\n  <div class="botones">\n    <button ion-button block (click)="consejos()" color="primary">CONSEJOS DE VIAJE</button>\n    <br>\n    <button ion-button block (click)="emergencia()" color="primary">EN CASO DE EMERGENCIA</button>\n    <br>\n    <button ion-button block (click)="visitanos()" color="primary">VISITANOS EN:</button>\n  </div>\n  <div class="image">\n    <img src="assets/logo/icon2.png" width="50%">\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\informacion\informacion.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_5__providers_server_server__["a" /* ServerProvider */]])
+], InformacionPage);
+
+//# sourceMappingURL=informacion.js.map
+
+/***/ }),
+
+/***/ 98:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__register_register__ = __webpack_require__(188);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var LoginPage = (function () {
+    function LoginPage(nav, forgotCtrl, menu, toastCtrl) {
+        this.nav = nav;
+        this.forgotCtrl = forgotCtrl;
+        this.menu = menu;
+        this.toastCtrl = toastCtrl;
+        this.menu.swipeEnable(false);
+    }
+    // go to register page
+    LoginPage.prototype.register = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_3__register_register__["a" /* RegisterPage */]);
+    };
+    // login and go to home page
+    LoginPage.prototype.login = function () {
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+    };
+    LoginPage.prototype.forgotPass = function () {
+        var _this = this;
+        var forgot = this.forgotCtrl.create({
+            title: 'Forgot Password?',
+            message: "Enter you email address to send a reset link password.",
+            inputs: [
+                {
+                    name: 'email',
+                    placeholder: 'Email',
+                    type: 'email'
+                },
+            ],
+            buttons: [
+                {
+                    text: 'Cancel',
+                    handler: function (data) {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Send',
+                    handler: function (data) {
+                        console.log('Send clicked');
+                        var toast = _this.toastCtrl.create({
+                            message: 'Email was sended successfully',
+                            duration: 3000,
+                            position: 'top',
+                            cssClass: 'dark-trans',
+                            closeButtonText: 'OK',
+                            showCloseButton: true
+                        });
+                        toast.present();
+                    }
+                }
+            ]
+        });
+        forgot.present();
+    };
+    return LoginPage;
+}());
+LoginPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-login',template:/*ion-inline-start:"C:\proyectos\movil\tourism\src\pages\login\login.html"*/'<!-- -->\n<ion-content padding class="animated fadeIn login auth-page">\n  <div class="login-content">\n\n    <!-- Logo -->\n    <div padding-horizontal text-center class="animated fadeInDown">\n      <div class="logo"></div>\n      <h2 ion-text class="text-primary">\n        <strong>Ionic 3</strong> Start Theme\n      </h2>\n    </div>\n\n    <!-- Login form -->\n    <form class="list-form">\n      <ion-item>\n        <ion-label floating>\n          <ion-icon name="mail" item-start class="text-primary"></ion-icon>\n          Email\n        </ion-label>\n        <ion-input type="email"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>\n          <ion-icon name="lock" item-start class="text-primary"></ion-icon>\n          Password\n        </ion-label>\n        <ion-input type="password"></ion-input>\n      </ion-item>\n    </form>\n\n    <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Forgot Password?</strong></p>\n\n    <div>\n      <button ion-button icon-start block color="dark" tappable (click)="login()">\n        <ion-icon name="log-in"></ion-icon>\n        SIGN IN\n      </button>\n\n      <p text-center ion-text color="secondary">Or Sign in with:</p>\n\n      <ion-grid>\n        <ion-row>\n          <ion-col col-4>\n            <button ion-button icon-only block class="btn-facebook">\n              <ion-icon name="logo-facebook"></ion-icon>\n            </button>\n          </ion-col>\n          <ion-col col-4>\n            <button ion-button icon-only block class="btn-twitter">\n              <ion-icon name="logo-twitter"></ion-icon>\n            </button>\n          </ion-col>\n          <ion-col col-4>\n            <button ion-button icon-only block class="btn-gplus">\n              <ion-icon name="logo-googleplus"></ion-icon>\n            </button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n    </div>\n\n\n    <!-- Other links -->\n    <div text-center margin-top>\n      <span ion-text color="secondary" tappable (click)="register()">New here? <strong>Sign up</strong></span>\n    </div>\n\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\proyectos\movil\tourism\src\pages\login\login.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* ToastController */]])
+], LoginPage);
+
+//# sourceMappingURL=login.js.map
+
+/***/ })
+
+},[241]);
+//# sourceMappingURL=main.js.map

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACI,YADQ,CACR,WAAW,CAAA;EACP,KAAK,EAAE,IAAI;EACX,UAAU,EAAC,MAAM;CAClB;;AAJP,AAKM,YALM,CAKN,YAAY,CAAA;EACV,UAAU,EAAE,OAAO;CACpB;;AAPP,AAQM,YARM,CAQN,UAAU,CAAA;EACR,KAAK,EAAE,OAAO;CACf",
+    "sources": [
+        "turismo.scss"
+    ],
+    "names": [],
+    "file": "turismo.css"
+}

@@ -1,0 +1,31 @@
+page-visor360 {
+    ion-grid {
+        // height: 100%;
+        justify-content: center;
+        vertical-align: middle;
+    }
+    ion-row{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        vertical-align: bottom;
+    }
+    .columna{
+        // height: 100px;
+        // width: 100%;
+        margin: 10;
+        padding: 10;
+        display: grid;
+        vertical-align: center;
+        text-align: center;
+        font-size: 150%;
+        color: white;
+        background-color: rgba(0,0,0,0.8);
+        height: 200px;
+        max-width: 100%;
+        // background-size: auto;
+        border: 1px solid white;
+        border-radius: 5%;
+    }
+}

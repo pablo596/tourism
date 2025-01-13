@@ -1,0 +1,38 @@
+page-trip-detail ul.highlight,
+.trip-detail ul.highlight {
+  padding-left: 0;
+  font-size: 1.2rem;
+  list-style: none;
+}
+
+page-trip-detail ul.highlight li,
+.trip-detail ul.highlight li {
+  margin-bottom: 1rem;
+}
+
+page-trip-detail .text-sm,
+.trip-detail .text-sm {
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+page-trip-detail .booking-form ion-grid ion-row ion-col,
+.trip-detail .booking-form ion-grid ion-row ion-col {
+  padding: 0;
+}
+
+page-trip-detail .booking-form .form-bottom,
+.trip-detail .booking-form .form-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+page-trip-detail .booking-form .form-bottom .pull-right,
+.trip-detail .booking-form .form-bottom .pull-right {
+  margin-left: auto;
+}
+/*# sourceMappingURL=trip-detail.css.map */

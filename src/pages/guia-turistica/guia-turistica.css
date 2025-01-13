@@ -1,0 +1,75 @@
+page-guia-turistica #map {
+  height: 100%;
+  width: 100%;
+}
+
+page-guia-turistica .map-icon-label .map-icon {
+  font-size: 24px;
+  color: #FFFFFF;
+  line-height: 48px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+page-guia-turistica .action-sheet-title {
+  color: #31D55F;
+  font-size: 25px;
+}
+
+page-guia-turistica #acst-hdr-0 {
+  color: #31D55F;
+  font-size: 25px;
+}
+
+page-guia-turistica ion-fab button {
+  -webkit-box-shadow: 0 4px 10px #6b6b6b;
+          box-shadow: 0 4px 10px #6b6b6b;
+}
+
+page-guia-turistica ion-fab ion-fab-list button[ion-fab] {
+  text-align: center;
+  overflow: visible;
+}
+
+page-guia-turistica ion-fab ion-fab-list button[ion-fab] div.label {
+  position: absolute;
+  right: 48px;
+  background: #F48E28;
+  height: 24px;
+  line-height: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 8px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+}
+
+page-guia-turistica ion-fab .button-inner {
+  overflow: visible;
+}
+
+.action-sheets-basic-page .title {
+  color: #31D55F;
+  font-size: 25px;
+}
+
+.action-sheets-basic-page .ion-md-share {
+  color: #ED4248;
+}
+
+.action-sheets-basic-page .ion-md-arrow-dropright-circle {
+  color: #508AE4;
+}
+
+.action-sheets-basic-page .ion-md-heart-outline {
+  color: #31D55F;
+}
+
+.action-sheets-basic-page .action-sheet-cancel ion-icon,
+.action-sheets-basic-page .action-sheet-destructive ion-icon {
+  color: #757575;
+}
+/*# sourceMappingURL=guia-turistica.css.map */

@@ -1,0 +1,356 @@
+/*
+Template Name: Osahan Fashion - Bootstrap 4 E-Commerce Theme
+Author: Askbootstrap
+Author URI: https://wrapbootstrap.com/user/gurdeep
+Version: 1.0
+*/
+
+console.log(encodeURI('chewing&snuff'));
+
+Array.prototype.in_array=function(){
+    for(var j in this){
+        if(this[j]==arguments[0]){
+            return true;
+        }
+    }
+    return false;    
+}
+Array.prototype.remove = function(x) { 
+    var i;
+    for(i in this){
+        if(i.toString() == x.toString()){
+            this.splice(i,1)
+        }
+    }
+}
+$('input[value=Search]').click(function(event){
+  event.preventDefault();
+  console.log($('input[name=search]').val());
+  console.log($('select[class=nice-select-menu]').val());
+  // if ($('input[name=search]').val()!='') {
+    window.location.href= "http://cstoreexpress.com/search/"+$('select[class=nice-select-menu]').val()+"-"+$('input[name=search]').val()+"/"  
+  // }
+  
+})
+
+var totalCarrito = 0;
+    function eliCarrito(da,val){
+      var idEli = da.split("-");
+      var id_ = $.cookie('id_cstore')
+      var nom_ = $.cookie('nom_cstore');
+
+        var pre_ = $.cookie('precio_cstore');
+        var pre2_ = $.cookie('precioOfi_cstore');
+        var pre3_ = $.cookie('precioFijo_cstore');
+
+            
+        var ca_ = $.cookie('can_cstore');
+          
+        var img_ = $.cookie('img_cstore');
+
+
+      if (id_.indexOf('****') != -1) {
+
+            id_ = id_.split("****");
+
+              nom_ = nom_.split("****")
+      
+              pre_ = pre_.split("****")
+               pre2_ = pre2_.split("****")
+              pre3_ = pre3_.split("****")  
+  
+              ca_ = ca_.split("****")
+ 
+              img_ = img_.split("****");
+         var nu_ = id_.length;
+        for (var i = 0; i < nu_; i++) {
+          if (id_[i] == idEli[0]) {
+              id_.remove(i);
+              nom_.remove(i);
+              pre_.remove(i);
+              pre2_.remove(i);
+              pre3_.remove(i);
+              ca_.remove(i);
+              img_.remove(i);
+
+              i = nu_++;
+          };
+        };
+        
+        
+        $("#car-num").html('<i class="ion-bag"></i><sup>'+id_.length+'</sup>')
+        id_ = id_.join('****');
+        nom_ = nom_.join('****');
+        pre_ = pre_.join('****');
+        pre2_ = pre2_.join('****');
+        pre3_ = pre3_.join('****');
+
+        ca_ = ca_.join('****');
+        img_ = img_.join('****');
+        $.cookie('id_cstore', id_, { expires: 2,domain: 'localhost', path: '/' });
+        $.cookie('nom_cstore', nom_, { expires: 2,domain: 'localhost', path: '/' });
+        $.cookie('precio_cstore', pre_, { expires: 2,domain: 'localhost', path: '/' });
+        $.cookie('precioOfi_cstore', pre2_, { expires: 2,domain: 'localhost', path: '/' });
+        $.cookie('precioFijo_cstore', pre3_, { expires: 2,domain: 'localhost', path: '/' });
+        $.cookie('can_cstore', ca_, { expires: 2,domain: 'localhost', path: '/' });
+        $.cookie('img_cstore', img_, { expires: 2,domain: 'localhost', path: '/' });
+        //if (val == 1) {
+          //totalCarrito = totalCarrito -idEli[1];
+          //totalCarrito =  totalCarrito.toFixed(2)*1
+        //};
+        
+      }else{
+        $.removeCookie('id_cstore', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('nom_cstore', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('precio_cstore', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('precioOfi_cstore', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('precioFijo_cstore', { domain: 'localhost', path: '/' }); 
+ 
+        $.removeCookie('can_cstore', { domain: 'localhost', path: '/' }); 
+        $.removeCookie('img_cstore', { domain: 'localhost', path: '/' });
+        totalCarrito=0;
+
+        $("#car-num").html('<i class="ion-bag"></i>')
+        $("#div-total").html('<span class="cart-text-title">My cart <br> <strong>$ 0.00</strong> </span>');
+        $("#car-cuer").html('<li>it does not have aggregated product</li>')
+        //$("#car-num").html(0)
+        //$("#carrito-div").html('<div class="col-xs-12 margin_top text-center"><img class="img-responsive center-block" src="../img/emptyCart.png" > <h3 class="text-gray">Carrito de compras vacío</h3> </div>');
+         
+      }
+
+      $("#"+idEli[0]+"-li").remove();
+      if ($.cookie('id_cstore') === undefined) {
+          $("#car-cuer").html('<li>it does not have aggregated product</li>')
+          $("#car-num").html('<i class="ion-bag"></i>')
+          $("#div-total").html('<span class="cart-text-title">My cart <br> <strong>$ 0.00</strong> </span>');
+      }else{
+        shoopingCart()
+      }
+
+    }
+
+    function shoopingCart(){
+
+      if (totalCarrito>0) {
+        totalCarrito=0;
+      }
+
+      var id_ = $.cookie('id_cstore')
+            id_ = id_.split("****");
+        var nc=id_.length;
+
+        var nom_ = $.cookie('nom_cstore');
+            nom_ = nom_.split("****")
+        var pre_ = $.cookie('precio_cstore');
+            pre_ = pre_.split("****")
+ 
+        var ca_ = $.cookie('can_cstore');
+            ca_ = ca_.split("****")
+        var img_ = $.cookie('img_cstore');
+            img_ = img_.split("****")
+            /* console.log("id")
+         console.log(id_)
+         console.log("nom")
+         console.log(nom_)
+         console.log("precio")
+         console.log(pre_)
+         console.log("talla")
+         console.log(ta_)
+         console.log("color")
+         console.log(co_)
+         console.log("cantidad")
+         console.log(ca_)
+         console.log("img")
+         console.log(img_)*/
+
+         /*
+            <li>
+
+                <div class="single-shop-cart-wrapper">
+                    <div class="shop-cart-img">
+                        <a href="#"><img src="images/product/1.jpg" alt="Image of Product"></a>
+                    </div>
+                    <div class="shop-cart-info">
+                        <h5><a href="cart.html">sport t-shirt men</a></h5>
+                        <span class="price">£515.00</span>
+                        <span class="quantaty">Qty: 1</span>
+                        <span class="cart-remove"><a href="#"><i class="fa fa-times"></i></a></span>
+                    </div>
+                </div>
+            </li>
+    
+            <li>
+                <div class="shop-cart-btn">
+                    <a href="checkout.html">Checkout</a>
+                    <a href="cart.html" class="pull-right">View Cart</a>
+                </div>
+            </li>
+         */
+        var ht=''
+        for (var i = 0; i < nc; i++) {
+
+            ht +='<li id="'+id_[i]+'-li">'
+            ht +='  <div class="single-shop-cart-wrapper">'
+            ht +='      <div class="shop-cart-img">'
+            ht +='          <a href="#"><img src="'+img_[i]+'" alt="'+nom_[i]+'"></a>'
+            ht +='      </div>'
+            ht +='  <div class="shop-cart-info">'
+            ht +='      <h5><a >'+nom_[i]+'</a></h5>'
+            ht +='      <span class="price">$ '+pre_[i]+'</span>'
+            ht +='      <span class="quantaty">Qty: '+ca_[i]+'</span>'
+            ht +='      <span class="cart-remove"><a href="#" class="btn-eli-carrito" id="'+id_[i]+'-eli"><i class="fa fa-times"></i></a></span>'
+            ht +='  </div>'
+            ht +='</div>'
+            ht +='</li>'
+
+            totalCarrito = totalCarrito + parseFloat(pre_[i])
+
+            //ht += '<li ><a class="aa-cartbox-img" ><img   ></a><div class="aa-cartbox-info"><h4></h4><p> x $</p></div><a  class="aa-remove-product btn-eli-carrito"><span class="fa fa-times"></span></a></li>'
+        };
+
+        if (nc>0) {
+            ht +='<li>'
+            ht +='  <div class="shop-cart-btn">'
+            ht +='      <a href="/checkout/">Checkout</a>'
+            ht +='      <a href="/my-cart/" class="pull-right">View Cart</a>'
+            ht +='  </div>'
+            ht +='</li>'
+            $("#car-cuer").html(ht)
+            $("#div-total").html('<span class="cart-text-title">My cart <br> <strong>$ '+parseFloat(totalCarrito).toFixed(2)+'</strong> </span>');
+            $("#car-num").html('<i class="ion-bag"></i><sup>'+nc+'</sup>')
+        }else{
+            $("#car-cuer").html('<li>it does not have aggregated product</li>')
+            $("#car-num").html('<i class="ion-bag"></i>')
+            $("#div-total").html('<span class="cart-text-title">My cart <br> <strong>$ 0.00</strong> </span>');
+        }
+        
+        $(".btn-eli-carrito").click(function(){
+          eliCarrito(this.id,1);
+        })
+    }
+    function nada(){}
+
+
+  /* ----------------------------------------------------------- */
+  /*  1. Leer cookie carrito de compras 
+  /* ----------------------------------------------------------- */
+    if ($.cookie('id_cstore') !== undefined) {
+        shoopingCart()
+    }
+
+    /* ----------------------------------------------------------- */
+  /*  1. SHARE REDES SOCIALES 
+  /* ----------------------------------------------------------- */
+    $(".fb-share").click(function(e){
+          e.preventDefault();
+          var url = this.id;
+
+
+          var ur = encodeURI(url)
+
+
+          window.open("https://www.facebook.com/sharer/sharer.php?app_id=113869198637480&sdk=joey&u=http%3A%2F%2Fwww.cstore.ec%2F"+ur+"&display=popup&ref=plugin&src=share_button","popup","width=500,height=400")
+        });
+        $(".tw-share").click(function(e){
+          e.preventDefault();
+          var nn = this.id
+          console.log(this.id)
+          var cor = nn.split("****")
+          var url = cor[0];
+
+          opts   = 'status=1' +',width='  + 500  +',height=' + 400;
+          window.open("http://twitter.com/share?text="+cor[1]+" >> &tw_p=tweetbutton&url=http%3A%2F%2Fwww.cstore.ec%2F"+cor[0],"twitter",opts);
+        });
+
+        $('#placeOrder').click(function(){
+          $.ajax({
+              url:"../token.php",
+              type:"GET",
+              dataType: "json",
+              success: function(data){
+                  braintree.setup(data,'dropin',{ container: 'dropin-container'});
+              }
+          })
+          $('#modalPay').modal('show');
+          console.log('click');
+        })
+  /* ----------------------------------------------------------- */
+  /*  1. ME GUSTAS 
+  /* ----------------------------------------------------------- */
+
+  $(".megusta").click(function(){
+
+    var idv = this.id
+        idv = idv.split("-")
+      updateMegusta(idv[0],idv[1])
+      switch(idv[0]){
+        case "1":
+          togleMegustas(1,idv[1])
+
+        break
+        case "2":
+          togleMegustas(2,idv[1])
+        break
+        case "3":
+          togleMegustas(3,idv[1])
+        break
+        case "4":
+          togleMegustas(4,idv[1])
+        break
+        case "5":
+          togleMegustas(5,idv[1])
+        break
+        default:
+          togleMegustas(0,idv[1])
+        break
+
+      }
+  })
+
+  function togleMegustas(va,id){
+
+    for (var i = 1; i <= 5; i++) {
+      if (i <= va) {
+        $("#"+i+"-"+id).addClass("active")
+
+      }else{
+        $("#"+i+"-"+id).removeClass("active")
+
+      }
+      
+    };
+  }
+
+  function updateMegusta(va,id){
+    var megusta = $.ajax({
+            method: "POST",
+            url: "/updateMegusta.php",
+            data: { va: va, id: id}
+          })
+
+    megusta.fail(function() {
+      updateMegusta(va,id)
+    })
+  }
+
+
+/* LOGIN REGISTER */
+if ($.cookie('user_id') !== undefined) {
+  if($.cookie('user_name')!=""){
+    $("#div-account").html('<a href="#">My Account <i class="ion-ios-arrow-down"></i></a><ul><li><a href="/my-account/">My Perfil</a></li><li><a href="/my-orders/">My Orders</a></li><li><a href="/contact/">Contact</a></li><li><a href="/my-cart/">Shopping cart</a></li><li><a href="/checkout/">Checkout</a></li><li><a href="#" id="signOff">Sign off</a></li> </ul>')
+    $("#signOff").click(function(){
+        $("#signOff").html('<i class="fa fa-spinner fa-pulse"></i>')
+        $.ajax({
+          method: "POST",
+          url: "signoff.php",
+        })
+        .done(function( msg ) {
+          window.location.reload();
+        })
+        .fail(function() {
+          window.location.reload();
+        })
+    })
+  }
+}
+

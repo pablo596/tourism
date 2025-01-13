@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEC,oBAFmB,CAEnB,SAAS;AAFV,oBAAoB,CAGnB,SAAS,AAAA,aAAa;AAFvB,gBAAgB,CACf,SAAS;AADV,gBAAgB,CAEf,SAAS,AAAA,aAAa,CAAC;EACtB,KAAK,EAAE,IAAI;CACX",
+    "sources": [
+        "search-location.scss"
+    ],
+    "names": [],
+    "file": "search-location.css"
+}

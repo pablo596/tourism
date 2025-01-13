@@ -1,0 +1,25 @@
+page-search-location ion-input,
+page-search-location ion-input::-webkit-input-placeholder,
+.search-location ion-input,
+.search-location ion-input::-webkit-input-placeholder {
+  color: #fff;
+}
+page-search-location ion-input,
+page-search-location ion-input:-ms-input-placeholder,
+.search-location ion-input,
+.search-location ion-input:-ms-input-placeholder {
+  color: #fff;
+}
+page-search-location ion-input,
+page-search-location ion-input::-ms-input-placeholder,
+.search-location ion-input,
+.search-location ion-input::-ms-input-placeholder {
+  color: #fff;
+}
+page-search-location ion-input,
+page-search-location ion-input::placeholder,
+.search-location ion-input,
+.search-location ion-input::placeholder {
+  color: #fff;
+}
+/*# sourceMappingURL=search-location.css.map */

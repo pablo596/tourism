@@ -1,0 +1,28 @@
+<!--
+  Generated template for the AtractivosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="pederNaranja">
+    <ion-title>Guía Turística</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <img src="{{ this.server.DOMAINIMG }}/archivos/toma/5c6b05cc33a03.jpg/600x200" height="100px" width="100%" alt="">
+  <div class="botones">
+    <button ion-button block (click)="openMap()" color="primary">MAPA DE ATRACTIVOS</button>
+    <br>
+    <button ion-button block (click)="naturales()" color="primary">ATRACTIVOS NATURALES</button>
+    <br>
+    <button ion-button block (click)="culturales()" color="primary">ATRACTIVOS CULTURALES</button>
+  </div>
+  <div class="image">
+    <img src="assets/logo/icon2.png" width="50%">
+  </div>
+</ion-content>

@@ -1,0 +1,48 @@
+{
+    "items": [
+        {   
+            "id":"1",
+            "name": "Festividades y Eventos",
+            "img": "assets/segment/festividades.png",
+            "desc": "Una de las festividades más importante de Pedernales se realiza en Agosto. Mes del Turismo y Rescate de la Cultura Ancestral. En estas fechas se efectúan varias actividades como el Festival del Cangrejo, Flores y Frutas Silvestres, Festival Internacional de la Corvina y el Robalo, Festival de la Langosta y el Langostino, Festival del Queso, Cuajada y Suero Blanco, Festival de la Yuca; entre otros eventos.",
+            "subImg":[
+                {"img":"http://www.pedernalesturistico.com/wp-content/uploads/2017/12/festival-de-la-corvina-560x315.png"},
+                {"img":"http://www.pedernalesturistico.com/wp-content/uploads/2017/12/festival-del-maiz-560x315.png"},
+                {"img":"http://www.pedernalesturistico.com/wp-content/uploads/2017/12/festival-del-coctel-560x315.png"},
+                {"img":"http://www.pedernalesturistico.com/wp-content/uploads/2017/12/festival-del-folklore-560x315.png"}
+            ]
+            
+        },
+        {
+            "id":"2",
+            "name": "Ecoturismo",
+            "img":"assets/segment/ecoturismo.png",
+            "desc": "Pedernales cuenta con dos reservas ecológicas como Mache Chindul y Cerro Pata de Pájaro, que tienen grandes cascadas además de una amplia y espesa vegetación para desarrollar turismo de aventura y de excursión.",
+            "subImg":[
+                {"img":"http://www.pedernalesturistico.com/wp-content/uploads/2018/06/gastronomia8-560x315.png"},
+                {"img":"http://www.pedernalesturistico.com/wp-content/uploads/2017/12/gastronomia4-560x315.png"},
+                {"img":"http://www.pedernalesturistico.com/wp-content/uploads/2017/12/gastronomia-560x315.png"},
+                {"img":"http://www.pedernalesturistico.com/wp-content/uploads/2017/12/gastronomia7-560x315.png"}
+            ]
+        },
+        {
+            "id":"3",
+            "name": "Sol y Playa",
+            "img":"assets/segment/sol-playa.png",
+            "desc": "Sus playas casi vírgenes están rodeadas de numerosos bohíos y restaurantes. Se caracterizan por ser amplias, extensas y de aguas serenas, adornadas por palmeras, únicas en el perfil costero ecuatoriano."
+        },
+        {
+            "id":"4",
+            "name": "Deportes",
+            "img":"assets/segment/deporte.png",
+            "desc":"Cualquier momento es bueno para disfrutar de las olas, siempre que el viento acompañe. Se pueden alquilar tablas de surf para practicar el surfing. El mar está perfectamente diseñado para aventurarse en el deporte acuático."
+        },
+        {
+            "id":"5",
+            "name": "Gastronomía",
+            "img":"assets/segment/gastro.png",
+            "desc":"La gastronomía de Pedernales se caracteriza por los deliciosos mariscos, la variedad de ellos brinda a la cocina una personalidad muy especial, además de los complementos con los que se sirven los platos que deleitan al visitante."
+        }
+
+    ]
+}

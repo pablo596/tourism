@@ -1,0 +1,37 @@
+<!--
+  Generated template for the Visor360Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="pederNaranja">
+    <ion-title>Visor 360</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-grid>
+    <ion-row align-items-center *ngFor="let img of img360" padding>
+      <ion-col size="10"  class="columna" [ngStyle]="{'background-image': 'url(' +this.server.DOMAINIMG +'/archivos/toma/' + img.url + ')', 'background-size': 'cover', 'opacity':'0.8','border-radius': '1'  }" align-items-center (click)="ver360(img.id,img.nombre,img.lugar)">
+        
+        <ion-label><ion-icon name="pin"></ion-icon> {{img.lugar}}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+    <!-- <div class="principal"  >
+      <div class="columna">
+        <ion-thumbnail (click)="ver360(img.id,img.nombre,img.lugar)">
+          <img src="{{this.server.DOMAINIMG}}/archivos/toma/{{img.nombre}}" >
+        </ion-thumbnail>
+        <ion-label>{{img.lugar}}</ion-label>
+      </div>
+    </div> -->
+        <!-- <ion-thumbnail slot="start"> -->
+          <!-- <img src="{{this.server.DOMAINIMG}}/archivos/toma/{{img.nombre}}"> (click)="ver360(img.id,img.nombre)" -->
+        <!-- </ion-thumbnail> -->
+    
+</ion-content>

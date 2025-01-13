@@ -1,0 +1,70 @@
+<!--
+  Generated template for the InfoConsejoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="pederNaranja">
+    <ion-title>CONSEJOS DE VIAJE</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="titulo"><h1>CONSEJOS DE VIAJE</h1></div>
+  <ion-list no-lines>
+    <ion-item text-wrap *ngFor="let item of aux">
+      <ion-avatar item-start>
+        <img src="{{ this.server.DOMAINIMG }}/archivos/toma/{{ item.icono }}/50x50">
+      </ion-avatar>
+      <h2>{{item.texto.innerText}}</h2>
+      <!-- <p>Ugh. As if.</p> -->
+    </ion-item>
+    <!-- <ion-item text-wrap>
+      <ion-avatar item-start>
+        <img src="{{ this.server.DOMAINIMG }}/archivos/toma/mototaxi.png/50x50">
+      </ion-avatar>
+      <h2>
+        <ul>
+          <li>La mototaxi debe tener su número de registro correspondiente.</li>
+          <li>Deben tener placa.</li>
+        </ul>
+      </h2>
+    </ion-item>
+    <ion-item text-wrap>
+      <ion-avatar item-start>
+        <img src="{{ this.server.DOMAINIMG }}/archivos/toma/salud.png/50x50">
+      </ion-avatar>
+      <h2>
+        <ul>
+          <li>La atención médica en Pedernales es gratuita en el centro de Salud Pública.</li>
+          <li>Como precaución, siempre beba agua embotellada.</li>
+        </ul>
+      </h2>
+    </ion-item>
+    <ion-item text-wrap>
+      <ion-avatar item-start>
+        <img src="{{ this.server.DOMAINIMG }}/archivos/toma/viajero.png/50x50">
+      </ion-avatar>
+      <h2>
+        <ul>
+          <li>Siga las recomendaciones del guía, al igual que las reglas y regulaciones de cada lugar.</li>
+        </ul>
+      </h2>
+    </ion-item>
+    <ion-item text-wrap>
+      <ion-avatar item-start>
+        <img src="{{ this.server.DOMAINIMG }}/archivos/toma/nadador.png/50x50">
+      </ion-avatar>
+      <h2>
+        <ul>
+          <li>Cuando ingrese a la playa identifique dónde están ubicados las torres de salvavidas.</li>
+          <li>Respetar siempre las advertencias de los salvavidades.</li>
+        </ul>
+      </h2>
+    </ion-item> -->
+  </ion-list>
+</ion-content>

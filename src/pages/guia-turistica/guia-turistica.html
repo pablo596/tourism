@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar color="pederNaranja">
+    <ion-title>Guia Turistica</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding >
+  <div #map id="map" class="container trip-info "></div>
+  <ion-fab left bottom #fab>
+      <button ion-fab color="pederCafe" (click)="centrar()"><ion-icon name="compass"></ion-icon></button> 
+  </ion-fab>
+  <ion-fab right bottom #fab> 
+      
+    <button ion-fab  color="pederNaranja"><ion-icon name="apps"></ion-icon></button> 
+    <!-- <ion-fab-list side="top" >  -->
+    <ion-fab-list side="top" *ngFor="let item of categorias"> 
+      <!-- <button ion-fab color="pederCafe" (click)="lugares($event,fab,item.id)"></button>  -->
+      
+      <button ion-fab value="{{ item.categoria }}" *ngFor="let item of categorias" (click)="tomarLugares(item.id)">
+        <ion-icon name="">
+          <img src="{{ this.server.DOMAINIMG }}/archivos/toma/{{ item.url }}/200x200" >
+          
+        </ion-icon>
+        <div class="label">{{ item.categoria }}</div>
+      </button>
+      <!-- <button ion-fab color="pederNaranja"><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab color="pederNaranja"><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab color="pederNaranja"><ion-icon name="logo-linkedin"></ion-icon></button>  -->
+    </ion-fab-list> 
+   </ion-fab>
+  <!-- <div *ngFor="let item of categorias">{{ item.id }}</div> -->
+</ion-content>
+<script src="map-icons/dist/js/map-icons.js"></script>

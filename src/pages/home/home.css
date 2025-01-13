@@ -1,0 +1,82 @@
+page-home ion-list,
+.home ion-list {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+page-home ion-list ion-item,
+page-home ion-list .item:first-child,
+page-home ion-list .item:last-child,
+.home ion-list ion-item,
+.home ion-list .item:first-child,
+.home ion-list .item:last-child {
+  border: none;
+}
+
+page-home ion-list ion-datetime,
+.home ion-list ion-datetime {
+  padding-left: 0;
+}
+
+page-home .fondo,
+.home .fondo {
+  background-image: url("assets/img/fondo-menu.png");
+}
+
+page-home .pPrincipal,
+.home .pPrincipal {
+  color: #000;
+  text-align: justify;
+}
+
+page-home .cardContent,
+.home .cardContent {
+  text-align: justify;
+}
+
+page-home .cardTitle,
+.home .cardTitle {
+  color: #F48E28;
+}
+
+page-home .trip-info,
+.home .trip-info {
+  background-color: #F48E28;
+}
+
+page-home ion-grid,
+.home ion-grid {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: middle;
+}
+
+page-home ion-row,
+.home ion-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+page-home .columna,
+.home .columna {
+  display: -ms-grid;
+  display: grid;
+  vertical-align: middle;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 200px;
+  max-width: 100%;
+  border: 1px solid white;
+  border-radius: 5%;
+}
+/*# sourceMappingURL=home.css.map */

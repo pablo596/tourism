@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar color="pederNaranja">
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="animated fadeIn common-bg">
+  <!-- <div  >
+      
+
+          
+    <div class="container trip-info card round"   no-padding color="pederNaranja">
+        <ion-card>
+          <div >
+            <ion-slides class="slider" autoplay="" #slides id="slider" loop="true" speed="3000" (ionSlideDidChange)="slideChanged()" >
+            <ion-slide   *ngFor="let image of datos">
+                          <img *ngIf="image.tipo!=3" src="http://localhost:8001/archivos/toma/{{  image.img }}" />
+                    </ion-slide> 
+            </ion-slides>
+          </div>
+          <ion-fab right top *ngIf="lat!=0 && lng!=0">
+            <button ion-fab (click)="irUbicacion(lat,lng)">
+              <ion-icon name="pin"></ion-icon>
+            </button>
+          </ion-fab>
+          <ion-card-content>
+            <p class="pPrincipal">{{ descripcion }}</p>
+          </ion-card-content>
+        </ion-card>
+    </div>
+    
+    <br>
+    <br>
+  </div> -->
+  
+
+</ion-content>
